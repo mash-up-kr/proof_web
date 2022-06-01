@@ -118,6 +118,10 @@ Add additional notes about how to deploy this on a live system.
 
 ## Sponsors <a name = "sponsors"></a>
 
+This open source project is sponsored by [Vercel](https://vercel.com/?utm_source=mash-up-kr&utm_campaign=oss).
+
+[![Powered by Vercel](assets/sponsors/powered_by_vercel.svg)](https://vercel.com/?utm_source=mash-up-kr&utm_campaign=oss)
+
 ## License <a name = "license"></a>
 
 zuzu is under MIT license
