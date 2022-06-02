@@ -1997,9 +1997,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"recoil@npm:^0.7.3-alpha.2":
-  version: 0.7.3-alpha.2
-  resolution: "recoil@npm:0.7.3-alpha.2"
+"recoil@npm:0.7.2":
+  version: 0.7.2
+  resolution: "recoil@npm:0.7.2"
   dependencies:
     hamt_plus: 1.0.2
   peerDependencies:
@@ -2009,7 +2009,7 @@ __metadata:
       optional: true
     react-native:
       optional: true
-  checksum: 3af4b8ef88f0602515bd2730a8dba12f9aa866db5ce1310e5dc8a431b2e5bd4b5e16b9bc9b2e496b0024b78ece80ebfd61797eb4e64b6cbc62e4e23833d02c6a
+  checksum: 2ad0c2052fd33ee358e3b448fd36ea6d4b37e69ace65ff44124605171c4794e4f167215209731aac3d45d42ea9f4c67e9c5a0704ff04ab94b64bcca96d5f59a3
   languageName: node
   linkType: hard
 
@@ -2464,7 +2464,7 @@ __metadata:
     react: 18.1.0
     react-dom: 18.1.0
     react-query: ^3.39.1
-    recoil: ^0.7.3-alpha.2
+    recoil: 0.7.2
     typescript: 4.7.2
   languageName: unknown
   linkType: soft
