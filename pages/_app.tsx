@@ -1,7 +1,8 @@
 import '../styles/globals.css';
-import type { AppProps } from 'next/app';
 import { RecoilRoot } from 'recoil';
+import type { AppProps } from 'next/app';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 const queryClient = new QueryClient();
 
@@ -11,6 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <RecoilRoot>
         <Component {...pageProps} />
       </RecoilRoot>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }
