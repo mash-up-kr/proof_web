@@ -10,9 +10,16 @@
     "lint-fix": "eslint --fix --ext .ts,.tsx pages"
   },
   "dependencies": {
+    "@babel/core": "^7.18.2",
+    "@babel/preset-react": "^7.17.12",
+    "@emotion/babel-plugin": "^11.9.2",
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
     "next": "12.1.6",
     "react": "18.1.0",
-    "react-dom": "18.1.0"
+    "react-dom": "18.1.0",
+    "react-query": "^3.39.1",
+    "recoil": "0.7.2"
   },
   "devDependencies": {
     "@types/node": "17.0.36",
