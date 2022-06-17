@@ -1,20 +1,21 @@
-{
-  "env": {
+module.exports = {
+  env: {
     "browser": true,
     "es6": true,
-    "node": true
+    "node": true,
   },
-  "plugins": ["react", "react-hooks", "prettier", "@typescript-eslint"],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaFeatures": {
+  plugins: ["react", "react-hooks", "prettier", "@typescript-eslint"],
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaFeatures: {
       "jsx": true
     },
-    "ecmaVersion": "latest",
-    "sourceType": "module",
-    "project": "./tsconfig.json"
+    ecmaVersion: "latest",
+    sourceType: "module",
+    project: "./tsconfig.json"
   },
-  "rules": {
+  ignorePatterns: ['.eslintrc.js'],
+  rules: {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/react-in-jsx-scope": "off",
@@ -40,10 +41,10 @@
       }
     ]
   },
-  "extends": [
+  extends: [
     "next/core-web-vitals",
     "airbnb-typescript",
     "plugin:react/recommended",
     "prettier"
-  ]
+  ],
 }
