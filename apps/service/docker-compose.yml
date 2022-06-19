@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  web_zuzu:
+    container_name: zuzu
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    tty: true
