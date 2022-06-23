@@ -1,15 +1,15 @@
-import amplitude from "amplitude-js";
+import { init, logEvent, setUserId, Types } from "@amplitude/analytics-browser";
 
 export const initAmplitude = (
   apiKey: string,
   userId?: string,
-  config?: amplitude.Config
+  config?: Types.Config
 ) => {
   if (apiKey) {
-    amplitude.getInstance().init(apiKey, undefined, config);
+    init(apiKey, undefined, config);
   }
   if (userId) {
-    amplitude.getInstance().setUserId(userId);
+    setUserId(userId);
   }
 };
 
@@ -18,6 +18,6 @@ export const useAmplitudeLogEvent = (
   eventProperties?: any
 ) => {
   return () => {
-    amplitude.getInstance().logEvent(eventName, eventProperties);
+    logEvent(eventName, eventProperties);
   };
 };
