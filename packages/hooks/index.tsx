@@ -1,1 +1,1 @@
-export * from "./useAmplitude";
+export * from "./useInitAmplitude";

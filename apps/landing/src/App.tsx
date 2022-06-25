@@ -1,14 +1,9 @@
-import * as React from "react";
-import { initAmplitude, useAmplitudeLogEvent } from "hooks";
+import useInitAmplitude from "hooks/useInitAmplitude";
 
 function App() {
-  React.useEffect(() => {
-    initAmplitude("31764e47ba1b832e57b9147954f946e4");
-  }, []);
+  useInitAmplitude();
 
-  const testAmplitudeHook = useAmplitudeLogEvent("[landing] HW Button Clicked");
-
-  return <button onClick={() => testAmplitudeHook()}>HEELOWORLD</button>;
+  return <button>HEELOWORLD</button>;
 }
 
 export default App;
