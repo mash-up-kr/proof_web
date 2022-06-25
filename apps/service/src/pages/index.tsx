@@ -1,11 +1,11 @@
 const componnents = [
   {
     id: 1,
-    name: "Home",
+    name: 'Home',
   },
   {
     id: 2,
-    name: "About",
+    name: 'About',
   },
 ];
 
@@ -14,7 +14,7 @@ const Home = ({ id }: { id: string }) => {
     <>
       <h1>ID: {id}</h1>
       {componnents.map((componnent) => (
-        <div></div>
+        <div key={id}></div>
       ))}
     </>
   );
@@ -23,7 +23,7 @@ const Home = ({ id }: { id: string }) => {
 export async function getServerSideProps() {
   return {
     props: {
-      id: "123",
+      id: '123',
     },
   };
 }
