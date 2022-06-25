@@ -1878,16 +1878,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-custom@npm:*":
-  version: 0.0.0
-  resolution: "eslint-config-custom@npm:0.0.0"
+"eslint-config-custom@*, eslint-config-custom@workspace:packages/eslint-config-custom":
+  version: 0.0.0-use.local
+  resolution: "eslint-config-custom@workspace:packages/eslint-config-custom"
   dependencies:
     eslint-config-next: ^12.0.8
     eslint-config-prettier: ^8.3.0
     eslint-plugin-react: 7.28.0
-  checksum: 5547fc411e4deb779ecd293d6d40e552125a356e38762b0e5e96e4d4c8898ac588b396dddc47ce331ca9b363f9dc05286275e45e42d25791910b9a6d17e1d7bd
-  languageName: node
-  linkType: hard
+  languageName: unknown
+  linkType: soft
 
 "eslint-config-next@npm:12.1.6, eslint-config-next@npm:^12.0.8":
   version: 12.1.6
