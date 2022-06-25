@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "hooks": "*",
     "next": "12.1.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -21,6 +22,7 @@
     "@types/react-dom": "18.0.5",
     "eslint": "8.18.0",
     "eslint-config-next": "12.1.6",
+    "next-transpile-modules": "9.0.0",
     "typescript": "4.7.4"
   }
 }

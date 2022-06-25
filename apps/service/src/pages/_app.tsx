@@ -1,5 +1,5 @@
+import * as React from "react";
 import type { AppProps } from "next/app";
-import React from "react";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { RecoilRoot } from "recoil";
