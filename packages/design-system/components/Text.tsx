@@ -12,7 +12,13 @@ interface TextProps {
   color?: PalletValueType;
 }
 
-function Text({ type, children, display, textAlign, color }: TextProps) {
+function Text({
+  type,
+  children,
+  display = 'block',
+  textAlign = 'left',
+  color = theme.colors.text.general,
+}: TextProps) {
   return (
     <TextWrapper
       type={type}
