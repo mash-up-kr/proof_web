@@ -1,11 +1,13 @@
+import {Button, ButtonHierarchy} from "design-system";
+
 const componnents = [
   {
     id: 1,
-    name: 'Home',
+    name: "Home",
   },
   {
     id: 2,
-    name: 'About',
+    name: "About",
   },
 ];
 
@@ -13,9 +15,11 @@ const Home = ({ id }: { id: string }) => {
   return (
     <>
       <h1>ID: {id}</h1>
-      {componnents.map((componnent) => (
-        <div key={id}></div>
-      ))}
+      <Button onClick={() => console.log('click')} hierarchy={ButtonHierarchy.Primary}>Primary</Button>
+      <Button onClick={() => console.log('click')} hierarchy={ButtonHierarchy.Primary} full>Primary Full</Button>
+      <Button hierarchy={ButtonHierarchy.Primary} disabled>Primary Disabled</Button>
+      <Button onClick={() => console.log('click')} hierarchy={ButtonHierarchy.Secondary}>Secondary</Button>
+      <Button hierarchy={ButtonHierarchy.Secondary} disabled>Secondary Disabled</Button>
     </>
   );
 };
@@ -23,7 +27,7 @@ const Home = ({ id }: { id: string }) => {
 export async function getServerSideProps() {
   return {
     props: {
-      id: '123',
+      id: "123",
     },
   };
 }
