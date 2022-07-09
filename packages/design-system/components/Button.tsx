@@ -1,17 +1,17 @@
-import styled from '@emotion/styled';
-import React, { CSSProperties } from 'react';
-import theme from '../theme';
+import styled from "@emotion/styled";
+import React, { CSSProperties } from "react";
+import theme from "../theme";
 
 export enum ButtonHierarchy {
-  Primary = 'Primary',
-  Secondary = 'Secondary',
+  Primary = "Primary",
+  Secondary = "Secondary",
 }
 
 export interface ButtonProps {
   hierarchy: ButtonHierarchy;
   children: React.ReactNode;
-  margin?: CSSProperties['margin'];
-  width?: CSSProperties['width'];
+  margin?: CSSProperties["margin"];
+  width?: CSSProperties["width"];
   full?: boolean;
   disabled?: boolean;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => unknown;
@@ -24,9 +24,9 @@ export function Button(props: ButtonProps) {
 const ButtonWrapper = styled.button<ButtonProps>`
   padding: 15px;
   width: ${(props) =>
-    typeof props.width === 'number' ? props.width + 'px' : props.width};
+    typeof props.width === "number" ? props.width + "px" : props.width};
   margin: ${(props) => props.margin};
-  border-radius: ${(props) => (props.full ? '0' : '8px')};
+  border-radius: ${(props) => (props.full ? '0' : "8px")};
   color: ${(props) =>
     props.disabled ? theme.palette.gray300 : theme.colors.text.special};
   background-color: ${(props) => {
@@ -37,5 +37,5 @@ const ButtonWrapper = styled.button<ButtonProps>`
   }};
   outline: none;
   border: none;
-  cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
+  cursor: ${(props) => (props.disabled ? "default" : "pointer")};
 `;

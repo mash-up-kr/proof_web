@@ -1,13 +1,13 @@
-import { css } from '@emotion/react';
-import styled from '@emotion/styled';
-import React, { CSSProperties, PropsWithChildren, ReactNode } from 'react';
+import { css } from "@emotion/react";
+import styled from "@emotion/styled";
+import { CSSProperties, PropsWithChildren } from "react";
 
-import theme, { FontKeyType, PalleteValueType } from '../theme';
+import theme, { FontKeyType, PalleteValueType } from "../theme";
 
 interface Text {
   type: FontKeyType;
-  display?: CSSProperties['display'];
-  textAlign?: CSSProperties['textAlign'];
+  display?: CSSProperties["display"];
+  textAlign?: CSSProperties["textAlign"];
   color?: PalleteValueType;
 }
 
@@ -16,8 +16,8 @@ interface TextProps extends PropsWithChildren<Text> {}
 function Text({
   type,
   children,
-  display = 'block',
-  textAlign = 'left',
+  display = "block",
+  textAlign = "left",
   color = theme.colors.text.general,
 }: TextProps) {
   return (

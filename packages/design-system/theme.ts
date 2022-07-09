@@ -1,31 +1,31 @@
 import { css } from '@emotion/react';
 
 export const palette = {
-  purple50: '#EDEDFF',
-  purple100: '#C4BEFF',
-  purple200: '#9685FF',
-  purple300: '#6748E3',
-  purple400: '#4F17C5',
+  purple50: "#EDEDFF",
+  purple100: "#C4BEFF",
+  purple200: "#9685FF",
+  purple300: "#6748E3",
+  purple400: "#4F17C5",
 
-  green100: '#E6F5C0',
-  green200: '#BAE348',
-  green300: '#96B602',
+  green100: "#E6F5C0",
+  green200: "#BAE348",
+  green300: "#96B602",
 
-  orange100: '#FFD9CF',
-  orange200: '#FF9B81',
-  orange300: '#EF562D',
+  orange100: "#FFD9CF",
+  orange200: "#FF9B81",
+  orange300: "#EF562D",
 
-  white: '#FCFCFF',
+  white: "#FCFCFF",
 
-  gray50: '#EFEFF8',
-  gray100: '#D5D8EA',
-  gray200: '#AEB4CA',
-  gray300: '#8D90A9',
-  gray400: '#5D6077',
-  gray500: '#383A4D',
-  gray600: '#2A2C3C',
+  gray50: "#EFEFF8",
+  gray100: "#D5D8EA",
+  gray200: "#AEB4CA",
+  gray300: "#8D90A9",
+  gray400: "#5D6077",
+  gray500: "#383A4D",
+  gray600: "#2A2C3C",
 
-  black: '#1C1C26',
+  black: "#1C1C26",
 } as const;
 
 export const colors = {
