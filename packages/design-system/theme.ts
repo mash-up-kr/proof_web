@@ -159,9 +159,9 @@ const theme = {
   zIndex,
 } as const;
 
-type PalletType = typeof palette;
+type PalleteType = typeof palette;
 type FontType = typeof fonts;
-export type PalletValueType = PalletType[keyof PalletType];
+export type PalleteValueType = PalleteType[keyof PalleteType];
 export type FontKeyType = keyof FontType;
 export type Theme = typeof theme;
 
