@@ -1,5 +1,4 @@
-import styled from "@emotion/styled";
-import React, { VFC } from "react";
+import React from "react";
 import { DirectionRight, Search } from "../assets/svgs";
 
 export type IconName = keyof typeof ICONS;
