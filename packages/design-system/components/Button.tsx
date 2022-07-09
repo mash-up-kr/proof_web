@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import * as React from "react";
+import React, {CSSProperties} from "react";
 import theme from "../theme";
 
 export enum ButtonHierarchy {
@@ -10,6 +10,7 @@ export enum ButtonHierarchy {
 export interface ButtonProps {
     hierarchy: ButtonHierarchy;
     children: React.ReactNode;
+    margin?: CSSProperties["margin"];
     full?: boolean;
     disabled?: boolean;
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => unknown;
@@ -21,6 +22,7 @@ export function Button(props: ButtonProps) {
 
 const ButtonWrapper = styled.button<ButtonProps>`
     padding: 15px;
+    margin: ${(props) => props.margin};
     border-radius: ${(props) => props.full ? '0' : '8px'};
     color: ${(props) => props.disabled ? theme.palette.gray300 : theme.colors.text.special};
     background-color: ${(props) => {
