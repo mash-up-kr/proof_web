@@ -11,6 +11,7 @@ export interface ButtonProps {
     hierarchy: ButtonHierarchy;
     children: React.ReactNode;
     margin?: CSSProperties["margin"];
+    width?: CSSProperties["width"];
     full?: boolean;
     disabled?: boolean;
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => unknown;
@@ -22,6 +23,7 @@ export function Button(props: ButtonProps) {
 
 const ButtonWrapper = styled.button<ButtonProps>`
     padding: 15px;
+    width: ${(props) => typeof props.width === 'number' ? props.width + 'px' : props.width};
     margin: ${(props) => props.margin};
     border-radius: ${(props) => props.full ? '0' : '8px'};
     color: ${(props) => props.disabled ? theme.palette.gray300 : theme.colors.text.special};
