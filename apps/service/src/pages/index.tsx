@@ -15,13 +15,10 @@ const Home = ({ id }: { id: string }) => {
   return (
     <>
       <h1>ID: {id}</h1>
-      {componnents.map((component) => (
-        <div key={id}></div>
-      ))}
-      <Button hierarchy={ButtonHierarchy.Primary}>Primary</Button>
-      <Button hierarchy={ButtonHierarchy.Primary} full>Primary Full</Button>
+      <Button onClick={() => console.log('click')} hierarchy={ButtonHierarchy.Primary}>Primary</Button>
+      <Button onClick={() => console.log('click')} hierarchy={ButtonHierarchy.Primary} full>Primary Full</Button>
       <Button hierarchy={ButtonHierarchy.Primary} disabled>Primary Disabled</Button>
-      <Button hierarchy={ButtonHierarchy.Secondary}>Secondary</Button>
+      <Button onClick={() => console.log('click')} hierarchy={ButtonHierarchy.Secondary}>Secondary</Button>
       <Button hierarchy={ButtonHierarchy.Secondary} disabled>Secondary Disabled</Button>
     </>
   );

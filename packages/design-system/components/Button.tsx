@@ -12,6 +12,7 @@ export interface ButtonProps {
     children: React.ReactNode;
     full?: boolean;
     disabled?: boolean;
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => unknown;
 }
 
 export function Button(props: ButtonProps) {
