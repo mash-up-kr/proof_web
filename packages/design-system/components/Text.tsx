@@ -1,16 +1,17 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { CSSProperties, ReactNode } from 'react';
+import React, { CSSProperties, PropsWithChildren, ReactNode } from 'react';
 
-import theme, { FontKeyType, PalletValueType } from '../theme';
+import theme, { FontKeyType, PalleteValueType } from '../theme';
 
-interface TextProps {
+interface Text {
   type: FontKeyType;
-  children?: ReactNode;
   display?: CSSProperties['display'];
   textAlign?: CSSProperties['textAlign'];
-  color?: PalletValueType;
+  color?: PalleteValueType;
 }
+
+interface TextProps extends PropsWithChildren<Text> {}
 
 function Text({
   type,
@@ -20,18 +21,13 @@ function Text({
   color = theme.colors.text.general,
 }: TextProps) {
   return (
-    <TextWrapper
-      type={type}
-      display={display}
-      textAlign={textAlign}
-      color={color}
-    >
+    <Wrapper type={type} display={display} textAlign={textAlign} color={color}>
       {children}
-    </TextWrapper>
+    </Wrapper>
   );
 }
 
-const TextWrapper = styled.p<TextProps>`
+const Wrapper = styled.p<TextProps>`
   ${(props) => {
     return css`
       ${theme.fonts[props.type]};
