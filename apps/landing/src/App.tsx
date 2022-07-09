@@ -1,5 +1,5 @@
-import useInitAmplitude from "hooks/useInitAmplitude";
 import styled from "@emotion/styled";
+import useInitAmplitude from "hooks/useInitAmplitude";
 
 function App() {
   useInitAmplitude();

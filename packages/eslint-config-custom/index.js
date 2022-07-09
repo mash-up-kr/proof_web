@@ -1,5 +1,5 @@
 module.exports = {
-  plugins: ['react', 'react-hooks', 'prettier', '@typescript-eslint'],
+  plugins: ['react', 'react-hooks', 'prettier', '@typescript-eslint', "import"],
   parser: '@typescript-eslint/parser',
   extends: ['prettier'],
   rules: {
