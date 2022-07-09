@@ -1,4 +1,4 @@
-import { Button } from './Button';
+import { Button, ButtonHierarchy } from 'design-system';
 import { TestText } from './TestText';
 
 const componnents = [
@@ -19,8 +19,32 @@ const Home = ({ id }: { id: string }) => {
       {componnents.map((component) => (
         <div key={id}></div>
       ))}
-      <Button></Button>
       <TestText />
+      <Button
+        onClick={() => console.log('click')}
+        hierarchy={ButtonHierarchy.Primary}
+      >
+        Primary
+      </Button>
+      <Button
+        onClick={() => console.log('click')}
+        hierarchy={ButtonHierarchy.Primary}
+        full
+      >
+        Primary Full
+      </Button>
+      <Button hierarchy={ButtonHierarchy.Primary} disabled>
+        Primary Disabled
+      </Button>
+      <Button
+        onClick={() => console.log('click')}
+        hierarchy={ButtonHierarchy.Secondary}
+      >
+        Secondary
+      </Button>
+      <Button hierarchy={ButtonHierarchy.Secondary} disabled>
+        Secondary Disabled
+      </Button>
     </>
   );
 };
