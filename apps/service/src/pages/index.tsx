@@ -1,13 +1,14 @@
-import { Button } from "./Button";
+import { Button } from './Button';
+import { TestText } from './TestText';
 
 const componnents = [
   {
     id: 1,
-    name: "Home",
+    name: 'Home',
   },
   {
     id: 2,
-    name: "About",
+    name: 'About',
   },
 ];
 
@@ -19,6 +20,7 @@ const Home = ({ id }: { id: string }) => {
         <div key={id}></div>
       ))}
       <Button></Button>
+      <TestText />
     </>
   );
 };
@@ -26,7 +28,7 @@ const Home = ({ id }: { id: string }) => {
 export async function getServerSideProps() {
   return {
     props: {
-      id: "123",
+      id: '123',
     },
   };
 }
