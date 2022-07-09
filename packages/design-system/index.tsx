@@ -1,1 +1,2 @@
-export * from "./Button";
+export { default as globalStyle } from "./globalStyle";
+export { default as theme } from "./theme";

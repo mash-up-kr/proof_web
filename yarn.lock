@@ -1670,8 +1670,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "design-system@workspace:packages/design-system"
   dependencies:
+    "@emotion/react": ^11.9.3
     "@types/react": ^17.0.37
     "@types/react-dom": ^17.0.11
+    emotion-reset: ^3.0.1
     eslint: ^7.32.0
     eslint-config-custom: "*"
     eslint-plugin-import: ^2.26.0
@@ -1733,6 +1735,15 @@ __metadata:
   version: 9.2.2
   resolution: "emoji-regex@npm:9.2.2"
   checksum: 8487182da74aabd810ac6d6f1994111dfc0e331b01271ae01ec1eb0ad7b5ecc2bbbbd2f053c05cb55a1ac30449527d819bbfbf0e3de1023db308cbcb47f86601
+  languageName: node
+  linkType: hard
+
+"emotion-reset@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "emotion-reset@npm:3.0.1"
+  peerDependencies:
+    "@emotion/react": ">=11"
+  checksum: 788cfbf6f31fadd22da2d61558c5f7b30da3d355d646c28e0b48f453bdd6d86dd3c55d0d8f55e3cf37c09446d597ac1ada4273244c4141467024a70b1e178fa8
   languageName: node
   linkType: hard
 

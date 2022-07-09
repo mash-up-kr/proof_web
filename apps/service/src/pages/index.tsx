@@ -1,11 +1,13 @@
+import { Button } from "./Button";
+
 const componnents = [
   {
     id: 1,
-    name: 'Home',
+    name: "Home",
   },
   {
     id: 2,
-    name: 'About',
+    name: "About",
   },
 ];
 
@@ -13,9 +15,10 @@ const Home = ({ id }: { id: string }) => {
   return (
     <>
       <h1>ID: {id}</h1>
-      {componnents.map((componnent) => (
+      {componnents.map((component) => (
         <div key={id}></div>
       ))}
+      <Button></Button>
     </>
   );
 };
@@ -23,7 +26,7 @@ const Home = ({ id }: { id: string }) => {
 export async function getServerSideProps() {
   return {
     props: {
-      id: '123',
+      id: "123",
     },
   };
 }
