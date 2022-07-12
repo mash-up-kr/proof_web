@@ -27,7 +27,7 @@ function Text({
   );
 }
 
-const Wrapper = styled.p<TextProps>`
+const Wrapper = styled.div<TextProps>`
   ${(props) => {
     return css`
       ${theme.fonts[props.type]};
