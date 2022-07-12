@@ -7,12 +7,9 @@ export enum ButtonHierarchy {
     Secondary = "Secondary"
 }
 
-export interface ButtonProps {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     hierarchy: ButtonHierarchy;
-    children: React.ReactNode;
     full?: boolean;
-    disabled?: boolean;
-    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => unknown;
 }
 
 export function Button(props: ButtonProps) {
