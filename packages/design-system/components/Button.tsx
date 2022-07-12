@@ -12,7 +12,7 @@ export interface ButtonProps {
   children: React.ReactNode;
   margin?: CSSProperties["margin"];
   width?: CSSProperties["width"];
-  full?: boolean;
+  fullWidth?: boolean;
   disabled?: boolean;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => unknown;
 }
@@ -26,7 +26,7 @@ const ButtonWrapper = styled.button<ButtonProps>`
   width: ${(props) =>
     typeof props.width === "number" ? props.width + "px" : props.width};
   margin: ${(props) => props.margin};
-  border-radius: ${(props) => (props.full ? '0' : "8px")};
+  border-radius: ${(props) => (props.fullWidth ? '0' : "8px")};
   color: ${(props) =>
     props.disabled ? theme.palette.gray300 : theme.colors.text.special};
   background-color: ${(props) => {
