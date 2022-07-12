@@ -15,7 +15,7 @@ Primary.args = {
     children: "Primary",
     hierarchy: ButtonHierarchy.Primary,
     disabled: false,
-    full: false
+    fullWidth: false
 }
 
 export const Secondary = Template.bind({});
@@ -23,5 +23,5 @@ Secondary.args = {
     children: "Secondary",
     hierarchy: ButtonHierarchy.Secondary,
     disabled: false,
-    full: false
+    fullWidth: false
 }

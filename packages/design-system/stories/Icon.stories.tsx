@@ -6,11 +6,10 @@ export default {
     component: Icon,
 } as ComponentMeta<typeof Icon>;
 
-const Template: ComponentStory<typeof Icon> = (args) => (
+export const Default: ComponentStory<typeof Icon> = (args) => (
     <Icon {...args}/>
 )
 
-export const Test = Template.bind({});
-Test.args = {
+Default.args = {
     name: "directionRight"
 }
