@@ -1,6 +1,6 @@
-import { css } from "@emotion/react";
+import { css } from '@emotion/react';
 
-const palette = {
+export const palette = {
   purple50: "#EDEDFF",
   purple100: "#C4BEFF",
   purple200: "#9685FF",
@@ -28,7 +28,7 @@ const palette = {
   black: "#1C1C26",
 } as const;
 
-const colors = {
+export const colors = {
   primary: {
     default: palette.purple300,
     dark: palette.black,
@@ -159,6 +159,10 @@ const theme = {
   zIndex,
 } as const;
 
+type PalleteType = typeof palette;
+type FontType = typeof fonts;
+export type PalleteValueType = PalleteType[keyof PalleteType];
+export type FontKeyType = keyof FontType;
 export type Theme = typeof theme;
 
 export default theme;
