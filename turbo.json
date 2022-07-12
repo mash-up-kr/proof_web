@@ -9,7 +9,8 @@
     },
     "dev": {
       "cache": false
-    }
+    },
+    "storybook": {}
   },
   "globalDependencies": [
     ".env"
