@@ -1,9 +1,10 @@
-import { Button, ButtonHierarchy } from "design-system";
+import styled from "@emotion/styled";
+import { Button, ButtonHierarchy, theme, Title } from "design-system";
 import * as React from "react";
 
 const Home = () => {
   return (
-    <div>
+    <Layout>
       <Button
         width={"312px"}
         onClick={() => console.log("click")}
@@ -14,7 +15,7 @@ const Home = () => {
       <Button
         onClick={() => console.log("click")}
         hierarchy={ButtonHierarchy.Primary}
-        full
+        fullWidth
       >
         Primary Full
       </Button>
@@ -31,14 +32,25 @@ const Home = () => {
       <Button
         onClick={() => console.log("click")}
         hierarchy={ButtonHierarchy.Secondary}
-        full
+        fullWidth
       >
         Secondary Full
       </Button>
       <Button hierarchy={ButtonHierarchy.Secondary} disabled>
         Secondary Disabled
       </Button>
-    </div>
+      <TitleWrapper
+        topQuestion="누구와 함께"
+        bottomQuestion="술을 마시나요?"
+        desc="선택에 따라 나올 술이 달라져요."
+      />
+      <TitleWrapper
+        topQuestion="술 취향 증명을"
+        bottomQuestion="시작해볼까요?"
+        desc="당신의 취향을 증명할 술들을 준비했어요."
+        textAlign="center"
+      />
+    </Layout>
   );
 };
 
@@ -49,5 +61,16 @@ export async function getServerSideProps() {
     },
   };
 }
+
+const Layout = styled.div`
+  width: 100%;
+  height: 100vh;
+
+  background-color: ${theme.colors.background};
+`;
+
+const TitleWrapper = styled(Title)`
+  margin-top: 40px;
+`;
 
 export default Home;
