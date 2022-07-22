@@ -19,9 +19,16 @@ function Text({
   display = 'block',
   textAlign = 'left',
   color = theme.colors.text.general,
+  ...restProps
 }: TextProps) {
   return (
-    <Wrapper type={type} display={display} textAlign={textAlign} color={color}>
+    <Wrapper
+      type={type}
+      display={display}
+      textAlign={textAlign}
+      color={color}
+      {...restProps}
+    >
       {children}
     </Wrapper>
   );
