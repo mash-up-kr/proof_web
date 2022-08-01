@@ -3,7 +3,7 @@ import { DirectionRight, Search } from "../assets/svgs";
 
 export type IconName = keyof typeof ICONS;
 
-interface IconProps extends React.SVGProps<SVGSVGElement> {
+export interface IconProps extends React.SVGProps<SVGSVGElement> {
   className?: string;
   name: IconName;
 }
