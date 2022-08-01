@@ -26,15 +26,13 @@
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
     "babel-loader": "^8.2.5",
+    "emotion-reset": "^3.0.1",
     "eslint": "^7.32.0",
     "eslint-config-custom": "*",
     "eslint-plugin-import": "^2.26.0",
     "react": "18.2.0",
+    "react-dom": "^18.2.0",
     "tsconfig": "*",
     "typescript": "^4.5.2"
-  },
-  "dependencies": {
-    "emotion-reset": "^3.0.1",
-    "react-dom": "^18.2.0"
   }
 }
