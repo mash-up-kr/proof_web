@@ -9,6 +9,20 @@ import { globalStyle, theme } from "design-system";
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = React.useState(() => new QueryClient());
 
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      const handleResizeWindow = () => {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty("--vh", `${vh}px`);
+      };
+      window.addEventListener("resize", handleResizeWindow);
+
+      return () => {
+        window.removeEventListener("resize", handleResizeWindow);
+      };
+    }
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
