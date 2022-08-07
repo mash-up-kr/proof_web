@@ -13,8 +13,8 @@ const ICONS = {
   search: Search,
 } as const;
 
-export default Icon;
-
-export const Icon = ({ name, className, ...rest }: IconProps) => {
+const Icon = ({ name, className, ...rest }: IconProps) => {
   return React.createElement(ICONS[name], { ...rest });
 };
+
+export default Icon;

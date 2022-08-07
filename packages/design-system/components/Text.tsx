@@ -1,17 +1,15 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { CSSProperties, PropsWithChildren } from "react";
+import React, { CSSProperties, PropsWithChildren } from "react";
 
 import theme, { FontKeyType, PalleteValueType } from "../theme";
 
-interface Text {
+interface TextProps extends React.HTMLAttributes<HTMLDivElement> {
   type: FontKeyType;
   display?: CSSProperties["display"];
   textAlign?: CSSProperties["textAlign"];
   color?: PalleteValueType;
 }
-
-interface TextProps extends PropsWithChildren<Text> {}
 
 function Text({
   type,
@@ -19,9 +17,16 @@ function Text({
   display = "block",
   textAlign = "left",
   color = theme.colors.text.general,
-}: TextProps) {
+  ...restProps
+}: PropsWithChildren<TextProps>) {
   return (
-    <Wrapper type={type} display={display} textAlign={textAlign} color={color}>
+    <Wrapper
+      type={type}
+      display={display}
+      textAlign={textAlign}
+      color={color}
+      {...restProps}
+    >
       {children}
     </Wrapper>
   );
