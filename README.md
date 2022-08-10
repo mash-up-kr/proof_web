@@ -1,9 +1,9 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
+  <img width=400px height=200px src="https://user-images.githubusercontent.com/52898735/183919409-d7e22730-b60a-4e43-bee8-d4bf5d4cd52e.png" alt="Project logo"></a>
 </p>
 
-<h3 align="center">zuzu</h3>
+<h3 align="center">proof</h3>
 
 <div align="center">
 
@@ -16,7 +16,8 @@
 
 ---
 
-<p align="center"> Few lines describing your project.
+<p align="center"> Delightful way to
+prove your alcohol taste.
     <br> 
 </p>
 
@@ -36,7 +37,8 @@
 
 ## 🧐 About <a name = "about"></a>
 
-Write about 1-2 paragraphs describing the purpose of your project.
+Delightful way to
+prove your alcohol taste.
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
@@ -97,9 +99,9 @@ Add notes about how to use the system.
 Add additional notes about how to deploy this on a live system.
 
 ## ⛏️ Built Using <a name = "built_using"></a>
-- [React] - Web Framework
+- [React](https://reactjs.org/) - Web Framework
 - [NextJS](https://www.mongodb.com/) - Web Framework
-- [Turborepo] - Mono repo
+- [Turborepo](https://turborepo.org/) - Mono repo
 - [recoil](https://expressjs.com/) - 클라이언트 상태
 - [react-query](https://vuejs.org/) - 서버 상태
 - [emotion](https://nodejs.org/en/) - CSS in JS
@@ -125,11 +127,11 @@ This open source project is sponsored by [Vercel](https://vercel.com/?utm_source
 
 ## License <a name = "license"></a>
 
-zuzu is under MIT license
+proof is under MIT license
 
 MIT License
 
-Copyright (c) 2021-2022 zuzu
+Copyright (c) 2021-2022 proof
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
