@@ -1,3 +1,5 @@
+Git READ ME
+
 <p align="center">
   <a href="" rel="noopener">
   <img width=400px height=200px src="https://user-images.githubusercontent.com/52898735/183919409-d7e22730-b60a-4e43-bee8-d4bf5d4cd52e.png" alt="Project logo"></a>
@@ -16,8 +18,8 @@
 
 ---
 
-<p align="center"> Delightful way to
-prove your alcohol taste.
+<p align="center"> <strong>Delightful way to
+prove your alcohol taste 🍷🍶🍺</strong>
     <br> 
 </p>
 
@@ -25,31 +27,31 @@ prove your alcohol taste.
 
 - [About](#about)
 - [Getting Started](#getting_started)
-- [Deployment](#deployment)
-- [Usage](#usage)
 - [Built Using](#built_using)
-- [TODO](../TODO.md)
-- [Contributing](../CONTRIBUTING.md)
 - [Authors](#authors)
-- [Acknowledgments](#acknowledgement)
 - [Sponsors](#sponsors)
 - [License](#license)
 
 ## 🧐 About <a name = "about"></a>
 
-Delightful way to
-prove your alcohol taste.
+Proof is an app service for archiving and recommending liquor, created by the team '6271'. 
+
+Our web service provides a small enjoyable survey to recommend the best liquor based on your preference. 
+
+For more information, download the 'Proof' app, share your comments and look at all of the benefits you can expect by visiting 'Proof'! 
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
 What things you need to install the software and how to install them.
 
-```
-Give examples
+- yarn
+
+```shell
+$ npm install --global yarn
 ```
 
 ### Installing
@@ -58,52 +60,31 @@ A step by step series of examples that tell you how to get a development env run
 
 Say what the step will be
 
-```
-Give the example
-```
+1. Clone the repo
 
-And repeat
-
-```
-until finished
+```shell
+$ git clone https://github.com/mash-up-kr/proof_web.git
 ```
 
-End with an example of getting some data out of the system or using it for a little demo.
+2. Install Yarn Packages
 
-## 🔧 Running the tests <a name = "tests"></a>
-
-Explain how to run the automated tests for this system.
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
+```shell
+$ yarn
 ```
 
-### And coding style tests
+3. Start development running
 
-Explain what these tests test and why
-
+```shell
+$ yarn dev
 ```
-Give an example
-```
-
-## 🎈 Usage <a name="usage"></a>
-
-Add notes about how to use the system.
-
-## 🚀 Deployment <a name = "deployment"></a>
-
-Add additional notes about how to deploy this on a live system.
 
 ## ⛏️ Built Using <a name = "built_using"></a>
+
 - [React](https://reactjs.org/) - Web Framework
 - [NextJS](https://www.mongodb.com/) - Web Framework
 - [Turborepo](https://turborepo.org/) - Mono repo
-- [recoil](https://expressjs.com/) - 클라이언트 상태
-- [react-query](https://vuejs.org/) - 서버 상태
+- [recoil](https://expressjs.com/) - Client State
+- [react-query](https://vuejs.org/) - Server State
 - [emotion](https://nodejs.org/en/) - CSS in JS
 
 ## ✍️ Authors <a name = "authors"></a>
@@ -112,12 +93,6 @@ Add additional notes about how to deploy this on a live system.
 - [@otterji](https://github.com/otterji) - Idea & Initial work
 - [@huewilliams](https://github.com/huewilliams) - Idea & Initial work
 - [@poiu694](https://github.com/poiu694) - Idea & Initial work
-
-## 🎉 Acknowledgements <a name = "acknowledgement"></a>
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- References
 
 ## Sponsors <a name = "sponsors"></a>
 
