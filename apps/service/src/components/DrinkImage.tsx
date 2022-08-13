@@ -113,7 +113,6 @@ const MainImage = styled.img`
   border-radius: 8px;
   z-index: ${theme.zIndex.cardBody};
   object-fit: contain;
-  border: 1px solid black;
 `;
 
 export default DrinkImage;

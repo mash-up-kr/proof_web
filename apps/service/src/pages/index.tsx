@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
-import { Button, ButtonHierarchy, theme, Title } from "design-system";
+import { Button, theme, Title } from "design-system";
+import { ButtonHierarchy } from "design-system/components/Button";
 import * as React from "react";
 
 const Home = () => {
