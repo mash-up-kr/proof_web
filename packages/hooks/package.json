@@ -5,9 +5,6 @@
   "types": "./index.tsx",
   "license": "MIT",
   "packageManager": "yarn@3.2.1",
-  "scripts": {
-    "lint": "eslint *.ts*"
-  },
   "devDependencies": {
     "@types/react": "^17.0.37",
     "eslint": "^7.32.0",
