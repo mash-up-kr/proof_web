@@ -6,7 +6,36 @@ export default {
 } as ComponentMeta<typeof BottomSheet>;
 
 const Template: ComponentStory<typeof BottomSheet> = () => (
-    <BottomSheet/>
+    <BottomSheet>
+      <p>text</p>
+      <p>text</p>
+      <p>text</p>
+      <p>text</p>
+      <p>text</p>
+      <p>text</p>
+      <p>text</p>
+      <p>text</p>
+      <p>text</p>
+      <p>text</p>
+      <p>text</p>
+      <p>text</p>
+      <p>text</p>
+      <p>text</p>
+      <p>text</p>
+      <p>text</p>
+      <p>text</p>
+      <p>text</p>
+      <p>text</p>
+      <p>text</p>
+      <p>text</p>
+      <p>text</p>
+      <p>text</p>
+      <p>text</p>
+      <p>text</p>
+      <p>text</p>
+      <p>text</p>
+      <p>text</p>
+    </BottomSheet>
 );
 
 export const Primary = Template.bind({});
