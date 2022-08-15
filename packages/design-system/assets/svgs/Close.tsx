@@ -1,6 +1,6 @@
-import React from "react";
+import theme from "../../theme";
 
-const Search = ({ ...restProps }: React.SVGProps<SVGSVGElement>) => {
+function Close({ ...restProps }: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       width="24"
@@ -11,21 +11,21 @@ const Search = ({ ...restProps }: React.SVGProps<SVGSVGElement>) => {
       {...restProps}
     >
       <path
-        d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z"
-        stroke="#777777"
+        d="M18 6L6 18"
+        stroke={theme.palette.gray50}
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
-        d="M21 21L16.65 16.65"
-        stroke="#777777"
+        d="M6 6L18 18"
+        stroke={theme.palette.gray50}
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
     </svg>
   );
-};
+}
 
-export default Search;
+export default Close;
