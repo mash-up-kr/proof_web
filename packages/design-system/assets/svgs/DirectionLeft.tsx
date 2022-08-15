@@ -1,4 +1,5 @@
 import React from "react";
+import theme from "../../theme";
 
 const DirectionLeft = ({ ...restProps }: React.SVGProps<SVGSVGElement>) => {
   return (
@@ -12,7 +13,7 @@ const DirectionLeft = ({ ...restProps }: React.SVGProps<SVGSVGElement>) => {
     >
       <path
         d="M15 18L9 12L15 6"
-        stroke="#EFEFF8"
+        stroke={theme.palette.gray50}
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"

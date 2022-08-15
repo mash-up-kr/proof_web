@@ -1,3 +1,5 @@
+import theme from "../../theme";
+
 function Close({ ...restProps }: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
@@ -10,14 +12,14 @@ function Close({ ...restProps }: React.SVGProps<SVGSVGElement>) {
     >
       <path
         d="M18 6L6 18"
-        stroke="#EFEFF8"
+        stroke={theme.palette.gray50}
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
         d="M6 6L18 18"
-        stroke="#EFEFF8"
+        stroke={theme.palette.gray50}
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
