@@ -34,20 +34,22 @@ const Wrapper = styled.header`
   position: relative;
   width: 100%;
   height: 52px;
+  left: 0;
+  top: 0;
   z-index: ${theme.zIndex.header};
 `;
 
 const PrevIcon = styled(Icon)`
   position: absolute;
   top: 50%;
-  left: 32px;
+  left: 5.7%;
   transform: translateY(-50%);
 `;
 
 const CloseIcon = styled(Icon)`
   position: absolute;
   top: 50%;
-  right: 32px;
+  left: 5.7%;
   transform: translateY(-50%);
 `;
 
