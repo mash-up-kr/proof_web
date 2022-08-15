@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
+import * as React from "react";
 import theme from "../../theme";
 
-export function BottomSheetHeader(): JSX.Element {
+export function BottomSheetHeader({...restProps}: React.HTMLAttributes<HTMLDivElement>): JSX.Element {
   return (
-      <Wrapper>
+      <Wrapper {...restProps}>
         <Handle/>
       </Wrapper>
   )

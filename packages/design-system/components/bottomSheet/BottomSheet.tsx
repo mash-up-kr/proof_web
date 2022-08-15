@@ -7,7 +7,7 @@ import {useBottomSheet} from "./useBottomSheet";
 export const MIN_Y = 48;
 
 function BottomSheet(props: PropsWithChildren<{}>): JSX.Element {
-  const { sheet } = useBottomSheet();
+  const { sheet, handleTouchStart, handleTouchMove, handleTouchEnd } = useBottomSheet();
 
   const [height, setHeight] = useState(0);
 
@@ -17,7 +17,7 @@ function BottomSheet(props: PropsWithChildren<{}>): JSX.Element {
 
   return (
       <Wrapper ref={sheet} height={height}>
-        <BottomSheetHeader/>
+        <BottomSheetHeader onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}/>
         <BottomSheetContent>
           {props.children}
         </BottomSheetContent>
