@@ -1,7 +1,10 @@
 export { default as Check } from "./Check";
 export { default as DirectionRight } from "./DirectionRight";
+export { default as DirectionLeft } from "./DirectionLeft";
 export { default as Search } from "./Search";
 export { default as TypeA } from "./TypeA";
 export { default as TypeB } from "./TypeB";
 export { default as Vote } from "./Vote";
 export { default as Winner } from "./Winner";
+export { default as Close } from "./Close";
+export { default as Logo } from "./Logo";
