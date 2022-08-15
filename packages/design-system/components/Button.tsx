@@ -12,6 +12,7 @@ export interface ButtonProps {
   children: React.ReactNode;
   margin?: CSSProperties["margin"];
   width?: CSSProperties["width"];
+  className?: string;
   fullWidth?: boolean;
   disabled?: boolean;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => unknown;
