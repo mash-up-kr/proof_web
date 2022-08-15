@@ -54,7 +54,7 @@ function DrinkCard({
         </Text>
       </DescriptionWrapper>
       <TitleWrapper type="button1">{drink.name}</TitleWrapper>
-      {isShowingTag && <Tag tags={drink.category.name} />}
+      {isShowingTag && <Tag tags={[drink.category.name]} />}
     </Wrapper>
   );
 }

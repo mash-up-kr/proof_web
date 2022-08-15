@@ -3,23 +3,17 @@ import theme from "../theme";
 import Text from "./Text";
 
 interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
-  tags: string[] | string;
+  tags: string[];
 }
 
 function Tag({ tags, ...restProps }: TagProps) {
   return (
     <Wrapper {...restProps}>
-      {Array.isArray(tags) ? (
-        tags.map((tag) => (
-          <StyleTag key={tag} type="body6" color={theme.colors.text.general}>
-            {tag}
-          </StyleTag>
-        ))
-      ) : (
-        <StyleTag type="body6" color={theme.colors.text.general}>
-          {tags}
+      {tags.map((tag) => (
+        <StyleTag key={tag} type="body6" color={theme.colors.text.general}>
+          {tag}
         </StyleTag>
-      )}
+      ))}
     </Wrapper>
   );
 }
