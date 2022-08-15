@@ -20,7 +20,7 @@ const Handle = styled.div`
 
 const Wrapper = styled.div`
   position: relative;
-  height: 48px;
+  height: 24px;
   padding-top: 8px;
 
   border-radius: 20px 20px 0 0;
