@@ -1,14 +1,12 @@
 import styled from "@emotion/styled";
-import * as React from "react";
+import {forwardRef} from "react";
 import theme from "../../theme";
 
-export function BottomSheetHeader({...restProps}: React.HTMLAttributes<HTMLDivElement>): JSX.Element {
-  return (
-      <Wrapper {...restProps}>
-        <Handle/>
-      </Wrapper>
-  )
-}
+export const BottomSheetHeader = forwardRef<HTMLDivElement>((props, ref) => (
+    <Wrapper ref={ref}>
+      <Handle/>
+    </Wrapper>
+));
 
 const Handle = styled.div`
   width: 36px;

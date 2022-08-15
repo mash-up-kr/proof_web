@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import {useEffect, useRef} from "react";
 import {MIN_Y} from "./BottomSheet";
 
 interface BottomSheetMetrics {
@@ -25,57 +25,66 @@ const initialMetrics: BottomSheetMetrics = {
 
 export function useBottomSheet() {
   const sheet = useRef<HTMLDivElement>(null);
+  const sheetHeader = useRef<HTMLDivElement>(null);
 
   const metrics = useRef<BottomSheetMetrics>(initialMetrics);
 
-  const MAX_Y = window.innerHeight - 100;
+  useEffect(() => {
+    if (!sheetHeader.current) return;
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    if (!sheet.current) return;
+    const MAX_Y = window.innerHeight - 100;
 
-    const {touchStart} = metrics.current;
+    const handleTouchStart = (e: TouchEvent) => {
+      if (!sheet.current) return;
 
-    touchStart.sheetY = sheet.current.getBoundingClientRect().y;
-    touchStart.touchY = e.touches[0].clientY;
-  };
+      const {touchStart} = metrics.current;
 
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (!sheet.current) return;
+      touchStart.sheetY = sheet.current.getBoundingClientRect().y;
+      touchStart.touchY = e.touches[0].clientY;
+    };
 
-    const {touchStart, touchMove} = metrics.current;
-    const currentTouch = e.touches[0];
+    const handleTouchMove = (e: TouchEvent) => {
+      if (!sheet.current) return;
 
-    if (touchMove.prevTouchY === undefined) {
-      touchMove.prevTouchY = touchStart.touchY;
-    }
+      const {touchStart, touchMove} = metrics.current;
+      const currentTouch = e.touches[0];
 
-    if (touchMove.prevTouchY < currentTouch.clientY) {
-      touchMove.movingDirection = 'down';
-    }
+      if (touchMove.prevTouchY === undefined) {
+        touchMove.prevTouchY = touchStart.touchY;
+      }
 
-    if (touchMove.prevTouchY > currentTouch.clientY) {
-      touchMove.movingDirection = 'up';
-    }
+      if (touchMove.prevTouchY < currentTouch.clientY) {
+        touchMove.movingDirection = 'down';
+      }
 
-    const touchOffset = currentTouch.clientY - touchStart.touchY;
-    let nextSheetY = touchStart.sheetY + touchOffset;
+      if (touchMove.prevTouchY > currentTouch.clientY) {
+        touchMove.movingDirection = 'up';
+      }
 
-    if (nextSheetY < MIN_Y) {
-      nextSheetY = MIN_Y;
-    }
+      const touchOffset = currentTouch.clientY - touchStart.touchY;
+      let nextSheetY = touchStart.sheetY + touchOffset;
 
-    if (nextSheetY > MAX_Y) {
-      nextSheetY = MAX_Y;
-    }
+      if (nextSheetY < MIN_Y) {
+        nextSheetY = MIN_Y;
+      }
 
-    sheet.current.style.setProperty('transform', `translateY(${nextSheetY}px)`);
-  };
+      if (nextSheetY > MAX_Y) {
+        nextSheetY = MAX_Y;
+      }
 
-  const handleTouchEnd = () => {
-    if (!sheet.current) return;
+      sheet.current.style.setProperty('transform', `translateY(${nextSheetY}px)`);
+    };
 
-    metrics.current = initialMetrics;
-  };
+    const handleTouchEnd = () => {
+      if (!sheet.current) return;
 
-  return {sheet, handleTouchStart, handleTouchMove, handleTouchEnd};
+      metrics.current = initialMetrics;
+    };
+
+    sheetHeader.current.addEventListener('touchstart', handleTouchStart);
+    sheetHeader.current.addEventListener('touchmove', handleTouchMove);
+    sheetHeader.current.addEventListener('touchend', handleTouchEnd);
+  }, []);
+
+  return {sheet, sheetHeader};
 }
