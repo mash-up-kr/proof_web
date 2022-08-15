@@ -2,6 +2,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { BottomButton, Text } from "design-system";
 import * as React from "react";
+import { Header } from "../components";
 import DrinkCard, { Drink } from "../components/DrinkCard";
 
 const dummy1: Drink = {
@@ -46,6 +47,7 @@ const WorldCup = () => {
 
   return (
     <Layout>
+      <Header type="prev" title="8강" />
       <TitleWrapper>
         <Text type="h1" textAlign="center">
           비 오는 날씨엔
