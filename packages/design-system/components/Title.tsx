@@ -3,13 +3,10 @@ import React, { CSSProperties } from "react";
 import theme from "../theme";
 import Text from "./Text";
 
-interface Title {
+interface TitleProps extends React.HTMLAttributes<HTMLDivElement> {
   topQuestion: string;
   bottomQuestion: string;
   desc: string;
-}
-
-interface TitleProps extends React.HTMLAttributes<HTMLDivElement> {
   textAlign?: CSSProperties["textAlign"];
 }
 
@@ -19,7 +16,7 @@ function Title({
   desc,
   textAlign,
   ...restProps
-}: Title & TitleProps) {
+}: TitleProps) {
   return (
     <Wrapper {...restProps}>
       <QuestionWrapper>

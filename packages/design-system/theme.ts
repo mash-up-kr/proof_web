@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css } from "@emotion/react";
 
 export const palette = {
   purple50: "#EDEDFF",
@@ -148,6 +148,8 @@ const padding = {
 const zIndex = {
   header: 999,
   nav: 888,
+  cardBody: 100,
+  cardOverlay: 105,
 };
 
 const theme = {

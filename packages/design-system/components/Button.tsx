@@ -12,12 +12,13 @@ export interface ButtonProps {
   children: React.ReactNode;
   margin?: CSSProperties["margin"];
   width?: CSSProperties["width"];
+  className?: string;
   fullWidth?: boolean;
   disabled?: boolean;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => unknown;
 }
 
-export function Button(props: ButtonProps) {
+function Button(props: ButtonProps) {
   return <ButtonWrapper {...props}>{props.children}</ButtonWrapper>;
 }
 
@@ -26,7 +27,7 @@ const ButtonWrapper = styled.button<ButtonProps>`
   width: ${(props) =>
     typeof props.width === "number" ? props.width + "px" : props.width};
   margin: ${(props) => props.margin};
-  border-radius: ${(props) => (props.fullWidth ? '0' : "8px")};
+  border-radius: ${(props) => (props.fullWidth ? "0" : "8px")};
   color: ${(props) =>
     props.disabled ? theme.palette.gray300 : theme.colors.text.special};
   background-color: ${(props) => {
@@ -39,3 +40,5 @@ const ButtonWrapper = styled.button<ButtonProps>`
   border: none;
   cursor: ${(props) => (props.disabled ? "default" : "pointer")};
 `;
+
+export default Button;
