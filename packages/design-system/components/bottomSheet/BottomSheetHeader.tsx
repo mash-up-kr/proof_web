@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import {forwardRef} from "react";
 import theme from "../../theme";
 
-export const BottomSheetHeader = forwardRef<HTMLDivElement>((props, ref) => (
+export const BottomSheetHeader = forwardRef<HTMLDivElement>((_, ref) => (
     <Wrapper ref={ref}>
       <Handle/>
     </Wrapper>
