@@ -90,7 +90,7 @@ const Layout = styled.div`
 `;
 
 const TitleWrapper = styled.div`
-  padding-top: 52px;
+  padding-top: 36px;
 `;
 
 const CandidateWrapper = styled.div`
