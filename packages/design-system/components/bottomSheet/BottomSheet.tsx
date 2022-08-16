@@ -6,7 +6,7 @@ import {useBottomSheet} from "./useBottomSheet";
 
 export const MIN_Y = 48;
 
-function BottomSheet(props: PropsWithChildren<{}>): JSX.Element {
+function BottomSheet(props: PropsWithChildren<void>): JSX.Element {
   const { sheet, sheetHeader } = useBottomSheet();
 
   const [height, setHeight] = useState(0);
