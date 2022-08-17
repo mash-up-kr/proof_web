@@ -13,7 +13,7 @@ const dummyRound = [
 
 const RoundPage = () => {
   const [isActives, setIsActives] = React.useState<boolean[]>(
-    new Array(dummyRound.length).map(() => false)
+    new Array(dummyRound.length).fill(false)
   );
   const [rounds, setRounds] = React.useState<Round[]>(dummyRound);
 
