@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { GetServerSidePropsContext } from "next";
 import ContentCard from "../../components/ContentCard";
 import TitleWithContent from "../../components/TitleWithContent";
-import { ALONE_CARDS, GROUP_CARDS } from "./dummy";
+import { ALONE_CARDS, GROUP_CARDS } from "../../dummy/cards";
 
 interface Props {
   cards: {
