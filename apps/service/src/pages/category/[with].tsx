@@ -43,7 +43,6 @@ export async function getServerSideProps({
   req,
   params,
 }: GetServerSidePropsContext<{ with: "alone" | "group" }>) {
-  console.log(params?.with);
 
   const cards = params?.with === "alone" ? ALONE_CARDS : GROUP_CARDS;
   return {
