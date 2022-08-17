@@ -148,6 +148,7 @@ const padding = {
 const zIndex = {
   header: 999,
   nav: 888,
+  bottomSheet: 777,
   cardBody: 100,
   cardOverlay: 105,
 };

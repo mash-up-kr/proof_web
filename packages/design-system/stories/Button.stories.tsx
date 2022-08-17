@@ -1,6 +1,6 @@
 import * as React from "react";
 import {ComponentMeta, ComponentStory} from "@storybook/react";
-import {Button, ButtonHierarchy} from "../components/Button";
+import {default as Button, ButtonHierarchy} from "../components/Button";
 
 export default {
     component: Button,
