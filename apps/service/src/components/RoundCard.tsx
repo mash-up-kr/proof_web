@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { Icon, Text, theme } from "design-system";
 
-interface Round {
+export interface Round {
   title: string;
   count: number;
 }

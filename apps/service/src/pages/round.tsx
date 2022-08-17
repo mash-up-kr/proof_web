@@ -3,12 +3,7 @@ import styled from "@emotion/styled";
 import { Title } from "design-system";
 import * as React from "react";
 import { Header } from "../components";
-import RoundCard from "../components/RoundCard";
-
-type Round = {
-  count: number;
-  title: string;
-};
+import RoundCard, { Round } from "../components/RoundCard";
 
 const dummyRound = [
   { count: 8, title: "가볍게" },
