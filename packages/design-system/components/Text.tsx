@@ -4,7 +4,7 @@ import React, { CSSProperties, PropsWithChildren } from "react";
 
 import theme, { FontKeyType, PalleteValueType } from "../theme";
 
-interface TextProps extends React.HTMLAttributes<HTMLDivElement> {
+interface TextProps extends React.ComponentProps<"div"> {
   type: FontKeyType;
   display?: CSSProperties["display"];
   textAlign?: CSSProperties["textAlign"];

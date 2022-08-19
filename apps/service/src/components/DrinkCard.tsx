@@ -16,7 +16,7 @@ export interface Drink {
   };
 }
 
-interface DrinkCardProps extends React.HTMLAttributes<HTMLDivElement> {
+interface DrinkCardProps extends React.ComponentProps<"div"> {
   type: DrinkCardType;
   drink: Drink;
   isActive?: boolean;

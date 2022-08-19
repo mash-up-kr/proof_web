@@ -3,7 +3,7 @@ import React, { CSSProperties } from "react";
 import theme from "../theme";
 import Text from "./Text";
 
-interface TitleProps extends React.HTMLAttributes<HTMLDivElement> {
+interface TitleProps extends React.ComponentProps<"div"> {
   topQuestion: string;
   bottomQuestion: string;
   desc: string;

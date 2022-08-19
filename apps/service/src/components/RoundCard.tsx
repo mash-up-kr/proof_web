@@ -6,7 +6,7 @@ export interface Round {
   count: number;
 }
 
-interface RoundCardProps extends React.HTMLAttributes<HTMLLIElement> {
+interface RoundCardProps extends React.ComponentProps<"li"> {
   round: Round;
   isActive?: boolean;
 }

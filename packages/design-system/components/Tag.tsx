@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import theme from "../theme";
 import Text from "./Text";
 
-interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
+interface TagProps extends React.ComponentProps<"div"> {
   tags: string[];
 }
 
