@@ -9,11 +9,12 @@ interface TagProps extends React.ComponentProps<"div"> {
 function Tag({ tags, ...restProps }: TagProps) {
   return (
     <Wrapper {...restProps}>
-      {tags.map((tag) => (
+      {tags.slice(0, 2).map((tag) => (
         <StyleTag key={tag} type="body6" color={theme.colors.text.general}>
           {tag}
         </StyleTag>
       ))}
+      {tags.length > 2 && <ExtraTag type="body7">+{tags?.length - 2}</ExtraTag>}
     </Wrapper>
   );
 }
@@ -27,6 +28,10 @@ const StyleTag = styled(Text)`
   background-color: ${theme.palette.gray500};
   padding: 2px 8px;
   border-radius: 4px;
+`;
+
+const ExtraTag = styled(Text)`
+  align-self: center;
 `;
 
 export default Tag;
