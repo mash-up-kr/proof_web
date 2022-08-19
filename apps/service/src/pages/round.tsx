@@ -17,17 +17,10 @@ const RoundPage = () => {
   );
   const [rounds, setRounds] = React.useState<Round[]>(dummyRound);
 
-  const handleClickRound = (
-    e: React.MouseEvent<HTMLUListElement, MouseEvent>
-  ) => {
-    const $ul = e.target as HTMLUListElement;
-    const $li = $ul.closest("li");
-    if ($li) {
-      const indexToUpdate = Number($li.id);
-      const nextIsActives = new Array(dummyRound.length).fill(false);
-      nextIsActives[indexToUpdate] = !isActives[indexToUpdate];
-      setIsActives(nextIsActives);
-    }
+  const handleClickRound = (idx: number) => {
+    const nextIsActives = new Array(dummyRound.length).fill(false);
+    nextIsActives[idx] = !isActives[idx];
+    setIsActives(nextIsActives);
   };
 
   return (
@@ -38,13 +31,13 @@ const RoundPage = () => {
         bottomQuestion="진행하시겠어요?"
         desc="선택에 따라 나올 술이 달라져요."
       />
-      <RoundWrapper onClick={handleClickRound}>
+      <RoundWrapper>
         {rounds.map((round, idx) => (
           <RoundCard
             round={round}
             key={round.count}
             isActive={isActives[idx]}
-            id={`${idx}`}
+            onClick={() => handleClickRound(idx)}
           />
         ))}
       </RoundWrapper>
