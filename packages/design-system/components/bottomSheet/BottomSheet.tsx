@@ -1,12 +1,16 @@
 import styled from "@emotion/styled";
-import {PropsWithChildren, useEffect, useState} from "react";
+import React, {PropsWithChildren, useEffect, useState} from "react";
 import {BottomSheetHeader} from "./BottomSheetHeader";
 import theme from "../../theme";
 import {useBottomSheet} from "./useBottomSheet";
 
 export const MIN_Y = 48;
 
-function BottomSheet(props: PropsWithChildren<void>): JSX.Element {
+interface BottomSheetProps {
+  headerChildren?: React.ReactNode;
+}
+
+function BottomSheet(props: PropsWithChildren<BottomSheetProps>): JSX.Element {
   const { sheet, sheetHeader } = useBottomSheet();
 
   const [height, setHeight] = useState(0);
@@ -17,7 +21,7 @@ function BottomSheet(props: PropsWithChildren<void>): JSX.Element {
 
   return (
       <Wrapper ref={sheet} height={height}>
-        <BottomSheetHeader ref={sheetHeader}/>
+        <BottomSheetHeader ref={sheetHeader}>{props.headerChildren}</BottomSheetHeader>
         <BottomSheetContent>
           {props.children}
         </BottomSheetContent>
