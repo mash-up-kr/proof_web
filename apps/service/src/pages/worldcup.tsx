@@ -19,6 +19,7 @@ const dummy1: Drink = {
     imageUrl:
         "https://zuzu-resource.s3.ap-northeast-2.amazonaws.com/drinks-category/category_beer.png",
   },
+  info: "밝은 옐로우 컬러에 상큼한 레몬 등의 푸릇한 과실향과 흰색 꽃향기가 풍성함. 매력포인트는 버터의 유질감과 스모키함이 어우러지는 부드러움"
 };
 const dummy2: Drink = {
   id: 3,
@@ -33,6 +34,7 @@ const dummy2: Drink = {
     imageUrl:
         "https://zuzu-resource.s3.ap-northeast-2.amazonaws.com/drinks-category/category_beer.png",
   },
+  info: "밝은 옐로우 컬러에 상큼한 레몬 등의 푸릇한 과실향과 흰색 꽃향기가 풍성함. 매력포인트는 버터의 유질감과 스모키함이 어우러지는 부드러움"
 };
 
 const WorldCup = () => {
@@ -53,6 +55,7 @@ const WorldCup = () => {
       <DrinkInfoBottomSheet
         drinkCardType={"typeA"}
         drinkName={dummy1.name}
+        drinkInformation={dummy1.info}
         drinkMetaData={{abv: dummy1.abv, categoryName: dummy1.category.name, origin: dummy1.origin}}
       />
       <Layout>

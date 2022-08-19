@@ -10,6 +10,7 @@ export interface Drink {
   abv: number;
   imageUrl: string;
   origin: string;
+  info: string;
   category: {
     id: number;
     name: string;
