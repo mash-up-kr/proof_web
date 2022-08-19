@@ -49,7 +49,6 @@ const Category = () => {
 const Column = styled.ul`
   display: grid;
   gap: 24px;
-  margin-top: 10vh;
 `;
 const Row = styled.li``;
 export default Category;
