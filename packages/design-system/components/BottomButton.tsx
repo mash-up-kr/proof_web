@@ -3,7 +3,7 @@ import { PropsWithChildren } from "react";
 import Button, { ButtonHierarchy } from "./Button";
 import Text from "./Text";
 
-interface BottomButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+interface BottomButtonProps extends React.ComponentProps<"button"> {
   isActive: boolean;
 }
 
