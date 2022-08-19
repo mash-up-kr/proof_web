@@ -12,6 +12,7 @@ const dummy1: Drink = {
   abv: 15.2,
   imageUrl:
       "https://beer-api-prod.idkulab.com/media/drinks/bourbon-county-2018.png",
+  origin: '스페인',
   category: {
     id: 2,
     name: "Beer",
@@ -25,6 +26,7 @@ const dummy2: Drink = {
   abv: 5.6,
   imageUrl:
       "https://beer-api-prod.idkulab.com/media/drinks/brewdong-punk-ipa.png",
+  origin: '프랑스',
   category: {
     id: 2,
     name: "Beer",
@@ -48,7 +50,11 @@ const WorldCup = () => {
 
   return (
     <>
-      <DrinkInfoBottomSheet drinkCardType={"typeA"} drinkName={dummy1.name}/>
+      <DrinkInfoBottomSheet
+        drinkCardType={"typeA"}
+        drinkName={dummy1.name}
+        drinkMetaData={{abv: dummy1.abv, categoryName: dummy1.category.name, origin: dummy1.origin}}
+      />
       <Layout>
         <Header type="prev" title="8강"/>
         <TitleWrapper>

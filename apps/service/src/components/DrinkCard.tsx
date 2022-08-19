@@ -9,6 +9,7 @@ export interface Drink {
   name: string;
   abv: number;
   imageUrl: string;
+  origin: string;
   category: {
     id: number;
     name: string;
