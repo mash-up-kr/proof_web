@@ -1,9 +1,10 @@
 import {css} from "@emotion/react";
 import styled from "@emotion/styled";
-import {BottomButton, BottomSheet, Text} from "design-system";
+import {BottomButton, Text} from "design-system";
 import * as React from "react";
 import {Header} from "../components";
 import DrinkCard, {Drink} from "../components/DrinkCard";
+import DrinkInfoBottomSheet from "../components/DrinkInfoBottomSheet";
 
 const dummy1: Drink = {
   id: 2,
@@ -47,7 +48,7 @@ const WorldCup = () => {
 
   return (
     <>
-      <BottomSheet/>
+      <DrinkInfoBottomSheet drinkCardType={"typeA"}/>
       <Layout>
         <Header type="prev" title="8강"/>
         <TitleWrapper>
