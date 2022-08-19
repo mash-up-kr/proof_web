@@ -48,7 +48,7 @@ const WorldCup = () => {
 
   return (
     <>
-      <DrinkInfoBottomSheet drinkCardType={"typeA"}/>
+      <DrinkInfoBottomSheet drinkCardType={"typeA"} drinkName={dummy1.name}/>
       <Layout>
         <Header type="prev" title="8강"/>
         <TitleWrapper>
