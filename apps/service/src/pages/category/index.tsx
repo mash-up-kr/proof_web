@@ -1,15 +1,6 @@
 import styled from "@emotion/styled";
-import { Button, ButtonHierarchy, Text } from "design-system";
-import Link from "next/link";
-import { useRouter } from "next/router";
 import TitleWithContent from "../../components/TitleWithContent";
 import WithCard from "../../components/WithCard";
-
-const THUMBNAIL_URL =
-  "https://user-images.githubusercontent.com/39829378/184810860-51607da1-b60b-41de-8ca2-135e65b223b4.svg";
-
-const ARROW_URL =
-  "https://user-images.githubusercontent.com/39829378/184811768-8baa0199-c372-4e5b-90fa-73b9e0dad068.svg";
 
 const INFOS = [
   {
