@@ -5,6 +5,7 @@ import * as React from "react";
 import {Header} from "../components";
 import DrinkCard, {Drink} from "../components/DrinkCard";
 import DrinkInfoBottomSheet from "../components/DrinkInfoBottomSheet";
+import {useState} from "react";
 
 const dummy1: Drink = {
   id: 2,
@@ -38,16 +39,11 @@ const dummy2: Drink = {
 };
 
 const WorldCup = () => {
-  const [isActive, setIsActive] = React.useState<boolean[]>([false, false]);
+  const [selectedDrink, setSelectedDrink] = useState<Drink | null>(null);
 
-  const handleClickDrinkCard = (
-      e: React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) => {
-    const id = Number(e.currentTarget.id);
-    const nextIsActive = [...isActive];
-    nextIsActive[+!id] = false;
-    nextIsActive[id] = !nextIsActive[id];
-    setIsActive(nextIsActive);
+  const handleDrinkCardClick = (drink: Drink) => {
+    if (drink === selectedDrink) setSelectedDrink(null);
+    else setSelectedDrink(drink);
   };
 
   return (
@@ -70,21 +66,19 @@ const WorldCup = () => {
         </TitleWrapper>
         <CandidateWrapper>
           <DrinkCard
-              id="0"
               type="typeA"
               drink={dummy1}
-              isActive={isActive[0]}
-              onClick={handleClickDrinkCard}
+              isActive={selectedDrink === dummy1}
+              onClick={() => handleDrinkCardClick(dummy1)}
           />
           <DrinkCard
-              id="1"
               type="typeB"
               drink={dummy2}
-              isActive={isActive[1]}
-              onClick={handleClickDrinkCard}
+              isActive={selectedDrink === dummy2}
+              onClick={() => handleDrinkCardClick(dummy2)}
           />
         </CandidateWrapper>
-        <BottomButton isActive={isActive[0] || isActive[1]}>
+        <BottomButton isActive={!!selectedDrink}>
           선택하기
         </BottomButton>
       </Layout>
