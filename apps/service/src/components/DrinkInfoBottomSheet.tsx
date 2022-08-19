@@ -1,4 +1,4 @@
-import {BottomSheet, Text, theme} from "design-system";
+import {BottomSheet, Tag, Text, theme} from "design-system";
 import {DrinkCardType} from "./DrinkCard";
 import styled from "@emotion/styled";
 import DrinkInfoBottomSheetHeader from "./DrinkInfoBottomSheetHeader";
@@ -23,6 +23,10 @@ function DrinkInfoBottomSheet({drinkCardType, drinkName, drinkMetaData, drinkInf
           {drinkInformation}
         </DrinkInformationContent>
       </DrinkInformation>
+      <DrinkReviewTopics>
+        <Text type={"h4"}>리뷰 토픽</Text>
+        <ReviewTopicTags tags={["대낮에", "한밤에", "친구와", "연인과"]} />
+      </DrinkReviewTopics>
     </BottomSheet>
   )
 }
@@ -38,6 +42,15 @@ const DrinkInformation = styled.div`
 
 const DrinkInformationContent = styled(Text)`
   margin-top: 16px;
-`
+`;
+
+const DrinkReviewTopics = styled.div`
+  margin-top: 2px;
+  padding: 16px 0;
+`;
+
+const ReviewTopicTags = styled(Tag)`
+  margin-top: 20px;
+`;
 
 export default DrinkInfoBottomSheet;

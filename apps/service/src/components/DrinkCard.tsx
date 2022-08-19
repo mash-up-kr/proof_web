@@ -58,7 +58,7 @@ function DrinkCard({
       <DrinkName display="-webkit-box" type="button1">
         {drink.name}
       </DrinkName>
-      {isShowingTag && <Tag tags={["대낮에", "한밤에", "친구와", "연인과"]} />}
+      {isShowingTag && <Tag tags={["대낮에", "한밤에", "친구와", "연인과"]} shorten />}
     </Wrapper>
   );
 }
