@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Button, ButtonHierarchy, Text } from "design-system";
+import { Button, ButtonHierarchy, Text, theme } from "design-system";
 import { useRouter } from "next/router";
 import React from "react";
 
@@ -30,7 +30,7 @@ const WithCard = ({ href, title, description, size = "medium" }: Props) => {
       <Box>
         <CircleThumbnail src={THUMBNAIL_URL} alt="이미지" />
         <Contents>
-          <Text type="body3" color="#AEB4CA">
+          <Text type="body3" color={theme.palette.gray200}>
             {title}
           </Text>
           <Text type="h3">{description}</Text>

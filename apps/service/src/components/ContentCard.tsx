@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Button, ButtonHierarchy, Text } from "design-system";
+import { Button, ButtonHierarchy, Text, theme } from "design-system";
 import React from "react";
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 const ContentCard = ({ title, description }: Props) => {
   return (
     <Card hierarchy={ButtonHierarchy.Tertiary}>
-      <Text color="#C4BEFF" type="body5">
+      <Text color={theme.palette.purple100} type="body5">
         {title}
       </Text>
       <Text type="h5">{description}</Text>
