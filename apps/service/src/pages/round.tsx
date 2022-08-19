@@ -63,14 +63,12 @@ const Layout = styled.div`
 `;
 
 const TitleWrapper = styled(Title)`
-  width: 86.7%;
   margin: 0 auto;
-  padding: 20px 0 52px 0;
+  padding: 20px 0 52px 24px;
 `;
 
 const RoundWrapper = styled.ul`
-  width: 86.7%;
-  margin: 0 auto;
+  margin-inline: 28px;
   display: flex;
   flex-direction: column;
   gap: 16px;

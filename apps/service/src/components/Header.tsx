@@ -42,14 +42,14 @@ const Wrapper = styled.header`
 const PrevIcon = styled(Icon)`
   position: absolute;
   top: 50%;
-  left: 5.7%;
+  left: 24px;
   transform: translateY(-50%);
 `;
 
 const CloseIcon = styled(Icon)`
   position: absolute;
   top: 50%;
-  left: 5.7%;
+  right: 24px;
   transform: translateY(-50%);
 `;
 
