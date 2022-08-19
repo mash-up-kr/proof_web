@@ -8,7 +8,7 @@ interface DrinkImageProps {
   type: IconName;
   isActive?: boolean;
   select?: number;
-  handleClickSearchIcon?: (
+  onSearchIconClick?: (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => void;
 }
@@ -18,7 +18,7 @@ function DrinkImage({
   type,
   isActive = false,
   select,
-  handleClickSearchIcon,
+  onSearchIconClick,
 }: DrinkImageProps) {
   return (
     <Wrapper>
@@ -32,7 +32,7 @@ function DrinkImage({
         width={12}
         height={12}
         name="search"
-        onClick={handleClickSearchIcon}
+        onClick={onSearchIconClick}
       />
       {isActive && (
         <ActiveGradient>

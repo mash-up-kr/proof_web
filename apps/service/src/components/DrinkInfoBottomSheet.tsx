@@ -10,11 +10,12 @@ interface DrinkInfoBottomSheetProps {
   drinkName: string;
   drinkMetaData: ComponentProps<typeof DrinkMetaData>;
   drinkInformation: string;
+  onClose(): void;
 }
 
-function DrinkInfoBottomSheet({drinkCardType, drinkName, drinkMetaData, drinkInformation}: DrinkInfoBottomSheetProps) {
+function DrinkInfoBottomSheet({drinkCardType, drinkName, drinkMetaData, drinkInformation, onClose}: DrinkInfoBottomSheetProps) {
   return (
-    <BottomSheet headerChildren={<DrinkInfoBottomSheetHeader drinkCardType={drinkCardType}/>}>
+    <BottomSheet headerChildren={<DrinkInfoBottomSheetHeader drinkCardType={drinkCardType} onCloseClick={onClose}/>}>
       <DrinkName type={"h1"}>{drinkName}</DrinkName>
       <DrinkMetaData {...drinkMetaData}/>
       <DrinkInformation>

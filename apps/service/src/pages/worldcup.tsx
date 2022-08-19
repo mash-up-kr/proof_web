@@ -40,6 +40,7 @@ const dummy2: Drink = {
 
 const WorldCup = () => {
   const [selectedDrink, setSelectedDrink] = useState<Drink | null>(null);
+  const [isBottomSheetOpened, setBottomSheetOpened] = useState(false);
 
   const handleDrinkCardClick = (drink: Drink) => {
     if (drink === selectedDrink) setSelectedDrink(null);
@@ -48,12 +49,17 @@ const WorldCup = () => {
 
   return (
     <>
-      <DrinkInfoBottomSheet
-        drinkCardType={"typeA"}
-        drinkName={dummy1.name}
-        drinkInformation={dummy1.info}
-        drinkMetaData={{abv: dummy1.abv, categoryName: dummy1.category.name, origin: dummy1.origin}}
-      />
+      {isBottomSheetOpened && selectedDrink && (
+          <DrinkInfoBottomSheet
+              drinkCardType={"typeA"}
+              drinkName={selectedDrink.name}
+              drinkInformation={selectedDrink.info}
+              drinkMetaData={
+                {abv: selectedDrink.abv, categoryName: selectedDrink.category.name, origin: selectedDrink.origin}
+              }
+              onClose={() => setBottomSheetOpened(false)}
+          />
+      )}
       <Layout>
         <Header type="prev" title="8강"/>
         <TitleWrapper>
@@ -70,12 +76,14 @@ const WorldCup = () => {
               drink={dummy1}
               isActive={selectedDrink === dummy1}
               onClick={() => handleDrinkCardClick(dummy1)}
+              onSearchIconClick={() => setBottomSheetOpened(true)}
           />
           <DrinkCard
               type="typeB"
               drink={dummy2}
               isActive={selectedDrink === dummy2}
               onClick={() => handleDrinkCardClick(dummy2)}
+              onSearchIconClick={() => setBottomSheetOpened(true)}
           />
         </CandidateWrapper>
         <BottomButton isActive={!!selectedDrink}>

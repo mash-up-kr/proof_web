@@ -4,13 +4,14 @@ import {Icon} from "design-system";
 
 interface DrinkInfoBottomSheetHeaderProps {
   drinkCardType: DrinkCardType;
+  onCloseClick(): void;
 }
 
-function DrinkInfoBottomSheetHeader({drinkCardType}: DrinkInfoBottomSheetHeaderProps) {
+function DrinkInfoBottomSheetHeader({drinkCardType, onCloseClick}: DrinkInfoBottomSheetHeaderProps) {
   return  (
       <SheetHeader>
         <DrinkTypeIcon name={drinkCardType}/>
-        <CloseWrapper>
+        <CloseWrapper onClick={onCloseClick}>
           <Icon name={"close"}/>
         </CloseWrapper>
       </SheetHeader>
