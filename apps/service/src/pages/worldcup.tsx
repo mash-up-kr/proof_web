@@ -1,42 +1,16 @@
-import {css} from "@emotion/react";
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import {BottomButton, BottomSheet, Text} from "design-system";
+import { BottomButton, BottomSheet, Text } from "design-system";
 import * as React from "react";
-import {Header} from "../components";
-import DrinkCard, {Drink} from "../components/DrinkCard";
-
-const dummy1: Drink = {
-  id: 2,
-  name: "버번카운티 브랜드 스타우트 2018 사이즈가넘어가게만들기",
-  abv: 15.2,
-  imageUrl:
-      "https://beer-api-prod.idkulab.com/media/drinks/bourbon-county-2018.png",
-  category: {
-    id: 2,
-    name: "Beer",
-    imageUrl:
-        "https://zuzu-resource.s3.ap-northeast-2.amazonaws.com/drinks-category/category_beer.png",
-  },
-};
-const dummy2: Drink = {
-  id: 3,
-  name: "펑크 아이피에이",
-  abv: 5.6,
-  imageUrl:
-      "https://beer-api-prod.idkulab.com/media/drinks/brewdong-punk-ipa.png",
-  category: {
-    id: 2,
-    name: "Beer",
-    imageUrl:
-        "https://zuzu-resource.s3.ap-northeast-2.amazonaws.com/drinks-category/category_beer.png",
-  },
-};
+import { Header } from "../components";
+import DrinkCard, { Drink } from "../components/DrinkCard";
+import { DRINK_CARDS } from "../dummy/drinkCards";
 
 const WorldCup = () => {
   const [isActive, setIsActive] = React.useState<boolean[]>([false, false]);
 
   const handleClickDrinkCard = (
-      e: React.MouseEvent<HTMLDivElement, MouseEvent>
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
     const id = Number(e.currentTarget.id);
     const nextIsActive = [...isActive];
@@ -47,9 +21,9 @@ const WorldCup = () => {
 
   return (
     <>
-      <BottomSheet/>
+      <BottomSheet />
       <Layout>
-        <Header type="prev" title="8강"/>
+        <Header type="prev" title="8강" />
         <TitleWrapper>
           <Text type="h1" textAlign="center">
             비 오는 날씨엔
@@ -60,18 +34,20 @@ const WorldCup = () => {
         </TitleWrapper>
         <CandidateWrapper>
           <DrinkCard
-              id="0"
-              type="typeA"
-              drink={dummy1}
-              isActive={isActive[0]}
-              onClick={handleClickDrinkCard}
+            id="0"
+            type="round"
+            iconType="typeA"
+            drink={DRINK_CARDS[0]}
+            isActive={isActive[0]}
+            onClick={handleClickDrinkCard}
           />
           <DrinkCard
-              id="1"
-              type="typeB"
-              drink={dummy2}
-              isActive={isActive[1]}
-              onClick={handleClickDrinkCard}
+            id="1"
+            type="round"
+            iconType="typeB"
+            drink={DRINK_CARDS[1]}
+            isActive={isActive[1]}
+            onClick={handleClickDrinkCard}
           />
         </CandidateWrapper>
         <BottomButton isActive={isActive[0] || isActive[1]}>
@@ -83,7 +59,7 @@ const WorldCup = () => {
 };
 
 const Layout = styled.div`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     width: 100%;
     height: 100vh;
     height: calc(var(--vh, 1vh) * 100);
@@ -94,6 +70,7 @@ const Layout = styled.div`
 
 const TitleWrapper = styled.div`
   padding-top: 36px;
+  margin-bottom: 52px;
 `;
 
 const CandidateWrapper = styled.div`
