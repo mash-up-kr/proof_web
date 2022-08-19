@@ -7,7 +7,7 @@ import DrinkCard, { Drink } from "../components/DrinkCard";
 
 const dummy1: Drink = {
   id: 2,
-  name: "버번카운티 브랜드 스타우트 2018",
+  name: "버번카운티 브랜드 스타우트 2018 사이즈가넘어가게만들기",
   abv: 15.2,
   imageUrl:
     "https://beer-api-prod.idkulab.com/media/drinks/bourbon-county-2018.png",
@@ -94,10 +94,8 @@ const TitleWrapper = styled.div`
 `;
 
 const CandidateWrapper = styled.div`
-  width: 90%;
-  margin: 0 auto;
+  margin-inline: 24px;
   display: flex;
-  justify-content: space-around;
   gap: 18px;
 `;
 

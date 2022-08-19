@@ -53,8 +53,10 @@ function DrinkCard({
           Alc {drink.abv}%
         </Text>
       </DescriptionWrapper>
-      <TitleWrapper type="button1">{drink.name}</TitleWrapper>
-      {isShowingTag && <Tag tags={[drink.category.name]} />}
+      <DrinkName display="-webkit-box" type="button1">
+        {drink.name}
+      </DrinkName>
+      {isShowingTag && <Tag tags={["대낮에", "한밤에", "친구와", "연인과"]} />}
     </Wrapper>
   );
 }
@@ -70,9 +72,15 @@ const DescriptionWrapper = styled.div`
   gap: 8px;
 `;
 
-const TitleWrapper = styled(Text)`
+const DrinkName = styled(Text)`
   margin: 8px auto;
   word-break: keep-all;
+  min-height: 44px;
+
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
 `;
 
 export default DrinkCard;
