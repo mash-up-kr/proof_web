@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
-import {forwardRef} from "react";
+import {forwardRef, PropsWithChildren} from "react";
 import theme from "../../theme";
 
-export const BottomSheetHeader = forwardRef<HTMLDivElement>((_, ref) => (
+export const BottomSheetHeader = forwardRef<HTMLDivElement, PropsWithChildren<unknown>>((props, ref) => (
     <Wrapper ref={ref}>
       <Handle/>
+      {props.children}
     </Wrapper>
 ));
 
@@ -18,8 +19,6 @@ const Handle = styled.div`
 `
 
 const Wrapper = styled.div`
-  position: relative;
-  height: 24px;
   padding-top: 8px;
 
   border-radius: 20px 20px 0 0;
