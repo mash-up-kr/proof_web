@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
-import {forwardRef, PropsWithChildren} from "react";
+import {forwardRef} from "react";
 import theme from "../../theme";
 
-export const BottomSheetHeader = forwardRef<HTMLDivElement, PropsWithChildren<unknown>>((props, ref) => (
+export const BottomSheetHeader = forwardRef<HTMLDivElement, React.ComponentProps<"div">>((props, ref) => (
     <Wrapper ref={ref}>
       <Handle/>
       {props.children}

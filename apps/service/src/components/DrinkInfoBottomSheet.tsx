@@ -4,6 +4,7 @@ import {BottomSheet, Tag, Text, theme} from "design-system";
 import {IconName} from "design-system/components/Icon";
 import DrinkInfoBottomSheetHeader from "./DrinkInfoBottomSheetHeader";
 import DrinkMetaData from "./DrinkMetaData";
+import CompetitionBar from "./CompetitionBar";
 
 interface DrinkInfoBottomSheetProps {
   drinkCardIcon: IconName;
@@ -15,7 +16,12 @@ interface DrinkInfoBottomSheetProps {
 
 function DrinkInfoBottomSheet({drinkCardIcon, drinkName, drinkMetaData, drinkInformation, onClose}: DrinkInfoBottomSheetProps) {
   return (
-    <BottomSheet headerChildren={<DrinkInfoBottomSheetHeader drinkCardIcon={drinkCardIcon} onCloseClick={onClose}/>}>
+    <BottomSheet
+        headerProps={{
+          children: (<DrinkInfoBottomSheetHeader drinkCardIcon={drinkCardIcon} onCloseClick={onClose}/>),
+          style: {marginBottom: 70}
+        }}
+    >
       <DrinkName type={"h1"}>{drinkName}</DrinkName>
       <DrinkMetaData {...drinkMetaData}/>
       <DrinkInformation>
@@ -39,6 +45,7 @@ function DrinkInfoBottomSheet({drinkCardIcon, drinkName, drinkMetaData, drinkInf
             이 술의 첫번째 리뷰어가 되어보세요!
           </EmptyReviewText>
         </EmptyReviewWrapper>
+        <CompetitionBar firstItemText={"달아요"} firstItemValue={223} secondItemText={"써요"} secondItemValue={89}/>
       </DrinkReviewStatistics>
     </BottomSheet>
   )
@@ -68,6 +75,7 @@ const ReviewTopicTags = styled(Tag)`
 
 const DrinkReviewStatistics = styled.div`
   margin-top: 36px;
+  margin-bottom: 52px;
 `;
 
 const EmptyReviewWrapper = styled.div`
@@ -75,7 +83,6 @@ const EmptyReviewWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: 44px 58px;
-  margin-bottom: 44px;
 `;
 
 const EmptyReviewImage = styled.img`
