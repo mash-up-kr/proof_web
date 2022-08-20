@@ -17,6 +17,10 @@ export interface Drink {
   };
 }
 
+export interface DrinkWithRound extends Drink {
+  round: number;
+}
+
 interface DrinkCardProps extends React.ComponentProps<"div"> {
   type: DrinkCardType;
   drink: Drink;
