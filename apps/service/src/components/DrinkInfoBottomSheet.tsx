@@ -1,9 +1,9 @@
-import {BottomSheet, Tag, Text, theme} from "design-system";
 import styled from "@emotion/styled";
-import DrinkInfoBottomSheetHeader from "./DrinkInfoBottomSheetHeader";
 import React, {ComponentProps} from "react";
-import DrinkMetaData from "./DrinkMetaData";
+import {BottomSheet, Tag, Text, theme} from "design-system";
 import {IconName} from "design-system/components/Icon";
+import DrinkInfoBottomSheetHeader from "./DrinkInfoBottomSheetHeader";
+import DrinkMetaData from "./DrinkMetaData";
 
 interface DrinkInfoBottomSheetProps {
   drinkCardIcon: IconName;
