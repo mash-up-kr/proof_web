@@ -19,6 +19,8 @@ function DrinkInfoBottomSheet({drinkCardIcon, drinkName, drinkMetaData, drinkInf
     <BottomSheet
         headerProps={{
           children: (<DrinkInfoBottomSheetHeader drinkCardIcon={drinkCardIcon} onCloseClick={onClose}/>),
+        }}
+        contentProps={{
           style: {marginBottom: 70}
         }}
     >
@@ -75,7 +77,6 @@ const ReviewTopicTags = styled(Tag)`
 
 const DrinkReviewStatistics = styled.div`
   margin-top: 36px;
-  margin-bottom: 52px;
 `;
 
 const EmptyReviewWrapper = styled.div`
