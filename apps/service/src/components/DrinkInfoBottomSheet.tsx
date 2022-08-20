@@ -48,6 +48,8 @@ function DrinkInfoBottomSheet({drinkCardIcon, drinkName, drinkMetaData, drinkInf
           </EmptyReviewText>
         </EmptyReviewWrapper>
         <CompetitionBar firstItemText={"달아요"} firstItemValue={223} secondItemText={"써요"} secondItemValue={89}/>
+        <CompetitionBar firstItemText={"가벼워요"} firstItemValue={50} secondItemText={"무거워요"} secondItemValue={50}/>
+        <CompetitionBar firstItemText={"은은함"} firstItemValue={12} secondItemText={"진한 술맛"} secondItemValue={300}/>
       </DrinkReviewStatistics>
     </BottomSheet>
   )
