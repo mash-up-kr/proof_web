@@ -3,8 +3,12 @@ import { Button, ButtonHierarchy } from "design-system";
 import React from "react";
 
 interface FloatingButtonsProps extends React.ComponentProps<"div"> {
-  handleClickLeftButton?: () => void;
-  handleClickRightButton?: () => void;
+  handleClickLeftButton?: (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => void;
+  handleClickRightButton?: (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => void;
 }
 
 function FloatingButtons({
