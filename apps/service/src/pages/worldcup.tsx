@@ -1,6 +1,6 @@
 import {css} from "@emotion/react";
 import styled from "@emotion/styled";
-import {BottomButton, Text} from "design-system";
+import {BottomButton, Text, theme} from "design-system";
 import * as React from "react";
 import {Header} from "../components";
 import DrinkCard, {Drink} from "../components/DrinkCard";
@@ -48,60 +48,58 @@ const WorldCup = () => {
   };
 
   return (
-    <>
-      {isBottomSheetOpened && selectedDrink && (
-          <DrinkInfoBottomSheet
-              drinkCardType={"typeA"}
-              drinkName={selectedDrink.name}
-              drinkInformation={selectedDrink.info}
-              drinkMetaData={
-                {abv: selectedDrink.abv, categoryName: selectedDrink.category.name, origin: selectedDrink.origin}
-              }
-              onClose={() => setBottomSheetOpened(false)}
-          />
-      )}
-      <Layout>
-        <Header type="prev" title="8강"/>
-        <TitleWrapper>
-          <Text type="h1" textAlign="center">
-            비 오는 날씨엔
-          </Text>
-          <Text type="h1" textAlign="center">
-            어떤 술이 더 끌리나요?
-          </Text>
-        </TitleWrapper>
-        <CandidateWrapper>
-          <DrinkCard
-              type="typeA"
-              drink={dummy1}
-              isActive={selectedDrink === dummy1}
-              onClick={() => handleDrinkCardClick(dummy1)}
-              onSearchIconClick={() => setBottomSheetOpened(true)}
-          />
-          <DrinkCard
-              type="typeB"
-              drink={dummy2}
-              isActive={selectedDrink === dummy2}
-              onClick={() => handleDrinkCardClick(dummy2)}
-              onSearchIconClick={() => setBottomSheetOpened(true)}
-          />
-        </CandidateWrapper>
-        <BottomButton isActive={!!selectedDrink}>
-          선택하기
-        </BottomButton>
-      </Layout>
-    </>
+      <>
+        {isBottomSheetOpened && selectedDrink && (
+            <DrinkInfoBottomSheet
+                drinkCardType={"typeA"}
+                drinkName={selectedDrink.name}
+                drinkInformation={selectedDrink.info}
+                drinkMetaData={
+                  {abv: selectedDrink.abv, categoryName: selectedDrink.category.name, origin: selectedDrink.origin}
+                }
+                onClose={() => setBottomSheetOpened(false)}
+            />
+        )}
+        <Layout>
+          <Header type="prev" title="8강"/>
+          <TitleWrapper>
+            <Text type="h1" textAlign="center">
+              비 오는 날씨엔
+            </Text>
+            <Text type="h1" textAlign="center">
+              어떤 술이 더 끌리나요?
+            </Text>
+          </TitleWrapper>
+          <CandidateWrapper>
+            <DrinkCard
+                type="typeA"
+                drink={dummy1}
+                isActive={selectedDrink === dummy1}
+                onClick={() => handleDrinkCardClick(dummy1)}
+                onSearchIconClick={() => setBottomSheetOpened(true)}
+            />
+            <DrinkCard
+                type="typeB"
+                drink={dummy2}
+                isActive={selectedDrink === dummy2}
+                onClick={() => handleDrinkCardClick(dummy2)}
+                onSearchIconClick={() => setBottomSheetOpened(true)}
+            />
+          </CandidateWrapper>
+          <BottomButton isActive={!!selectedDrink}>
+            선택하기
+          </BottomButton>
+        </Layout>
+      </>
   );
 };
 
 const Layout = styled.div`
-  ${({theme}) => css`
-    width: 100%;
-    height: 100vh;
-    height: calc(var(--vh, 1vh) * 100);
+  width: 100%;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 
-    background-color: ${theme.colors.background};
-  `}
+  background: linear-gradient(180deg, #3A2E72 0%, ${theme.palette.black} 40.88%);
 `;
 
 const TitleWrapper = styled.div`
