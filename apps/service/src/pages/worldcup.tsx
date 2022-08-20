@@ -1,45 +1,14 @@
 import styled from "@emotion/styled";
-import {BottomButton, Text, theme} from "design-system";
+import {BottomButton, Text} from "design-system";
 import * as React from "react";
-import {Header} from "../components";
-import DrinkCard, {Drink} from "../components/DrinkCard";
+import { Header } from "../components";
+import DrinkCard, { Drink } from "../components/DrinkCard";
 import DrinkInfoBottomSheet from "../components/DrinkInfoBottomSheet";
-import {useState} from "react";
-
-const dummy1: Drink = {
-  id: 2,
-  name: "버번카운티 브랜드 스타우트 2018 사이즈가넘어가게만들기",
-  abv: 15.2,
-  imageUrl:
-      "https://beer-api-prod.idkulab.com/media/drinks/bourbon-county-2018.png",
-  origin: '스페인',
-  category: {
-    id: 2,
-    name: "Beer",
-    imageUrl:
-        "https://zuzu-resource.s3.ap-northeast-2.amazonaws.com/drinks-category/category_beer.png",
-  },
-  info: "밝은 옐로우 컬러에 상큼한 레몬 등의 푸릇한 과실향과 흰색 꽃향기가 풍성함. 매력포인트는 버터의 유질감과 스모키함이 어우러지는 부드러움"
-};
-const dummy2: Drink = {
-  id: 3,
-  name: "펑크 아이피에이",
-  abv: 5.6,
-  imageUrl:
-      "https://beer-api-prod.idkulab.com/media/drinks/brewdong-punk-ipa.png",
-  origin: '프랑스',
-  category: {
-    id: 2,
-    name: "Beer",
-    imageUrl:
-        "https://zuzu-resource.s3.ap-northeast-2.amazonaws.com/drinks-category/category_beer.png",
-  },
-  info: "밝은 옐로우 컬러에 상큼한 레몬 등의 푸릇한 과실향과 흰색 꽃향기가 풍성함. 매력포인트는 버터의 유질감과 스모키함이 어우러지는 부드러움"
-};
+import { DRINK_CARDS } from "../dummy/drinkCards";
 
 const WorldCup = () => {
-  const [selectedDrink, setSelectedDrink] = useState<Drink | null>(null);
-  const [isBottomSheetOpened, setBottomSheetOpened] = useState(false);
+  const [selectedDrink, setSelectedDrink] = React.useState<Drink | null>(null);
+  const [isBottomSheetOpened, setBottomSheetOpened] = React.useState(false);
 
   const handleDrinkCardClick = (drink: Drink) => {
     if (drink === selectedDrink) setSelectedDrink(null);
@@ -72,16 +41,18 @@ const WorldCup = () => {
           <CandidateWrapper>
             <DrinkCard
                 type="typeA"
-                drink={dummy1}
-                isActive={selectedDrink === dummy1}
-                onClick={() => handleDrinkCardClick(dummy1)}
+                drink={DRINK_CARDS[0]}
+                iconType="typeA"
+                isActive={selectedDrink === DRINK_CARDS[0]}
+                onClick={() => handleDrinkCardClick(DRINK_CARDS[0])}
                 onSearchIconClick={() => setBottomSheetOpened(true)}
             />
             <DrinkCard
                 type="typeB"
-                drink={dummy2}
-                isActive={selectedDrink === dummy2}
-                onClick={() => handleDrinkCardClick(dummy2)}
+                drink={DRINK_CARDS[1]}
+                iconType="typeB"
+                isActive={selectedDrink === DRINK_CARDS[1]}
+                onClick={() => handleDrinkCardClick(DRINK_CARDS[1])}
                 onSearchIconClick={() => setBottomSheetOpened(true)}
             />
           </CandidateWrapper>
@@ -104,6 +75,7 @@ const Layout = styled.div`
 
 const TitleWrapper = styled.div`
   padding-top: 36px;
+  margin-bottom: 52px;
 `;
 
 const CandidateWrapper = styled.div`

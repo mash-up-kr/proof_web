@@ -2,10 +2,18 @@ import styled from "@emotion/styled";
 import { Text, Icon, theme } from "design-system";
 import { Vote } from "design-system/assets/svgs";
 import { IconName } from "design-system/components/Icon";
+import { DrinkCardType } from "./DrinkCard";
+
+const MIN_HEIGHT_BY_TYPE: { [key in DrinkCardType]: string } = {
+  round: "196px",
+  winner: "320px",
+  ranking: "154px",
+} as const;
 
 interface DrinkImageProps {
   imgSrc: string;
-  type: IconName;
+  type: DrinkCardType;
+  iconType: IconName;
   isActive?: boolean;
   select?: number;
   onSearchIconClick?: (
@@ -13,21 +21,19 @@ interface DrinkImageProps {
   ) => void;
 }
 
+// TODO: Icon 색상 변경
 function DrinkImage({
   imgSrc,
   type,
+  iconType,
   isActive = false,
   select,
   onSearchIconClick,
 }: DrinkImageProps) {
   return (
     <Wrapper>
-      <MainImage
-        src={imgSrc}
-        className={isActive ? "drink-img active" : "drink-img"}
-        alt="world-cup-candidate"
-      />
-      <TypeIcon name={type} />
+      <MainImage imgSrc={imgSrc} type={type} />
+      <TypeIcon name={iconType} />
       <SearchIcon
         width={12}
         height={12}
@@ -79,6 +85,7 @@ const SearchIcon = styled(Icon)`
   bottom: 12px;
   border-radius: 15px;
   background-color: ${theme.palette.gray500};
+  opacity: 0.7;
 `;
 
 const CheckIcon = styled(Icon)`
@@ -102,17 +109,19 @@ const VoteDescription = styled.div`
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
-  margin-top: 52px;
 `;
 
-const MainImage = styled.img`
-  display: block;
-  width: 100%;
-  height: 100%;
-  max-height: 196px;
+const MainImage = styled.div<{
+  imgSrc: string;
+  type: DrinkCardType;
+}>`
+  width: ${({ type }) => (type === "ranking" ? "120px" : "100%")};
+  min-height: ${({ type }) => MIN_HEIGHT_BY_TYPE[type]};
+  background-image: ${({ imgSrc }) =>
+    `linear-gradient(180deg, rgba(56, 58, 77, 0) 74.84%, rgba(28, 28, 38, 0.6) 100%), url(${imgSrc})`};
+  background-size: cover;
+  background-position: center;
   border-radius: 8px;
-  z-index: ${theme.zIndex.cardBody};
-  object-fit: contain;
 `;
 
 export default DrinkImage;

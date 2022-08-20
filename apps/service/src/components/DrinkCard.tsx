@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
 import { theme, Text, Tag } from "design-system";
+import { IconName } from "design-system/components/Icon";
 import React from "react";
 import DrinkImage from "./DrinkImage";
 
-export type DrinkCardType = "typeA" | "typeB" | "winner";
+export type DrinkCardType = "round" | "winner" | "ranking";
 export interface Drink {
   id: number;
   name: string;
@@ -21,6 +22,7 @@ export interface Drink {
 interface DrinkCardProps extends React.ComponentProps<"div"> {
   type: DrinkCardType;
   drink: Drink;
+  iconType: IconName;
   isActive?: boolean;
   isShowingTag?: boolean;
   onSearchIconClick?: (
@@ -31,6 +33,7 @@ interface DrinkCardProps extends React.ComponentProps<"div"> {
 function DrinkCard({
   type,
   drink,
+  iconType,
   isActive,
   isShowingTag = true,
   onSearchIconClick,
@@ -41,6 +44,7 @@ function DrinkCard({
       <DrinkImage
         imgSrc={drink.imageUrl}
         type={type}
+        iconType={iconType}
         isActive={isActive}
         onSearchIconClick={onSearchIconClick}
       />
