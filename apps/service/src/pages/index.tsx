@@ -3,11 +3,14 @@ import { BottomButton, Title } from "design-system";
 import { NextPage } from "next";
 import * as React from "react";
 import { Header } from "../components";
+import { useNavigate } from "../hooks";
 
 const Home: NextPage = () => {
+  const navigate = useNavigate();
+
   return (
     <Wrapper>
-      <Header type="logo" />
+      <Header type="logo" onClickIcon={navigate.toNativeHome} />
       <MainTitle
         topQuestion="술 취향 증명을"
         bottomQuestion="시작해볼까요?"
@@ -20,7 +23,9 @@ const Home: NextPage = () => {
         width="280px"
         height="324px"
       />
-      <BottomButton isActive>시작하기!</BottomButton>
+      <BottomButton isActive onClick={() => navigate.to("/category")}>
+        시작하기!
+      </BottomButton>
     </Wrapper>
   );
 };

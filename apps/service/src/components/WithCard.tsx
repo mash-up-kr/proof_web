@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { Button, ButtonHierarchy, Text, theme } from "design-system";
-import { useRouter } from "next/router";
 import React from "react";
+import { useNavigate } from "../hooks";
 
 const THUMBNAIL_URL =
   "https://user-images.githubusercontent.com/39829378/184810860-51607da1-b60b-41de-8ca2-135e65b223b4.svg";
@@ -17,14 +17,14 @@ interface Props {
 }
 
 const WithCard = ({ href, title, description, size = "medium" }: Props) => {
-  const router = useRouter();
+  const navigate = useNavigate();
   return (
     <Card
       hierarchy={ButtonHierarchy.Tertiary}
       fullWidth
       size={size}
       onClick={() => {
-        router.push(href);
+        navigate.to(href);
       }}
     >
       <Box>

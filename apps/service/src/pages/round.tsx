@@ -4,6 +4,7 @@ import { Title } from "design-system";
 import * as React from "react";
 import { Header } from "../components";
 import RoundCard, { Round } from "../components/RoundCard";
+import { useNavigate } from "../hooks";
 
 const dummyRound = [
   { count: 8, title: "가볍게" },
@@ -16,16 +17,18 @@ const RoundPage = () => {
     new Array(dummyRound.length).fill(false)
   );
   const [rounds, setRounds] = React.useState<Round[]>(dummyRound);
+  const navigate = useNavigate();
 
   const handleClickRound = (idx: number) => {
     const nextIsActives = new Array(dummyRound.length).fill(false);
     nextIsActives[idx] = !isActives[idx];
     setIsActives(nextIsActives);
+    navigate.to("/worldcup");
   };
 
   return (
     <Layout>
-      <Header type="prev" />
+      <Header type="prev" onClickIcon={navigate.back} />
       <TitleWrapper
         topQuestion="몇 강으로"
         bottomQuestion="진행하시겠어요?"
