@@ -24,7 +24,7 @@ const WithCard = ({ href, title, description, size = "medium" }: Props) => {
       fullWidth
       size={size}
       onClick={() => {
-        navigate.to(href);
+        navigate.push(href);
       }}
     >
       <Box>

@@ -1,3 +1,4 @@
+import { Url } from "url";
 import { useRouter } from "next/router";
 import { useMemo } from "react";
 
@@ -9,10 +10,11 @@ const useNavigate = () => {
       back: () => {
         router.back();
       },
-      to: (pathname: string) => {
-        router.push({
-          pathname,
-        });
+      push: (pathname: string, as?: Url, options?: any) => {
+        router.push(pathname, as, options);
+      },
+      replace: (pathname: string, as?: Url, options?: any) => {
+        router.replace(pathname, as, options);
       },
       toNativeHome: () => {
         // TODO: 네이티브 home으로 이동

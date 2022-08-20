@@ -23,7 +23,7 @@ const Home: NextPage = () => {
         width="280px"
         height="324px"
       />
-      <BottomButton isActive onClick={() => navigate.to("/category")}>
+      <BottomButton isActive onClick={() => navigate.push("/category")}>
         시작하기!
       </BottomButton>
     </Wrapper>

@@ -23,7 +23,7 @@ const RoundPage = () => {
     const nextIsActives = new Array(dummyRound.length).fill(false);
     nextIsActives[idx] = !isActives[idx];
     setIsActives(nextIsActives);
-    navigate.to("/worldcup");
+    navigate.push("/worldcup");
   };
 
   return (
