@@ -31,6 +31,7 @@ const Result: NextPage<Props> = ({ userAgent }) => {
       <WinnerCard drink={DRINK_CARDS[3]} />
       <FloatingButtons
         handleClickRightButton={async () => {
+          alert("눌렸어요");
           console.log(navigator.share);
           if (navigator.share) {
             await navigator.share({
