@@ -1,16 +1,16 @@
-import {DrinkCardType} from "./DrinkCard";
 import styled from "@emotion/styled";
 import {Icon} from "design-system";
+import {IconName} from "design-system/components/Icon";
 
 interface DrinkInfoBottomSheetHeaderProps {
-  drinkCardType: DrinkCardType;
+  drinkCardIcon: IconName;
   onCloseClick(): void;
 }
 
-function DrinkInfoBottomSheetHeader({drinkCardType, onCloseClick}: DrinkInfoBottomSheetHeaderProps) {
+function DrinkInfoBottomSheetHeader({drinkCardIcon, onCloseClick}: DrinkInfoBottomSheetHeaderProps) {
   return  (
       <SheetHeader>
-        <DrinkTypeIcon name={drinkCardType}/>
+        <DrinkTypeIcon name={drinkCardIcon}/>
         <CloseWrapper onClick={onCloseClick}>
           <Icon name={"close"}/>
         </CloseWrapper>

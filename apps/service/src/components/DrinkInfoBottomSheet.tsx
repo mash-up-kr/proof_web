@@ -1,21 +1,21 @@
 import {BottomSheet, Tag, Text, theme} from "design-system";
-import {DrinkCardType} from "./DrinkCard";
 import styled from "@emotion/styled";
 import DrinkInfoBottomSheetHeader from "./DrinkInfoBottomSheetHeader";
 import React, {ComponentProps} from "react";
 import DrinkMetaData from "./DrinkMetaData";
+import {IconName} from "design-system/components/Icon";
 
 interface DrinkInfoBottomSheetProps {
-  drinkCardType: DrinkCardType;
+  drinkCardIcon: IconName;
   drinkName: string;
   drinkMetaData: ComponentProps<typeof DrinkMetaData>;
   drinkInformation: string;
   onClose(): void;
 }
 
-function DrinkInfoBottomSheet({drinkCardType, drinkName, drinkMetaData, drinkInformation, onClose}: DrinkInfoBottomSheetProps) {
+function DrinkInfoBottomSheet({drinkCardIcon, drinkName, drinkMetaData, drinkInformation, onClose}: DrinkInfoBottomSheetProps) {
   return (
-    <BottomSheet headerChildren={<DrinkInfoBottomSheetHeader drinkCardType={drinkCardType} onCloseClick={onClose}/>}>
+    <BottomSheet headerChildren={<DrinkInfoBottomSheetHeader drinkCardIcon={drinkCardIcon} onCloseClick={onClose}/>}>
       <DrinkName type={"h1"}>{drinkName}</DrinkName>
       <DrinkMetaData {...drinkMetaData}/>
       <DrinkInformation>

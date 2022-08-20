@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import {BottomButton, Text} from "design-system";
+import {BottomButton, Text, theme} from "design-system";
 import * as React from "react";
 import { Header } from "../components";
 import DrinkCard, { Drink } from "../components/DrinkCard";
@@ -19,7 +19,7 @@ const WorldCup = () => {
       <>
         {isBottomSheetOpened && selectedDrink && (
             <DrinkInfoBottomSheet
-                drinkCardType={"typeA"}
+                drinkCardIcon={"typeA"}
                 drinkName={selectedDrink.name}
                 drinkInformation={selectedDrink.info}
                 drinkMetaData={
@@ -40,7 +40,7 @@ const WorldCup = () => {
           </TitleWrapper>
           <CandidateWrapper>
             <DrinkCard
-                type="typeA"
+                type="round"
                 drink={DRINK_CARDS[0]}
                 iconType="typeA"
                 isActive={selectedDrink === DRINK_CARDS[0]}
@@ -48,7 +48,7 @@ const WorldCup = () => {
                 onSearchIconClick={() => setBottomSheetOpened(true)}
             />
             <DrinkCard
-                type="typeB"
+                type="round"
                 drink={DRINK_CARDS[1]}
                 iconType="typeB"
                 isActive={selectedDrink === DRINK_CARDS[1]}
