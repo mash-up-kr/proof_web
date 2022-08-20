@@ -1,56 +1,32 @@
 import styled from "@emotion/styled";
-import { Button, ButtonHierarchy, theme, Title } from "design-system";
+import { BottomButton, Title } from "design-system";
+import { NextPage } from "next";
 import * as React from "react";
+import { Header } from "../components";
+import { useNavigate } from "../hooks";
 
-const Home = () => {
+const Home: NextPage = () => {
+  const navigate = useNavigate();
+
   return (
-    <Layout>
-      <Button
-        width={"312px"}
-        onClick={() => console.log("click")}
-        hierarchy={ButtonHierarchy.Primary}
-      >
-        Primary
-      </Button>
-      <Button
-        onClick={() => console.log("click")}
-        hierarchy={ButtonHierarchy.Primary}
-        fullWidth
-      >
-        Primary Full
-      </Button>
-      <Button margin={"0 8px 0 0"} hierarchy={ButtonHierarchy.Primary} disabled>
-        Primary Disabled
-      </Button>
-      <Button
-        width={312}
-        onClick={() => console.log("click")}
-        hierarchy={ButtonHierarchy.Secondary}
-      >
-        Secondary
-      </Button>
-      <Button
-        onClick={() => console.log("click")}
-        hierarchy={ButtonHierarchy.Secondary}
-        fullWidth
-      >
-        Secondary Full
-      </Button>
-      <Button hierarchy={ButtonHierarchy.Secondary} disabled>
-        Secondary Disabled
-      </Button>
-      <TitleWrapper
-        topQuestion="누구와 함께"
-        bottomQuestion="술을 마시나요?"
-        desc="선택에 따라 나올 술이 달라져요."
-      />
-      <TitleWrapper
+    <Wrapper>
+      <Header type="logo" onClickIcon={navigate.toNativeHome} />
+      <MainTitle
         topQuestion="술 취향 증명을"
         bottomQuestion="시작해볼까요?"
         desc="당신의 취향을 증명할 술들을 준비했어요."
         textAlign="center"
       />
-    </Layout>
+      <MainImage
+        src="/worldcup_start.png"
+        alt="worldcup-main-image"
+        width="280px"
+        height="324px"
+      />
+      <BottomButton isActive onClick={() => navigate.push("/category")}>
+        시작하기!
+      </BottomButton>
+    </Wrapper>
   );
 };
 
@@ -62,16 +38,17 @@ export async function getServerSideProps() {
   };
 }
 
-const Layout = styled.div`
-  width: 100%;
-  height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
-
-  background-color: ${theme.colors.background};
+const Wrapper = styled.main`
+  text-align: center;
 `;
 
-const TitleWrapper = styled(Title)`
-  margin-top: 40px;
+const MainTitle = styled(Title)`
+  margin-top: 20px;
+`;
+
+const MainImage = styled.img`
+  margin-top: 38px;
+  border-radius: 8px;
 `;
 
 export default Home;

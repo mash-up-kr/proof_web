@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import TitleWithContent from "../../components/TitleWithContent";
 import WithCard from "../../components/WithCard";
+import { useNavigate } from "../../hooks";
 
 const INFOS = [
   {
@@ -24,10 +25,13 @@ const TITLE = {
 };
 
 const Category = () => {
+  const navigate = useNavigate();
+
   return (
     <TitleWithContent
       headerProps={{
         type: "prev",
+        onClickIcon: navigate.back,
       }}
       titleProps={{
         topQuestion: TITLE.topQuestion,
