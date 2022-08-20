@@ -1,13 +1,15 @@
 import styled from "@emotion/styled";
 import { Button, ButtonHierarchy, theme, Title } from "design-system";
+import { useRouter } from "next/router";
 import * as React from "react";
 
 const Home = () => {
+  const router = useRouter();
   return (
     <Layout>
       <Button
         width={"312px"}
-        onClick={() => console.log("click")}
+        onClick={() => router.push("/result")}
         hierarchy={ButtonHierarchy.Primary}
       >
         Primary

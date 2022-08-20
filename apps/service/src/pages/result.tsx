@@ -29,7 +29,20 @@ const Result: NextPage<Props> = ({ userAgent }) => {
         </Text>
       </Title>
       <WinnerCard drink={DRINK_CARDS[3]} />
-      <FloatingButtons />
+      <FloatingButtons
+        handleClickRightButton={async () => {
+          console.log(navigator.share);
+          if (navigator.share) {
+            await navigator.share({
+              title: "프루프 테스트",
+              text: "Hello World",
+              url: "https://github.com/mash-up-kr/proof_web",
+            });
+          } else {
+            alert("공유하기가 지원되지 않는 환경 입니다.");
+          }
+        }}
+      />
       <Rankings rounds={ROUNDS} drinks={DRINK_CARDS} />
     </>
   );
