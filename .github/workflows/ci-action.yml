@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - feature/result
   pull_request:
     branches:
       - develop
