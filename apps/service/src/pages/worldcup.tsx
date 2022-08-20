@@ -1,4 +1,3 @@
-import {css} from "@emotion/react";
 import styled from "@emotion/styled";
 import {BottomButton, Text, theme} from "design-system";
 import * as React from "react";
@@ -98,6 +97,7 @@ const Layout = styled.div`
   width: 100%;
   height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
+  overscroll-behavior: contain;
 
   background: linear-gradient(180deg, #3A2E72 0%, ${theme.palette.black} 40.88%);
 `;

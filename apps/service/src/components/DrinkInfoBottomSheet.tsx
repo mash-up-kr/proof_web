@@ -25,9 +25,21 @@ function DrinkInfoBottomSheet({drinkCardType, drinkName, drinkMetaData, drinkInf
         </DrinkInformationContent>
       </DrinkInformation>
       <DrinkReviewTopics>
-        <Text type={"h4"}>리뷰 토픽</Text>
+        <Text type={"h4"}>이럴 때 마셨어요</Text>
         <ReviewTopicTags tags={["대낮에", "한밤에", "친구와", "연인과"]} />
       </DrinkReviewTopics>
+      <DrinkReviewStatistics>
+        <Text type={"h4"}>이렇게 표현했어요</Text>
+        <EmptyReviewWrapper>
+          <EmptyReviewImage src={'/Review IMG.png'}/>
+          <EmptyReviewTitle type={"h3"} textAlign={"center"}>
+            아직 리뷰가 없어요 :(
+          </EmptyReviewTitle>
+          <EmptyReviewText type={"body3"} color={theme.palette.gray100}>
+            이 술의 첫번째 리뷰어가 되어보세요!
+          </EmptyReviewText>
+        </EmptyReviewWrapper>
+      </DrinkReviewStatistics>
     </BottomSheet>
   )
 }
@@ -52,6 +64,32 @@ const DrinkReviewTopics = styled.div`
 
 const ReviewTopicTags = styled(Tag)`
   margin-top: 20px;
+`;
+
+const DrinkReviewStatistics = styled.div`
+  margin-top: 36px;
+`;
+
+const EmptyReviewWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 44px 58px;
+  margin-bottom: 44px;
+`;
+
+const EmptyReviewImage = styled.img`
+  width: 86px;
+  height: 86px;
+  margin: auto;
+`;
+
+const EmptyReviewTitle = styled(Text)`
+  margin-top: 12px;
+`;
+
+const EmptyReviewText = styled(Text)`
+  margin-top: 4px;
 `;
 
 export default DrinkInfoBottomSheet;
