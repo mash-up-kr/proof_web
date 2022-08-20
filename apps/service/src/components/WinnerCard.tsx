@@ -22,8 +22,7 @@ function WinnerCard({
 }
 
 const Wrapper = styled.div`
-  margin-left: 24px;
-  margin-right: 24px;
+  margin-inline: 24px;
   padding: 16px;
   background: linear-gradient(180deg, #5646a3 -5.5%, #2a2c3c 97.57%);
   border-radius: 16px;

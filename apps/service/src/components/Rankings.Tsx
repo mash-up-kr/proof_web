@@ -20,9 +20,9 @@ function Rankings({
 }: RankingsProps) {
   return (
     <Wrapper {...restProps}>
-      <TitleWrapper>
+      <Title>
         <Text type="h2">내 순위표</Text>
-      </TitleWrapper>
+      </Title>
       <Rounds>
         {rounds.map(({ label, selected }) => (
           <Text
@@ -56,17 +56,15 @@ function Rankings({
 
 const Wrapper = styled.div``;
 
-const TitleWrapper = styled.div`
+const Title = styled.div`
   padding-top: 36px;
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-inline: 24px;
 `;
 
 const Rounds = styled.div`
   display: flex;
   margin-top: 21px;
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-inline: 24px;
 `;
 
 const DrinkCardList = styled.div`

@@ -16,18 +16,18 @@ const Result: NextPage<Props> = ({ userAgent }) => {
   const [isFromNativeApp, setIsFromNativeApp] = React.useState<boolean>(false);
   const [isShared, setIsShared] = React.useState<boolean>(false);
 
-  React.useEffect(() => {
-    // TODO: setIsFromNativeApp & setIsShared 설정, n초 후 BottomSheet
-  }, []);
+  // React.useEffect(() => {
+  //   // TODO: setIsFromNativeApp & setIsShared 설정, n초 후 BottomSheet
+  // }, []);
 
   return (
     <>
       <Header type="prev" title="결과" />
-      <TitleWrapper>
+      <Title>
         <Text type="h1" textAlign="center">
           {`${isShared ? "친구" : "내"}가 선택한 최고의 술`}
         </Text>
-      </TitleWrapper>
+      </Title>
       <WinnerCard drink={DRINK_CARDS[3]} />
       <FloatingButtons />
       <Rankings rounds={ROUNDS} drinks={DRINK_CARDS} />
@@ -35,15 +35,14 @@ const Result: NextPage<Props> = ({ userAgent }) => {
   );
 };
 
-const TitleWrapper = styled.div`
+const Title = styled.div`
   padding-top: 36px;
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-inline: 24px;
 `;
 
-Result.getInitialProps = async ({ req }: NextPageContext) => {
-  const userAgent = req ? req.headers["user-agent"] : navigator.userAgent;
-  return { userAgent };
-};
+// Result.getInitialProps = async ({ req }: NextPageContext) => {
+//   const userAgent = req ? req.headers["user-agent"] : navigator.userAgent;
+//   return { userAgent };
+// };
 
 export default Result;

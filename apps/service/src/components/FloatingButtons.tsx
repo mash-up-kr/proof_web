@@ -35,8 +35,7 @@ function FloatingButtons({
 const Wrapper = styled.div`
   display: flex;
   margin-top: 16px;
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-inline: 24px;
   gap: 8px;
 `;
 
