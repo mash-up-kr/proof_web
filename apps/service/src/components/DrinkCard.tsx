@@ -10,6 +10,8 @@ export interface Drink {
   name: string;
   abv: number;
   imageUrl: string;
+  origin: string;
+  info: string;
   category: {
     id: number;
     name: string;
@@ -27,7 +29,7 @@ interface DrinkCardProps extends React.ComponentProps<"div"> {
   iconType: IconName;
   isActive?: boolean;
   isShowingTag?: boolean;
-  handleClickSearchIcon?: (
+  onSearchIconClick?: (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => void;
 }
@@ -38,7 +40,7 @@ function DrinkCard({
   iconType,
   isActive,
   isShowingTag = true,
-  handleClickSearchIcon,
+  onSearchIconClick,
   ...restProps
 }: DrinkCardProps) {
   return (
@@ -48,7 +50,7 @@ function DrinkCard({
         type={type}
         iconType={iconType}
         isActive={isActive}
-        handleClickSearchIcon={handleClickSearchIcon}
+        onSearchIconClick={onSearchIconClick}
       />
       <DescriptionWrapper>
         <Text type="body5" color={theme.colors.text.highlight}>
@@ -64,7 +66,7 @@ function DrinkCard({
       <DrinkName display="-webkit-box" type="button1">
         {drink.name}
       </DrinkName>
-      {isShowingTag && <Tag tags={["대낮에", "한밤에", "친구와", "연인과"]} />}
+      {isShowingTag && <Tag tags={["대낮에", "한밤에", "친구와", "연인과"]} shorten />}
     </Wrapper>
   );
 }
