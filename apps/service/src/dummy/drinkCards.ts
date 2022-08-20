@@ -10,8 +10,9 @@ const DRINK_CARDS = [
       imageUrl:
         "https://zuzu-resource.s3.ap-northeast-2.amazonaws.com/drinks-category/category_beer.png",
     },
-    info: '밝은 옐로우 컬러에 상큼한 레몬 등의 푸릇한 과실향과 흰색 꽃향기가 풍성함. 매력포인트는 버터의 유질감과 스모키함이 어우러지는 부드러움.',
-    origin: '스페인'
+    info: "밝은 옐로우 컬러에 상큼한 레몬 등의 푸릇한 과실향과 흰색 꽃향기가 풍성함. 매력포인트는 버터의 유질감과 스모키함이 어우러지는 부드러움.",
+    origin: "스페인",
+    rounds: [4],
   },
   {
     id: 2,
@@ -24,8 +25,9 @@ const DRINK_CARDS = [
       imageUrl:
         "https://zuzu-resource.s3.ap-northeast-2.amazonaws.com/drinks-category/category_beer.png",
     },
-    info: '밝은 옐로우 컬러에 상큼한 레몬 등의 푸릇한 과실향과 흰색 꽃향기가 풍성함. 매력포인트는 버터의 유질감과 스모키함이 어우러지는 부드러움.',
-    origin: '프랑스'
+    info: "밝은 옐로우 컬러에 상큼한 레몬 등의 푸릇한 과실향과 흰색 꽃향기가 풍성함. 매력포인트는 버터의 유질감과 스모키함이 어우러지는 부드러움.",
+    origin: "프랑스",
+    rounds: [4],
   },
   {
     id: 3,
@@ -39,8 +41,9 @@ const DRINK_CARDS = [
       imageUrl:
         "https://zuzu-resource.s3.ap-northeast-2.amazonaws.com/drinks-category/category_beer.png",
     },
-    info: '밝은 옐로우 컬러에 상큼한 레몬 등의 푸릇한 과실향과 흰색 꽃향기가 풍성함. 매력포인트는 버터의 유질감과 스모키함이 어우러지는 부드러움.',
-    origin: '독일',
+    info: "밝은 옐로우 컬러에 상큼한 레몬 등의 푸릇한 과실향과 흰색 꽃향기가 풍성함. 매력포인트는 버터의 유질감과 스모키함이 어우러지는 부드러움.",
+    origin: "독일",
+    rounds: [4],
   },
   {
     id: 4,
@@ -54,8 +57,9 @@ const DRINK_CARDS = [
       imageUrl:
         "https://zuzu-resource.s3.ap-northeast-2.amazonaws.com/drinks-category/category_beer.png",
     },
-    info: '밝은 옐로우 컬러에 상큼한 레몬 등의 푸릇한 과실향과 흰색 꽃향기가 풍성함. 매력포인트는 버터의 유질감과 스모키함이 어우러지는 부드러움.',
-    origin: '뉴질랜드'
+    info: "밝은 옐로우 컬러에 상큼한 레몬 등의 푸릇한 과실향과 흰색 꽃향기가 풍성함. 매력포인트는 버터의 유질감과 스모키함이 어우러지는 부드러움.",
+    origin: "뉴질랜드",
+    rounds: [4],
   },
 ];
 

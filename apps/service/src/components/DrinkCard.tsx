@@ -20,18 +20,16 @@ export interface Drink {
 }
 
 export interface DrinkWithRound extends Drink {
-  round: number;
+  rounds: number[];
 }
 
 interface DrinkCardProps extends React.ComponentProps<"div"> {
   type: DrinkCardType;
-  drink: Drink;
+  drink: DrinkWithRound;
   iconType: IconName;
   isActive?: boolean;
   isShowingTag?: boolean;
-  onSearchIconClick?: (
-    e: React.MouseEvent<SVGSVGElement, MouseEvent>
-  ) => void;
+  onSearchIconClick?: (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => void;
 }
 
 function DrinkCard({
@@ -66,7 +64,9 @@ function DrinkCard({
       <DrinkName display="-webkit-box" type="button1">
         {drink.name}
       </DrinkName>
-      {isShowingTag && <Tag tags={["대낮에", "한밤에", "친구와", "연인과"]} shorten />}
+      {isShowingTag && (
+        <Tag tags={["대낮에", "한밤에", "친구와", "연인과"]} shorten />
+      )}
     </Wrapper>
   );
 }
