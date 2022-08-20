@@ -2,7 +2,7 @@ Git READ ME
 
 <p align="center">
   <a href="" rel="noopener">
-  <img width=400px height=200px src="https://user-images.githubusercontent.com/52898735/183919409-d7e22730-b60a-4e43-bee8-d4bf5d4cd52e.png" alt="Project logo"></a>
+  <img width=200px height=200px src="https://user-images.githubusercontent.com/52898735/185763689-ec9dfab3-a4dc-4a65-9e32-e1b5bc702749.png" alt="Project logo"></a>
 </p>
 
 <h3 align="center">proof</h3>
