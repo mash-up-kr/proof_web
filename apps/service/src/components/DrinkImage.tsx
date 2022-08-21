@@ -16,9 +16,7 @@ interface DrinkImageProps {
   iconType: IconName;
   isActive?: boolean;
   select?: number;
-  onSearchIconClick?: (
-    e: React.MouseEvent<SVGSVGElement, MouseEvent>
-  ) => void;
+  onSearchIconClick?: (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => void;
 }
 
 // TODO: Icon 색상 변경
@@ -119,7 +117,8 @@ const MainImage = styled.div<{
   min-height: ${({ type }) => MIN_HEIGHT_BY_TYPE[type]};
   background-image: ${({ imgSrc }) =>
     `linear-gradient(180deg, rgba(56, 58, 77, 0) 74.84%, rgba(28, 28, 38, 0.6) 100%), url(${imgSrc})`};
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center;
   border-radius: 8px;
 `;
