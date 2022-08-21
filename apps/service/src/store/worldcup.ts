@@ -1,6 +1,5 @@
 import { atom, selector } from "recoil";
 import { DrinkWithRound } from "../components/DrinkCard";
-import { DRINK_CARDS } from "../dummy/drinkCards";
 
 export interface WorldCup {
   currentIndex: number;
@@ -9,19 +8,17 @@ export interface WorldCup {
   with: "alone" | "group";
   situation: string;
   drinks: DrinkWithRound[];
-  lastSelectedIndex: number;
 }
 
 const worldCupAtom = atom<WorldCup>({
   key: "worldCup",
   default: {
     currentIndex: 0,
-    currentRound: 0,
-    totalRound: 0,
+    currentRound: 8,
+    totalRound: 8,
     with: "alone",
     situation: "",
-    drinks: DRINK_CARDS,
-    lastSelectedIndex: -1,
+    drinks: [],
   },
 });
 
