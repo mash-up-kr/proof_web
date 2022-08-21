@@ -42,8 +42,9 @@ export function getNextRoundState({
 }
 
 // currentRound가 2면, 마지막 라운드
+// 1인 경우 결승으로 가기 전 보여지는게 있어서 1도 포함하게 만듦 (렌더링 관련 리팩토링하면 좋을 듯)
 export function isWinnerSelectRound(round: number) {
-  return round === 2;
+  return round <= 2;
 }
 
 /**
