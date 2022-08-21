@@ -32,7 +32,7 @@ export function isMaxIndexOfCurrentRound({
  * @param currenIndex 현재 라운드에 따른 인덱스
  * @returns RoundState(round, index)
  */
-export function getNextState({
+export function getNextRoundState({
   currentRound,
   currentIndex,
 }: CurrentRoundState): RoundState {
@@ -57,7 +57,7 @@ export function isWinnerSelectRound(round: number) {
  * @param currenIndex 현재 라운드에 따른 인덱스
  * @returns RoundState(round, index)
  */
-export function getPrevState({
+export function getPrevRoundState({
   currentRound,
   currentIndex,
 }: CurrentRoundState) {
