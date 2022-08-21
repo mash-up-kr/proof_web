@@ -36,7 +36,7 @@ const WorldCup = () => {
     setSelectedDrink(null);
     if (isWinnerSelectRound(currentRound)) {
       // 우승자인 경우, 결과 페이지로 이동한다.
-      navigate.replace("/result");
+      navigate.push("/result");
     }
   };
 
@@ -46,14 +46,17 @@ const WorldCup = () => {
 
   React.useEffect(() => {
     // FIXME: React-Query를 연동 후 해당 부분 변경해야 함
-    setWorldCupState((prev) => ({
-      ...prev,
-      drinks: DRINK_CARDS.map((drink) => ({
-        ...drink,
-        rounds: [prev.totalRound],
-      })),
-    }));
-  }, [setWorldCupState]);
+    // 2인 경우는 월드컵 결과 페이지에서 뒤돌아갔을 때 임시 방편으로 업데이트 되는 것 막아놓기
+    if (worldCupState.currentRound !== 2) {
+      setWorldCupState((prev) => ({
+        ...prev,
+        drinks: DRINK_CARDS.map((drink) => ({
+          ...drink,
+          rounds: [prev.totalRound],
+        })),
+      }));
+    }
+  }, []);
 
   return (
     <>

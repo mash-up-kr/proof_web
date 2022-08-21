@@ -18,7 +18,7 @@ export function isMaxIndexOfCurrentRound({
   currentRound,
   currentIndex,
 }: CurrentRoundState) {
-  return currentRound / 2 === currentIndex + 1;
+  return currentRound === 1 || currentRound / 2 === currentIndex + 1;
 }
 
 /**

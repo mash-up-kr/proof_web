@@ -21,7 +21,7 @@ const Result: NextPage<Props> = ({ userAgent }) => {
     DRINK_CARDS[2] as DrinkWithRound
   );
   const navigate = useNavigate();
-  const { getWinnerDrink } = useWorldCup();
+  const { getWinnerDrink, revertToPrevRoundState } = useWorldCup();
 
   React.useEffect(() => {
     // TODO: result는 새로고침이 될 수 있으므로 param으로 Drink id를 가져와야 할 듯
@@ -33,6 +33,7 @@ const Result: NextPage<Props> = ({ userAgent }) => {
 
   // TODO: native임에 따라서 연동필요
   const handleClickHeaderPrevIcon = () => {
+    revertToPrevRoundState();
     navigate.back();
   };
 
