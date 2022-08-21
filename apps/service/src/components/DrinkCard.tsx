@@ -12,11 +12,7 @@ export interface Drink {
   imageUrl: string;
   origin: string;
   info: string;
-  category: {
-    id: number;
-    name: string;
-    imageUrl: string;
-  };
+  category: string;
 }
 
 export interface DrinkWithRound extends Drink {
@@ -44,7 +40,7 @@ function DrinkCard({
   return (
     <Wrapper {...restProps}>
       <DrinkImage
-        imgSrc={drink.imageUrl}
+        imgSrc={drink?.imageUrl}
         type={type}
         iconType={iconType}
         isActive={isActive}
@@ -52,17 +48,17 @@ function DrinkCard({
       />
       <DescriptionWrapper>
         <Text type="body5" color={theme.colors.text.highlight}>
-          {drink.category.name}
+          {drink?.category}
         </Text>
         <Text type="body5" color={theme.colors.ui.divider}>
           |
         </Text>
         <Text type="body5" color={theme.palette.purple50}>
-          Alc {drink.abv}%
+          Alc {drink?.abv}%
         </Text>
       </DescriptionWrapper>
       <DrinkName display="-webkit-box" type="button1">
-        {drink.name}
+        {drink?.name}
       </DrinkName>
       {isShowingTag && (
         <Tag tags={["대낮에", "한밤에", "친구와", "연인과"]} shorten />
