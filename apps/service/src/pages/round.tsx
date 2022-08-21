@@ -2,9 +2,11 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Title } from "design-system";
 import * as React from "react";
+import { useSetRecoilState } from "recoil";
 import { Header } from "../components";
 import RoundCard, { Round } from "../components/RoundCard";
 import { useNavigate } from "../hooks";
+import { worldCupState } from "../store";
 
 const dummyRound = [
   { count: 8, title: "가볍게" },
@@ -17,18 +19,33 @@ const RoundPage = () => {
     new Array(dummyRound.length).fill(false)
   );
   const [rounds, setRounds] = React.useState<Round[]>(dummyRound);
+  const setWorldCupState = useSetRecoilState(worldCupState);
   const navigate = useNavigate();
 
   const handleClickRound = (idx: number) => {
     const nextIsActives = new Array(dummyRound.length).fill(false);
     nextIsActives[idx] = !isActives[idx];
     setIsActives(nextIsActives);
+    setWorldCupState((prev) => ({
+      ...prev,
+      totalRound: rounds[idx].count,
+      currentRound: rounds[idx].count,
+    }));
     navigate.push("/worldcup");
+  };
+
+  const handleClickHeaderPrevIcon = () => {
+    setWorldCupState((prev) => ({
+      ...prev,
+      totalRound: 0,
+      currentRound: 0,
+    }));
+    navigate.back();
   };
 
   return (
     <Layout>
-      <Header type="prev" onClickIcon={navigate.back} />
+      <Header type="prev" onClickIcon={handleClickHeaderPrevIcon} />
       <TitleWrapper
         topQuestion="몇 강으로"
         bottomQuestion="진행하시겠어요?"

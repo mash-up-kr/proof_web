@@ -1,7 +1,9 @@
 import styled from "@emotion/styled";
+import { useSetRecoilState } from "recoil";
 import TitleWithContent from "../../components/TitleWithContent";
 import WithCard from "../../components/WithCard";
 import { useNavigate } from "../../hooks";
+import { worldCupState } from "../../store";
 
 const INFOS = [
   {
@@ -26,6 +28,16 @@ const TITLE = {
 
 const Category = () => {
   const navigate = useNavigate();
+  const setWorldCupState = useSetRecoilState(worldCupState);
+
+  const handleClickWithCard = (idx: number) => {
+    const withWho = INFOS[idx].href.slice(10);
+    setWorldCupState((prev) => ({
+      ...prev,
+      with: withWho as "alone" | "group",
+    }));
+    navigate.push(INFOS[idx].href);
+  };
 
   return (
     <TitleWithContent
@@ -40,9 +52,13 @@ const Category = () => {
       }}
     >
       <Column>
-        {INFOS.map(({ id, title, desc, href }) => (
+        {INFOS.map(({ id, title, desc }, idx) => (
           <Row key={id}>
-            <WithCard title={title} description={desc} href={href} />
+            <WithCard
+              title={title}
+              description={desc}
+              onClick={() => handleClickWithCard(idx)}
+            />
           </Row>
         ))}
       </Column>

@@ -1,9 +1,11 @@
 import styled from "@emotion/styled";
 import { GetServerSidePropsContext } from "next";
+import { useSetRecoilState } from "recoil";
 import ContentCard from "../../components/ContentCard";
 import TitleWithContent from "../../components/TitleWithContent";
 import { ALONE_CARDS, GROUP_CARDS } from "../../dummy/cards";
 import { useNavigate } from "../../hooks";
+import { worldCupState } from "../../store";
 
 interface Props {
   cards: {
@@ -15,6 +17,12 @@ interface Props {
 
 const Type = ({ cards }: Props) => {
   const navigate = useNavigate();
+  const setWorldCupState = useSetRecoilState(worldCupState);
+
+  const handleClickContentCard = (idx: number) => {
+    setWorldCupState((prev) => ({ ...prev, situation: cards[idx].title }));
+    navigate.push("/round");
+  };
 
   return (
     <TitleWithContent
@@ -29,8 +37,15 @@ const Type = ({ cards }: Props) => {
       }}
     >
       <Contents>
-        {cards.map(({ id, title, desc }) => {
-          return <ContentCard key={id} title={title} description={desc} />;
+        {cards.map(({ id, title, desc }, idx) => {
+          return (
+            <ContentCard
+              key={id}
+              title={title}
+              description={desc}
+              onClick={() => handleClickContentCard(idx)}
+            />
+          );
         })}
       </Contents>
     </TitleWithContent>
