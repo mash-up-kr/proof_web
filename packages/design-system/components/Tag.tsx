@@ -4,17 +4,20 @@ import Text from "./Text";
 
 interface TagProps extends React.ComponentProps<"div"> {
   tags: string[];
+  shorten?: boolean;
 }
 
-function Tag({ tags, ...restProps }: TagProps) {
+function Tag({ tags, shorten, ...restProps }: TagProps) {
+  const maxShowingCounts = shorten ? 2 : tags.length;
+
   return (
     <Wrapper {...restProps}>
-      {tags.slice(0, 2).map((tag) => (
+      {tags.slice(0, maxShowingCounts).map((tag) => (
         <StyleTag key={tag} type="body6" color={theme.colors.text.general}>
           {tag}
         </StyleTag>
       ))}
-      {tags.length > 2 && <ExtraTag type="body7">+{tags?.length - 2}</ExtraTag>}
+      {shorten && tags.length > 2 && <ExtraTag type="body7">+{tags?.length - 2}</ExtraTag>}
     </Wrapper>
   );
 }

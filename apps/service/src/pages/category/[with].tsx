@@ -3,6 +3,7 @@ import { GetServerSidePropsContext } from "next";
 import ContentCard from "../../components/ContentCard";
 import TitleWithContent from "../../components/TitleWithContent";
 import { ALONE_CARDS, GROUP_CARDS } from "../../dummy/cards";
+import { useNavigate } from "../../hooks";
 
 interface Props {
   cards: {
@@ -13,10 +14,13 @@ interface Props {
 }
 
 const Type = ({ cards }: Props) => {
+  const navigate = useNavigate();
+
   return (
     <TitleWithContent
       headerProps={{
         type: "prev",
+        onClickIcon: navigate.back,
       }}
       titleProps={{
         topQuestion: "이 술을 마시는건",
@@ -43,7 +47,6 @@ export async function getServerSideProps({
   req,
   params,
 }: GetServerSidePropsContext<{ with: "alone" | "group" }>) {
-
   const cards = params?.with === "alone" ? ALONE_CARDS : GROUP_CARDS;
   return {
     props: {
