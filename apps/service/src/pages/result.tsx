@@ -1,24 +1,18 @@
 import styled from "@emotion/styled";
 import { Text } from "design-system";
 import * as React from "react";
-import { NextPage, NextPageContext } from "next";
 import { useRouter } from "next/router";
 import { FloatingButtons, Header, Rankings } from "../components";
 import { ROUNDS } from "../dummy/rounds";
 import { DRINK_CARDS } from "../dummy/drinkCards";
 import WinnerCard from "../components/WinnerCard";
 import share from "../utils/share";
+import { useUserAgent } from "../hooks/useUserAgent";
 
 const BASE_URL = `https://zuzu-web.vercel.app`;
 
-interface Props {
-  userAgent: string;
-}
-
-// FIXME:: 타입 추론
-const Result: NextPage<Props> = ({ userAgent }) => {
+const Result = () => {
   const router = useRouter();
-  const [isFromNativeApp, setIsFromNativeApp] = React.useState<boolean>(false);
   const [isShared, setIsShared] = React.useState<boolean>(false);
 
   // React.useEffect(() => {
@@ -31,6 +25,15 @@ const Result: NextPage<Props> = ({ userAgent }) => {
     url: `${BASE_URL}${router.pathname}`,
   };
 
+  const shareHandler = async () => {
+    const result = await share(shareData);
+    if (result === "copiedToClipboard") {
+      alert("링크를 클립보드에 복사했습니다.");
+    } else if (result === "failed") {
+      alert("공유하기가 지원되지 않는 환경입니다.");
+    }
+  };
+
   return (
     <>
       <Header type="prev" title="결과" />
@@ -40,16 +43,7 @@ const Result: NextPage<Props> = ({ userAgent }) => {
         </Text>
       </Title>
       <WinnerCard drink={DRINK_CARDS[3]} />
-      <FloatingButtons
-        handleClickRightButton={async () => {
-          const result = await share(shareData);
-          if (result === "copiedToClipboard") {
-            alert("링크를 클립보드에 복사했습니다.");
-          } else if (result === "failed") {
-            alert("공유하기가 지원되지 않는 환경입니다.");
-          }
-        }}
-      />
+      <FloatingButtons handleClickRightButton={shareHandler} />
       <Rankings rounds={ROUNDS} drinks={DRINK_CARDS} />
     </>
   );
@@ -59,10 +53,5 @@ const Title = styled.div`
   padding-top: 36px;
   padding-inline: 24px;
 `;
-
-// Result.getInitialProps = async ({ req }: NextPageContext) => {
-//   const userAgent = req ? req.headers["user-agent"] : navigator.userAgent;
-//   return { userAgent };
-// };
 
 export default Result;
