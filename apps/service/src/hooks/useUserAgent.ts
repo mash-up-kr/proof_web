@@ -1,6 +1,6 @@
 import * as React from "react";
 
-function useUserAgent() {
+const useUserAgent = () => {
   const [webView, setWebView] = React.useState(false);
   React.useEffect(() => {
     if (typeof window !== "undefined") {
@@ -9,6 +9,6 @@ function useUserAgent() {
     }
   }, []);
   return { webView };
-}
+};
 
-export { useUserAgent };
+export default useUserAgent;
