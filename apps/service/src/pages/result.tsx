@@ -12,7 +12,7 @@ import { ROUNDS } from "../dummy/rounds";
 import { DRINK_CARDS } from "../dummy/drinkCards";
 import WinnerCard from "../components/WinnerCard";
 import share from "../utils/share";
-import { useUserAgent } from "../hooks/useUserAgent";
+import { useUserAgent } from "../hooks";
 
 const BASE_URL = `https://zuzu-web.vercel.app`;
 
