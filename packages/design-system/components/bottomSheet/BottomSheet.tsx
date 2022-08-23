@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React, { PropsWithChildren, useEffect, useState } from "react";
+import { keyframes } from "@emotion/react";
 import { BottomSheetHeader } from "./BottomSheetHeader";
 import theme from "../../theme";
 import { useBottomSheet } from "./useBottomSheet";
@@ -31,6 +32,18 @@ function BottomSheet(props: PropsWithChildren<BottomSheetProps>): JSX.Element {
   );
 }
 
+const bottomToTop = keyframes`
+  from {
+    transform: translateY(100%);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+`;
+
 const Wrapper = styled.div<{ height: string }>`
   display: flex;
   flex-direction: column;
@@ -44,6 +57,7 @@ const Wrapper = styled.div<{ height: string }>`
   transform: translateY(${MIN_Y}px);
   border-radius: 20px 20px 0 0;
   background-color: ${theme.palette.gray600};
+  animation: ${bottomToTop} 0.3s ease-in;
 `;
 
 const BottomSheetContent = styled.div`
