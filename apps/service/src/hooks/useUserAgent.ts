@@ -1,40 +1,14 @@
 import * as React from "react";
-import * as UAParser from "ua-parser-js";
-
-type IUseUserAgentReturn = Omit<UAParser.IResult, "ua">;
 
 function useUserAgent() {
-  let [state, setState] = React.useState<IUseUserAgentReturn | null>(null);
-  const uastring = window.navigator.userAgent;
-
+  const [webView, setWebView] = React.useState(false);
   React.useEffect(() => {
-    let didRun = true;
-
-    try {
-      const uaParser = new UAParser.UAParser();
-      uaParser.setUA(uastring);
-      const payload = {
-        os: uaParser.getOS(),
-        browser: uaParser.getBrowser(),
-        cpu: uaParser.getCPU(),
-        device: uaParser.getDevice(),
-        engine: uaParser.getEngine(),
-      };
-      if (didRun) {
-        setState(payload);
-      }
-    } catch (err) {
-      if (didRun) {
-        setState(null);
-      }
+    if (typeof window !== "undefined") {
+      const uaString = navigator.userAgent;
+      // Proof 앱에서 준 값을 포함하고 있으면 setWebView(true)
     }
-
-    return () => {
-      didRun = false;
-    };
-  }, [uastring]);
-
-  return state;
+  }, []);
+  return { webView };
 }
 
 export { useUserAgent };
