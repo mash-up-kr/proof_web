@@ -2,7 +2,12 @@ import styled from "@emotion/styled";
 import { Text } from "design-system";
 import * as React from "react";
 import { useRouter } from "next/router";
-import { FloatingButtons, Header, Rankings } from "../components";
+import {
+  FloatingButtons,
+  Header,
+  InstallAppBottomSheet,
+  Rankings,
+} from "../components";
 import { ROUNDS } from "../dummy/rounds";
 import { DRINK_CARDS } from "../dummy/drinkCards";
 import WinnerCard from "../components/WinnerCard";
@@ -14,10 +19,17 @@ const BASE_URL = `https://zuzu-web.vercel.app`;
 const Result = () => {
   const router = useRouter();
   const [isShared, setIsShared] = React.useState<boolean>(false);
+  const [isBottomSheetOpened, setIsBottomSheetOpened] =
+    React.useState<boolean>(false);
+  const { webView } = useUserAgent();
 
-  // React.useEffect(() => {
-  //   // TODO: setIsFromNativeApp & setIsShared 설정, n초 후 BottomSheet
-  // }, []);
+  React.useEffect(() => {
+    let timer1 = setTimeout(() => setIsBottomSheetOpened(true), 1000);
+
+    return () => {
+      clearTimeout(timer1);
+    };
+  }, []);
 
   const shareData = {
     title: "Proof",
@@ -25,7 +37,7 @@ const Result = () => {
     url: `${BASE_URL}${router.pathname}`,
   };
 
-  const shareHandler = async () => {
+  const handleShare = async () => {
     const result = await share(shareData);
     if (result === "copiedToClipboard") {
       alert("링크를 클립보드에 복사했습니다.");
@@ -36,6 +48,7 @@ const Result = () => {
 
   return (
     <>
+      {!webView && isBottomSheetOpened && <InstallAppBottomSheet />}
       <Header type="prev" title="결과" />
       <Title>
         <Text type="h1" textAlign="center">
@@ -43,7 +56,7 @@ const Result = () => {
         </Text>
       </Title>
       <WinnerCard drink={DRINK_CARDS[3]} />
-      <FloatingButtons handleClickRightButton={shareHandler} />
+      <FloatingButtons handleClickRightButton={handleShare} />
       <Rankings rounds={ROUNDS} drinks={DRINK_CARDS} />
     </>
   );
