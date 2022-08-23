@@ -59,7 +59,7 @@ const useWorldCup = () => {
     const { drinks, currentRound, totalRound, currentIndex } = worldCupState;
     // worldcup 처음 페이지라면 선택했던 경우가 있어도, round 페이지로 돌린다.
     if (totalRound === currentRound && currentIndex === 0) {
-      navigate.push("/round");
+      navigate.back();
       return;
     }
     // 기존에 1번이라도 선택했던 경우라면 마지막 인덱스의 주류카드 round를 선택하기 전 상태로 돌린다.
