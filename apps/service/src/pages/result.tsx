@@ -26,7 +26,9 @@ const Result: NextPage<Props> = ({ userAgent }) => {
   React.useEffect(() => {
     // TODO: result는 새로고침이 될 수 있으므로 param으로 Drink id를 가져와야 할 듯
     const winnerDrink = getWinnerDrink();
-    setWinnerDrink(winnerDrink!);
+    if (winnerDrink) {
+      setWinnerDrink(winnerDrink);
+    }
     // TODO: setIsFromNativeApp & setIsShared 설정, n초 후 BottomSheet
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
