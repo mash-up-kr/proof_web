@@ -7,7 +7,7 @@ interface Props extends ComponentProps<"button"> {
   description: string;
 }
 
-const ContentCard = ({ title, description, ...restProps }: Props) => {
+const ClickableContentCard = ({ title, description, ...restProps }: Props) => {
   return (
     <Card hierarchy={ButtonHierarchy.Tertiary} {...restProps}>
       <Text color={theme.palette.purple100} type="body5">
@@ -25,4 +25,4 @@ const Card = styled(Button)`
   background-color: ${({ theme: { palette } }) => palette.gray500};
 `;
 
-export default ContentCard;
+export default ClickableContentCard;
