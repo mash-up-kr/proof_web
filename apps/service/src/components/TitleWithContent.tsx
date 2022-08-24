@@ -20,7 +20,8 @@ const TitleWithContent = ({
         <Title
           {...titleProps}
           style={{
-            marginBottom: "10vh",
+            marginTop: "20px",
+            marginBottom: "80px",
           }}
         />
         {children}
