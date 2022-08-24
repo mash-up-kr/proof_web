@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { Button, ButtonHierarchy, Text, theme } from "design-system";
-import React from "react";
-import { useNavigate } from "../hooks";
+import React, { ComponentProps } from "react";
 
 const THUMBNAIL_URL =
   "https://user-images.githubusercontent.com/39829378/184810860-51607da1-b60b-41de-8ca2-135e65b223b4.svg";
@@ -9,23 +8,24 @@ const THUMBNAIL_URL =
 const ARROW_URL =
   "https://user-images.githubusercontent.com/39829378/184811768-8baa0199-c372-4e5b-90fa-73b9e0dad068.svg";
 
-interface Props {
-  href: string;
+interface Props extends ComponentProps<"button"> {
   title: string;
   description: string;
   size?: "small" | "medium";
 }
 
-const WithCard = ({ href, title, description, size = "medium" }: Props) => {
-  const navigate = useNavigate();
+const WithCard = ({
+  title,
+  description,
+  size = "medium",
+  ...restProps
+}: Props) => {
   return (
     <Card
       hierarchy={ButtonHierarchy.Tertiary}
       fullWidth
       size={size}
-      onClick={() => {
-        navigate.push(href);
-      }}
+      {...restProps}
     >
       <Box>
         <CircleThumbnail src={THUMBNAIL_URL} alt="이미지" />
@@ -40,11 +40,13 @@ const WithCard = ({ href, title, description, size = "medium" }: Props) => {
     </Card>
   );
 };
+
 const Box = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 `;
+
 const Card = styled(Button)<Pick<Props, "size">>`
   display: flex;
   flex-direction: row;
@@ -54,10 +56,12 @@ const Card = styled(Button)<Pick<Props, "size">>`
   height: ${({ size }) => (size === "medium" ? "104px" : "84px")};
   background-color: ${({ theme: { palette } }) => palette.gray500};
 `;
+
 const Contents = styled.div`
   display: grid;
   gap: 4px;
 `;
+
 const CircleThumbnail = styled.img`
   width: 64px;
   height: 64px;

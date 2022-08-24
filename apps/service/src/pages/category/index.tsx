@@ -1,31 +1,42 @@
 import styled from "@emotion/styled";
+import { useSetRecoilState } from "recoil";
 import TitleWithContent from "../../components/TitleWithContent";
 import WithCard from "../../components/WithCard";
 import { useNavigate } from "../../hooks";
+import { WithWhoType, worldCupState } from "../../store";
 
 const INFOS = [
   {
     id: 1,
     title: "혼자서 먹어요",
     desc: "진리지는 혼술이에요",
-    href: "/category/alone",
+    href: "/category/SOLO",
   },
   {
     id: 2,
     title: "옹기종기 모여",
     desc: "여럿이서 먹어요",
-    href: "/category/group",
+    href: "/category/DUO",
   },
 ];
 
 const TITLE = {
-  topQuestion: "누구와 함께",
-  bottomQuestion: "술을 마시나요?",
+  title: "누구와 함께\n술을 마시나요?",
   desc: "선택에 따라 나올 술이 달라져요.",
 };
 
 const Category = () => {
   const navigate = useNavigate();
+  const setWorldCupState = useSetRecoilState(worldCupState);
+
+  const handleClickWithCard = (idx: number) => {
+    const withWho = INFOS[idx].href.slice(10);
+    setWorldCupState((prev) => ({
+      ...prev,
+      with: withWho as WithWhoType,
+    }));
+    navigate.push(INFOS[idx].href);
+  };
 
   return (
     <TitleWithContent
@@ -34,15 +45,18 @@ const Category = () => {
         onClickIcon: navigate.back,
       }}
       titleProps={{
-        topQuestion: TITLE.topQuestion,
-        bottomQuestion: TITLE.bottomQuestion,
+        title: TITLE.title,
         desc: TITLE.desc,
       }}
     >
       <Column>
-        {INFOS.map(({ id, title, desc, href }) => (
+        {INFOS.map(({ id, title, desc }, idx) => (
           <Row key={id}>
-            <WithCard title={title} description={desc} href={href} />
+            <WithCard
+              title={title}
+              description={desc}
+              onClick={() => handleClickWithCard(idx)}
+            />
           </Row>
         ))}
       </Column>
@@ -55,4 +69,5 @@ const Column = styled.ul`
   gap: 24px;
 `;
 const Row = styled.li``;
+
 export default Category;

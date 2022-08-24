@@ -1,9 +1,11 @@
 import styled from "@emotion/styled";
 import { GetServerSidePropsContext } from "next";
-import ContentCard from "../../components/ContentCard";
+import { useSetRecoilState } from "recoil";
+import ClickableContentCard from "../../components/ClickableContentCard";
 import TitleWithContent from "../../components/TitleWithContent";
 import { ALONE_CARDS, GROUP_CARDS } from "../../dummy/cards";
 import { useNavigate } from "../../hooks";
+import { WithWhoType, worldCupState } from "../../store";
 
 interface Props {
   cards: {
@@ -15,6 +17,12 @@ interface Props {
 
 const Type = ({ cards }: Props) => {
   const navigate = useNavigate();
+  const setWorldCupState = useSetRecoilState(worldCupState);
+
+  const handleClickClickableContentCard = (idx: number) => {
+    setWorldCupState((prev) => ({ ...prev, situation: cards[idx].title }));
+    navigate.push("/round");
+  };
 
   return (
     <TitleWithContent
@@ -23,14 +31,20 @@ const Type = ({ cards }: Props) => {
         onClickIcon: navigate.back,
       }}
       titleProps={{
-        topQuestion: "이 술을 마시는건",
-        bottomQuestion: "어떤 상황인가요?",
+        title: "이 술을 마시는건\n 어떤 상황인가요?",
         desc: "선택에 따라 나올 술이 달라져요.",
       }}
     >
       <Contents>
-        {cards.map(({ id, title, desc }) => {
-          return <ContentCard key={id} title={title} description={desc} />;
+        {cards.map(({ id, title, desc }, idx) => {
+          return (
+            <ClickableContentCard
+              key={id}
+              title={title}
+              description={desc}
+              onClick={() => handleClickClickableContentCard(idx)}
+            />
+          );
         })}
       </Contents>
     </TitleWithContent>
@@ -46,8 +60,8 @@ const Contents = styled.div`
 export async function getServerSideProps({
   req,
   params,
-}: GetServerSidePropsContext<{ with: "alone" | "group" }>) {
-  const cards = params?.with === "alone" ? ALONE_CARDS : GROUP_CARDS;
+}: GetServerSidePropsContext<{ with: WithWhoType }>) {
+  const cards = params?.with === "SOLO" ? ALONE_CARDS : GROUP_CARDS;
   return {
     props: {
       cards,

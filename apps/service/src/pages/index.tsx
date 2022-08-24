@@ -12,8 +12,7 @@ const Home: NextPage = () => {
     <Wrapper>
       <Header type="logo" onClickIcon={navigate.toNativeHome} />
       <MainTitle
-        topQuestion="술 취향 증명을"
-        bottomQuestion="시작해볼까요?"
+        title={"술 취향 증명을\n시작해볼까요?"}
         desc="당신의 취향을 증명할 술들을 준비했어요."
         textAlign="center"
       />
