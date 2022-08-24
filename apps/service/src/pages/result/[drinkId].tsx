@@ -2,22 +2,27 @@ import styled from "@emotion/styled";
 import { Text } from "design-system";
 import * as React from "react";
 import { useRouter } from "next/router";
+import { GetServerSidePropsContext } from "next";
 import {
   Header,
   InstallAppBottomSheet,
   Rankings,
   ShareButtons,
-} from "../components";
-import { ROUNDS } from "../dummy/rounds";
-import { DRINK_CARDS } from "../dummy/drinkCards";
-import WinnerCard from "../components/WinnerCard";
-import share from "../utils/share";
-import { useUserAgent } from "../hooks";
-import DrinkInfoBottomSheet from "../components/DrinkInfoBottomSheet";
+} from "../../components";
+import { ROUNDS } from "../../dummy/rounds";
+import { DRINK_CARDS } from "../../dummy/drinkCards";
+import WinnerCard from "../../components/WinnerCard";
+import share from "../../utils/share";
+import { useUserAgent } from "../../hooks";
+import DrinkInfoBottomSheet from "../../components/DrinkInfoBottomSheet";
 
 const BASE_URL = `https://zuzu-web.vercel.app`;
 
-const Result = () => {
+interface Props {
+  drinkId: string;
+}
+
+const Result = ({ drinkId }: Props) => {
   const router = useRouter();
   const [isShared, setIsShared] = React.useState<boolean>(false);
   const [isInstallAppBottomSheetOpened, setIsInstallAppBottomSheetOpened] =
@@ -28,6 +33,7 @@ const Result = () => {
 
   React.useEffect(() => {
     let timer = setTimeout(() => setIsInstallAppBottomSheetOpened(true), 1000);
+    // TODO: drink data fetch, ?shared=true 분기 나누기, 월드컵 결과 가져오기
 
     return () => {
       clearTimeout(timer);
@@ -89,5 +95,16 @@ const Title = styled.div`
   padding-top: 36px;
   padding-inline: 24px;
 `;
+
+export async function getServerSideProps({
+  req,
+  params,
+}: GetServerSidePropsContext<{ drinkId: string }>) {
+  return {
+    props: {
+      drinkId: params?.drinkId,
+    },
+  };
+}
 
 export default Result;
