@@ -3,10 +3,10 @@ import { Text } from "design-system";
 import * as React from "react";
 import { useRouter } from "next/router";
 import {
-  FloatingButtons,
   Header,
   InstallAppBottomSheet,
   Rankings,
+  ShareButtons,
 } from "../components";
 import { ROUNDS } from "../dummy/rounds";
 import { DRINK_CARDS } from "../dummy/drinkCards";
@@ -56,7 +56,7 @@ const Result = () => {
         </Text>
       </Title>
       <WinnerCard drink={DRINK_CARDS[3]} />
-      <FloatingButtons handleClickRightButton={handleShare} />
+      <ShareButtons handleClickRightButton={handleShare} />
       <Rankings rounds={ROUNDS} drinks={DRINK_CARDS} />
     </>
   );

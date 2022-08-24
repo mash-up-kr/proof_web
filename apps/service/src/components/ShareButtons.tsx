@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { Button, ButtonHierarchy } from "design-system";
 import React from "react";
 
-interface FloatingButtonsProps extends React.ComponentProps<"div"> {
+interface ShareButtonsProps extends React.ComponentProps<"div"> {
   handleClickLeftButton?: (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void;
@@ -11,11 +11,11 @@ interface FloatingButtonsProps extends React.ComponentProps<"div"> {
   ) => void;
 }
 
-function FloatingButtons({
+function ShareButtons({
   handleClickLeftButton,
   handleClickRightButton,
   ...restProps
-}: FloatingButtonsProps) {
+}: ShareButtonsProps) {
   return (
     <Wrapper {...restProps}>
       <Button
@@ -43,4 +43,4 @@ const Wrapper = styled.div`
   gap: 8px;
 `;
 
-export default FloatingButtons;
+export default ShareButtons;
