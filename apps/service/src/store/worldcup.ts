@@ -7,7 +7,7 @@ export interface WorldCup {
   currentIndex: number;
   currentRound: number;
   totalRound: number;
-  with: WithWhoType;
+  with: WithWhoType | null;
   situation: string;
   drinks: DrinkWithRound[];
 }
@@ -31,7 +31,7 @@ export const worldCupState = atom<WorldCup>({
     currentIndex: 0,
     currentRound: 0,
     totalRound: 0,
-    with: "SOLO",
+    with: null,
     situation: "",
     drinks: [],
   },
