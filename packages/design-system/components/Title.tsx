@@ -4,29 +4,22 @@ import theme from "../theme";
 import Text from "./Text";
 
 interface TitleProps extends React.ComponentProps<"div"> {
-  topQuestion: string;
-  bottomQuestion: string;
-  desc: string;
+  title: string;
+  desc?: string;
   textAlign?: CSSProperties["textAlign"];
 }
 
-function Title({
-  topQuestion,
-  bottomQuestion,
-  desc,
-  textAlign,
-  ...restProps
-}: TitleProps) {
+function Title({ title, desc = "", textAlign, ...restProps }: TitleProps) {
   return (
     <Wrapper {...restProps}>
-      <QuestionWrapper>
-        <Text type="h1" color={theme.palette.white} textAlign={textAlign}>
-          {topQuestion}
-        </Text>
-        <Text type="h1" color={theme.palette.white} textAlign={textAlign}>
-          {bottomQuestion}
-        </Text>
-      </QuestionWrapper>
+      <TitleWrapper>
+        <Text
+          type="h1"
+          color={theme.palette.white}
+          textAlign={textAlign}
+          dangerouslySetInnerHTML={{ __html: title }}
+        />
+      </TitleWrapper>
       <Text type="body2" color={theme.palette.gray200} textAlign={textAlign}>
         {desc}
       </Text>
@@ -40,6 +33,9 @@ const Wrapper = styled.div`
   gap: ${theme.padding.sm}px;
 `;
 
-const QuestionWrapper = styled.div``;
+const TitleWrapper = styled.div`
+  word-break: keep-all;
+  white-space: pre-line;
+`;
 
 export default Title;

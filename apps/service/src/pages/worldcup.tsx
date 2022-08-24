@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { BottomButton, Text, theme } from "design-system";
+import { BottomButton, Text, theme, Title } from "design-system";
 import * as React from "react";
 import { useRecoilState } from "recoil";
 import { Header } from "../components";
@@ -79,14 +79,10 @@ const WorldCup = () => {
           title={getTitle()}
           onClickIcon={handleClickHeaderPrevButton}
         />
-        <TitleWrapper>
-          <Text type="h1" textAlign="center">
-            비 오는 날씨엔
-          </Text>
-          <Text type="h1" textAlign="center">
-            어떤 술이 더 끌리나요?
-          </Text>
-        </TitleWrapper>
+        <TitleWrapper
+          title={"비 오는 날씨엔 어떤 술이 더 끌리나요?"}
+          textAlign="center"
+        ></TitleWrapper>
         <CandidateWrapper>
           {candidateDrinks.map((drink, idx) => (
             <DrinkCard
@@ -124,9 +120,10 @@ const Layout = styled.div`
   );
 `;
 
-const TitleWrapper = styled.div`
-  padding-top: 36px;
-  margin-bottom: 52px;
+const TitleWrapper = styled(Title)`
+  margin-top: 36px;
+  margin-bottom: 62px;
+  margin-inline: 74px;
 `;
 
 const CandidateWrapper = styled.div`

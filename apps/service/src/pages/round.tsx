@@ -47,8 +47,7 @@ const RoundPage = () => {
     <Layout>
       <Header type="prev" onClickIcon={handleClickHeaderPrevIcon} />
       <TitleWrapper
-        topQuestion="몇 강으로"
-        bottomQuestion="진행하시겠어요?"
+        title={"몇 강으로\n진행하시겠어요?"}
         desc="선택에 따라 나올 술이 달라져요."
       />
       <RoundWrapper>
