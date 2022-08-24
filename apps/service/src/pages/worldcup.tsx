@@ -82,7 +82,7 @@ const WorldCup = () => {
         <TitleWrapper
           title={"비 오는 날씨엔 어떤 술이 더 끌리나요?"}
           textAlign="center"
-        ></TitleWrapper>
+        />
         <CandidateWrapper>
           {candidateDrinks.map((drink, idx) => (
             <DrinkCard
