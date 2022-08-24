@@ -31,8 +31,7 @@ const Type = ({ cards }: Props) => {
         onClickIcon: navigate.back,
       }}
       titleProps={{
-        topQuestion: "이 술을 마시는건",
-        bottomQuestion: "어떤 상황인가요?",
+        title: "이 술을 마시는건\n 어떤 상황인가요?",
         desc: "선택에 따라 나올 술이 달라져요.",
       }}
     >
