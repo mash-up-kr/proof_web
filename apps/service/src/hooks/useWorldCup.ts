@@ -99,12 +99,20 @@ const useWorldCup = () => {
     return `${currentRound}강`;
   };
 
+  const getTop8Drinks = () => {
+    const top8Drinks = worldCupState.drinks
+      .sort((a, b) => b.rounds.length - a.rounds.length)
+      .slice(0, 8);
+    return top8Drinks;
+  };
+
   return {
     updateToNextRoundState,
     revertToPrevRoundState,
     getCurrentCandidate,
     getWinnerDrink,
     getTitle,
+    getTop8Drinks,
   };
 };
 
