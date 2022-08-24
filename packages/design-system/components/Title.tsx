@@ -13,12 +13,9 @@ function Title({ title, desc = "", textAlign, ...restProps }: TitleProps) {
   return (
     <Wrapper {...restProps}>
       <TitleWrapper>
-        <Text
-          type="h1"
-          color={theme.palette.white}
-          textAlign={textAlign}
-          dangerouslySetInnerHTML={{ __html: title }}
-        />
+        <Text type="h1" color={theme.palette.white} textAlign={textAlign}>
+          {title}
+        </Text>
       </TitleWrapper>
       <Text type="body2" color={theme.palette.gray200} textAlign={textAlign}>
         {desc}
