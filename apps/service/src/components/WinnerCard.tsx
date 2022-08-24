@@ -16,7 +16,13 @@ function WinnerCard({
 }: WinnerCardProps) {
   return (
     <Wrapper {...restProps}>
-      <DrinkCard id="0" type="winner" iconType="winner" drink={drink} />
+      <DrinkCard
+        id="0"
+        type="winner"
+        iconType="winner"
+        drink={drink}
+        onSearchIconClick={handleClickSearchIcon}
+      />
     </Wrapper>
   );
 }
