@@ -1,13 +1,14 @@
 import { atom } from "recoil";
+import { WithWhoType } from "../@types/api";
 import { DrinkWithRound } from "../components/DrinkCard";
 
-export type WithWhoType = "SOLO" | "DUO";
-
 export interface WorldCup {
+  worldCupId: number;
   currentIndex: number;
   currentRound: number;
   totalRound: number;
   with: WithWhoType | null;
+  title: string;
   situation: string;
   drinks: DrinkWithRound[];
 }
@@ -28,10 +29,12 @@ export interface WorldCup {
 export const worldCupState = atom<WorldCup>({
   key: "worldCup",
   default: {
+    worldCupId: -1,
     currentIndex: 0,
     currentRound: 0,
     totalRound: 0,
     with: null,
+    title: "",
     situation: "",
     drinks: [],
   },
