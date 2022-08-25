@@ -21,7 +21,7 @@ export interface DrinkWithRound extends Drink {
 
 interface DrinkCardProps extends React.ComponentProps<"div"> {
   type: DrinkCardType;
-  drink: DrinkWithRound;
+  drink: Drink;
   iconType: IconName;
   isActive?: boolean;
   isShowingTag?: boolean;
