@@ -1,3 +1,4 @@
+import { Drink } from "../components/DrinkCard";
 import { WorldCup } from "../store";
 
 export interface RoundState {
@@ -67,4 +68,11 @@ export function getPrevRoundState({
   } else {
     return { round: currentRound, index: currentIndex - 1 };
   }
+}
+
+// 백엔드로부터 받은 Drinks에 rounds 프로퍼티를 추가해주는 함수
+// drinks: 백엔드로부터 받은 주류 데이터 배열
+// initialRound: 선택한 초기 round(totalRound)
+export function getDrinksWithRounds(drinks: Drink[], initialRound: number) {
+  return drinks.map((drink) => ({ ...drink, rounds: [initialRound] }));
 }
