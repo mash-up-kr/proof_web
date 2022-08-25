@@ -1,26 +1,36 @@
 import styled from "@emotion/styled";
 import { GetServerSidePropsContext } from "next";
 import { useSetRecoilState } from "recoil";
+import { WithWhoType } from "../../@types/api";
+import { useGetWorldCupInfosByCategorizingWithWho } from "../../api/query";
 import ClickableContentCard from "../../components/ClickableContentCard";
 import TitleWithContent from "../../components/TitleWithContent";
-import { ALONE_CARDS, GROUP_CARDS } from "../../dummy/cards";
 import { useNavigate } from "../../hooks";
-import { WithWhoType, worldCupState } from "../../store";
+import { worldCupState } from "../../store";
 
 interface Props {
-  cards: {
-    id: number;
-    title: string;
-    desc: string;
-  }[];
+  withWho: WithWhoType;
 }
 
-const Type = ({ cards }: Props) => {
+const Type = ({ withWho }: Props) => {
   const navigate = useNavigate();
   const setWorldCupState = useSetRecoilState(worldCupState);
+  const { data: worldcups, isLoading } =
+    useGetWorldCupInfosByCategorizingWithWho();
+
+  if (isLoading || worldcups === undefined) {
+    return <div>Loading...</div>;
+  }
+  const worldCupSituations = worldcups[withWho].map((v) => ({
+    situation: v.situation,
+    worldCupId: v.wolrdcupId,
+  }));
 
   const handleClickClickableContentCard = (idx: number) => {
-    setWorldCupState((prev) => ({ ...prev, situation: cards[idx].title }));
+    setWorldCupState((prev) => ({
+      ...prev,
+      worldCupId: worldCupSituations[idx].worldCupId,
+    }));
     navigate.push("/round");
   };
 
@@ -31,17 +41,17 @@ const Type = ({ cards }: Props) => {
         onClickIcon: navigate.back,
       }}
       titleProps={{
-        title: "이 술을 마시는건\n 어떤 상황인가요?",
+        title: "이 술을 마시는건\n어떤 상황인가요?",
         desc: "선택에 따라 나올 술이 달라져요.",
       }}
     >
       <Contents>
-        {cards.map(({ id, title, desc }, idx) => {
+        {worldCupSituations.map(({ situation }, idx) => {
           return (
             <ClickableContentCard
-              key={id}
-              title={title}
-              description={desc}
+              key={situation.code + idx}
+              title={situation.title}
+              content={situation.content}
               onClick={() => handleClickClickableContentCard(idx)}
             />
           );
@@ -58,13 +68,13 @@ const Contents = styled.div`
 `;
 
 export async function getServerSideProps({
-  req,
   params,
 }: GetServerSidePropsContext<{ with: WithWhoType }>) {
-  const cards = params?.with === "SOLO" ? ALONE_CARDS : GROUP_CARDS;
+  const withWho = params?.with;
+
   return {
     props: {
-      cards,
+      withWho,
     },
   };
 }
