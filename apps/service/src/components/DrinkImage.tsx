@@ -117,7 +117,7 @@ const MainImage = styled.div<{
   min-height: ${({ type }) => MIN_HEIGHT_BY_TYPE[type]};
   background-image: ${({ imgSrc }) =>
     `linear-gradient(180deg, rgba(56, 58, 77, 0) 74.84%, rgba(28, 28, 38, 0.6) 100%), url(${imgSrc})`};
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 8px;
