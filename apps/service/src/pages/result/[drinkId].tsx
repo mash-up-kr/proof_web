@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { Text } from "design-system";
 import * as React from "react";
-import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { GetServerSidePropsContext } from "next";
 import {
@@ -21,19 +20,20 @@ import { DrinkWithRound } from "../../components/DrinkCard";
 const BASE_URL = `https://zuzu-web.vercel.app`;
 
 interface Props {
-  userAgent: string;
+  drinkId: string;
+  shared: string;
 }
 
-const Result: NextPage<Props> = ({ userAgent }) => {
+const Result = ({ drinkId, shared }: Props) => {
   const router = useRouter();
-  const [isShared, setIsShared] = React.useState(false);
   const [isInstallAppBottomSheetOpened, setIsInstallAppBottomSheetOpened] =
     React.useState<boolean>(false);
   const [winnerDrink, setWinnerDrink] = React.useState<DrinkWithRound>(
     DRINK_CARDS[2] as DrinkWithRound
   );
   const navigate = useNavigate();
-  const { getWinnerDrink, revertToPrevRoundState } = useWorldCup();
+  const { getWinnerDrink, revertToPrevRoundState, getTop8DrinkIds } =
+    useWorldCup();
   const [isDrinkDetailBottomSheetOpened, setIsDrinkDetailBottomSheetOpened] =
     React.useState(false);
   const [webView, setWebView] = React.useState(false);
@@ -46,16 +46,12 @@ const Result: NextPage<Props> = ({ userAgent }) => {
     if (winnerDrink) {
       setWinnerDrink(winnerDrink);
     }
-    // TODO: setIsFromNativeApp & setIsShared 설정, n초 후 BottomSheet
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-
     let timer = setTimeout(() => setIsInstallAppBottomSheetOpened(true), 1000);
     if (typeof window !== "undefined") {
       const uaString = navigator.userAgent;
       const { isAndroidWebView } = parseUserAgent(uaString);
       setWebView(isAndroidWebView);
     }
-    // TODO: drink data fetch, ?shared=true 분기 나누기, 월드컵 결과 가져오기
     return () => {
       clearTimeout(timer);
     };
@@ -70,7 +66,7 @@ const Result: NextPage<Props> = ({ userAgent }) => {
   const dataToShare = {
     title: "Proof",
     text: "분위기에 취하고 맛에 취하는 우리, 프루프에서 술드컵을 진행해보세요. 자세한 내용은 다음 초대 링크에서 확인하세요.",
-    url: `${BASE_URL}${router.pathname}`,
+    url: `${BASE_URL}${router.pathname}?shared=true`,
   };
 
   const handleShare = async () => {
@@ -109,15 +105,18 @@ const Result: NextPage<Props> = ({ userAgent }) => {
       />
       <Title>
         <Text type="h1" textAlign="center">
-          {`${isShared ? "친구" : "내"}가 선택한 최고의 술`}
+          {`${shared ? "친구" : "내"}가 선택한 최고의 술`}
         </Text>
       </Title>
       <WinnerCard
         drink={winnerDrink ?? DRINK_CARDS[3]}
         handleClickSearchIcon={() => setIsDrinkDetailBottomSheetOpened(true)}
       />
-      <ShareButtons handleClickRightButton={handleShare} />
-      <Rankings rounds={ROUNDS} drinks={DRINK_CARDS} />
+      <ShareButtons
+        handleClickRightButton={handleShare}
+        shared={Boolean(shared)}
+      />
+      {!shared && <Rankings rounds={ROUNDS} drinks={DRINK_CARDS} />}
     </>
   );
 };
@@ -128,12 +127,12 @@ const Title = styled.div`
 `;
 
 export async function getServerSideProps({
-  req,
-  params,
-}: GetServerSidePropsContext<{ drinkId: string }>) {
+  query,
+}: GetServerSidePropsContext<{ drinkId: string; shared: string }>) {
   return {
     props: {
-      drinkId: params?.drinkId,
+      drinkId: query?.drinkId,
+      shared: query?.shared ?? "",
     },
   };
 }

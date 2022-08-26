@@ -30,13 +30,14 @@ const WorldCup = () => {
   };
 
   const handleClickBottomButton = () => {
-    const { currentRound } = worldCupState;
+    const { currentRound, drinks } = worldCupState;
 
     updateToNextRoundState(selectedDrink?.id!);
     setSelectedDrink(null);
+
     if (isWinnerSelectRound(currentRound)) {
       // 우승자인 경우, 결과 페이지로 이동한다.
-      navigate.push("/result");
+      navigate.push(`/result/${selectedDrink?.id}`);
     }
   };
 

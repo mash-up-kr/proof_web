@@ -80,10 +80,10 @@ const DrinkCardList = styled.div`
 
 const DrinkCardItem = styled.div`
   margin-right: 12px;
-  :first-child {
+  :first-of-type {
     margin-left: 24px;
   }
-  :last-child {
+  :last-of-type {
     margin-right: 24px;
   }
 `;

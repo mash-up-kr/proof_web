@@ -9,28 +9,32 @@ interface ShareButtonsProps extends React.ComponentProps<"div"> {
   handleClickRightButton?: (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void;
+  shared: boolean;
 }
 
 function ShareButtons({
   handleClickLeftButton,
   handleClickRightButton,
+  shared = false,
   ...restProps
 }: ShareButtonsProps) {
   return (
     <Wrapper {...restProps}>
+      {!shared && (
+        <Button
+          width={"30%"}
+          onClick={handleClickLeftButton}
+          hierarchy={ButtonHierarchy.Secondary}
+        >
+          확인
+        </Button>
+      )}
       <Button
-        width={"30%"}
-        onClick={handleClickLeftButton}
-        hierarchy={ButtonHierarchy.Secondary}
-      >
-        확인
-      </Button>
-      <Button
-        width={"70%"}
+        width={shared ? "100%" : "70%"}
         onClick={handleClickRightButton}
         hierarchy={ButtonHierarchy.Primary}
       >
-        공유하기
+        {shared ? "나도 해보기" : "공유하기"}
       </Button>
     </Wrapper>
   );
@@ -41,6 +45,7 @@ const Wrapper = styled.div`
   margin-top: 16px;
   padding-inline: 24px;
   gap: 8px;
+  padding-bottom: 40px;
 `;
 
 export default ShareButtons;
