@@ -3,20 +3,20 @@ import { Text } from "design-system";
 import * as React from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
+import { GetServerSidePropsContext } from "next";
 import {
   Header,
   InstallAppBottomSheet,
   Rankings,
   ShareButtons,
-} from "../components";
-import { ROUNDS } from "../dummy/rounds";
-import { DRINK_CARDS } from "../dummy/drinkCards";
-import WinnerCard from "../components/WinnerCard";
-import { useNavigate, useWorldCup } from "../hooks";
-import { DrinkWithRound } from "../components/DrinkCard";
-import share from "../utils/share";
-import { useUserAgent } from "../hooks";
-import DrinkInfoBottomSheet from "../components/DrinkInfoBottomSheet";
+} from "../../components";
+import { ROUNDS } from "../../dummy/rounds";
+import { DRINK_CARDS } from "../../dummy/drinkCards";
+import WinnerCard from "../../components/WinnerCard";
+import share from "../../utils/share";
+import { useNavigate, useUserAgent, useWorldCup } from "../../hooks";
+import DrinkInfoBottomSheet from "../../components/DrinkInfoBottomSheet";
+import { DrinkWithRound } from "../../components/DrinkCard";
 
 const BASE_URL = `https://zuzu-web.vercel.app`;
 
@@ -48,6 +48,7 @@ const Result: NextPage<Props> = ({ userAgent }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
 
     let timer = setTimeout(() => setIsInstallAppBottomSheetOpened(true), 1000);
+    // TODO: drink data fetch, ?shared=true 분기 나누기, 월드컵 결과 가져오기
 
     return () => {
       clearTimeout(timer);
@@ -119,5 +120,16 @@ const Title = styled.div`
   padding-top: 36px;
   padding-inline: 24px;
 `;
+
+export async function getServerSideProps({
+  req,
+  params,
+}: GetServerSidePropsContext<{ drinkId: string }>) {
+  return {
+    props: {
+      drinkId: params?.drinkId,
+    },
+  };
+}
 
 export default Result;
