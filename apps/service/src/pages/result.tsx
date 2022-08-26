@@ -4,10 +4,10 @@ import * as React from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import {
-  FloatingButtons,
   Header,
   InstallAppBottomSheet,
   Rankings,
+  ShareButtons,
 } from "../components";
 import { ROUNDS } from "../dummy/rounds";
 import { DRINK_CARDS } from "../dummy/drinkCards";
@@ -86,7 +86,7 @@ const Result: NextPage<Props> = ({ userAgent }) => {
         </Text>
       </Title>
       <WinnerCard drink={winnerDrink ?? DRINK_CARDS[3]} />
-      <FloatingButtons handleClickRightButton={handleShare} />
+      <ShareButtons handleClickRightButton={handleShare} />
       <Rankings rounds={ROUNDS} drinks={DRINK_CARDS} />
     </>
   );
