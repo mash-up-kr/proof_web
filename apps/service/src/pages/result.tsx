@@ -49,6 +49,15 @@ const Result: NextPage<Props> = ({ userAgent }) => {
     url: `${BASE_URL}${router.pathname}`,
   };
 
+  const shareHandler = async () => {
+    const result = await share(shareData);
+    if (result === "copiedToClipboard") {
+      alert("링크를 클립보드에 복사했습니다.");
+    } else if (result === "failed") {
+      alert("공유하기가 지원되지 않는 환경입니다.");
+    }
+  };
+
   return (
     <>
       <Header
@@ -62,16 +71,8 @@ const Result: NextPage<Props> = ({ userAgent }) => {
         </Text>
       </Title>
       <WinnerCard drink={winnerDrink ?? DRINK_CARDS[3]} />
-      <FloatingButtons
-        handleClickRightButton={async () => {
-          const result = await share(shareData);
-          if (result === "copiedToClipboard") {
-            alert("링크를 클립보드에 복사했습니다.");
-          } else if (result === "failed") {
-            alert("공유하기가 지원되지 않는 환경입니다.");
-          }
-        }}
-      />
+      <FloatingButtons handleClickRightButton={shareHandler} />
+
       <Rankings rounds={ROUNDS} drinks={DRINK_CARDS} />
     </>
   );
