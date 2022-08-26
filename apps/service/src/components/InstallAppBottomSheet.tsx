@@ -8,7 +8,11 @@ import {
   ButtonHierarchy,
 } from "design-system";
 
-function InstallAppBottomSheet() {
+interface Props {
+  onClose(): void;
+}
+
+function InstallAppBottomSheet({ onClose }: Props) {
   return (
     <BottomSheet
       headerProps={{
@@ -31,6 +35,14 @@ function InstallAppBottomSheet() {
         <Button fullWidth hierarchy={ButtonHierarchy.Primary}>
           {"앱 설치하기"}
         </Button>
+        <SkipText
+          type="body3"
+          color={theme.palette.gray200}
+          textAlign="center"
+          onClick={onClose}
+        >
+          {"괜찮아요. 웹으로 볼게요."}
+        </SkipText>
       </BottomSheetContainer>
     </BottomSheet>
   );
@@ -38,6 +50,11 @@ function InstallAppBottomSheet() {
 const BottomSheetContainer = styled.div`
   width: 100%;
   margin-block: 40px;
+`;
+
+const SkipText = styled(Text)`
+  text-decoration: underline;
+  margin-top: 16px;
 `;
 
 export default InstallAppBottomSheet;
