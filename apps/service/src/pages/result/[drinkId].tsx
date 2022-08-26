@@ -24,17 +24,23 @@ interface Props {
 
 const Result = ({ drinkId }: Props) => {
   const router = useRouter();
-  const [isShared, setIsShared] = React.useState<boolean>(false);
+  const [isShared, setIsShared] = React.useState(false);
   const [isInstallAppBottomSheetOpened, setIsInstallAppBottomSheetOpened] =
-    React.useState<boolean>(false);
+    React.useState(false);
   const [isDrinkDetailBottomSheetOpened, setIsDrinkDetailBottomSheetOpened] =
     React.useState(false);
-  const { webView } = useUserAgent();
+  const [webView, setWebView] = React.useState(false);
+
+  const { parseUserAgent } = useUserAgent();
 
   React.useEffect(() => {
     let timer = setTimeout(() => setIsInstallAppBottomSheetOpened(true), 1000);
+    if (typeof window !== "undefined") {
+      const uaString = navigator.userAgent;
+      const { isAndroidWebView } = parseUserAgent(uaString);
+      setWebView(isAndroidWebView);
+    }
     // TODO: drink data fetch, ?shared=true 분기 나누기, 월드컵 결과 가져오기
-
     return () => {
       clearTimeout(timer);
     };
