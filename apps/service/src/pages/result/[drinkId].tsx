@@ -92,7 +92,7 @@ const Result = ({ drinkId, shared }: Props) => {
           drinkInformation={DRINK_CARDS[1].info}
           drinkMetaData={{
             abv: DRINK_CARDS[1].abv,
-            categoryName: DRINK_CARDS[1].category.name,
+            categoryName: DRINK_CARDS[1].category,
             origin: DRINK_CARDS[1].origin,
           }}
           onClose={() => setIsDrinkDetailBottomSheetOpened(false)}
