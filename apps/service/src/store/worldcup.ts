@@ -1,4 +1,5 @@
 import { atom } from "recoil";
+import {recoilPersist} from "recoil-persist";
 import { WithWhoType } from "../@types/api";
 import { DrinkWithRound } from "../components/DrinkCard";
 
@@ -12,6 +13,10 @@ export interface WorldCup {
   situation: string;
   drinks: DrinkWithRound[];
 }
+
+const {persistAtom} = recoilPersist({
+  key: "recoil-persist-atom"
+})
 
 /**
  * currentRound: 현재 진행중인 라운드
@@ -38,4 +43,5 @@ export const worldCupState = atom<WorldCup>({
     situation: "",
     drinks: [],
   },
+  effects: [persistAtom]
 });
