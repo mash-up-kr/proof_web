@@ -22,13 +22,13 @@ function DrinkInfoBottomSheet({drinkCardIcon, drinkName, drinkMetaData, drinkInf
           style: {marginBottom: 70}
         }}
     >
-      <DrinkName type={"h1"}>{drinkName}</DrinkName>
+      <Text style={{marginTop: 4}} type={"h1"}>{drinkName}</Text>
       <DrinkMetaData {...drinkMetaData}/>
       <DrinkInformation>
         <Text type={"h4"}>정보</Text>
-        <DrinkInformationContent type={"body3"} color={theme.palette.gray100}>
+        <Text style={{marginTop: 16}} type={"body3"} color={theme.palette.gray100}>
           {drinkInformation}
-        </DrinkInformationContent>
+        </Text>
       </DrinkInformation>
       <DrinkReviewTopics>
         <Text type={"h4"}>이럴 때 마셨어요</Text>
@@ -38,30 +38,24 @@ function DrinkInfoBottomSheet({drinkCardIcon, drinkName, drinkMetaData, drinkInf
         <Text type={"h4"}>이렇게 표현했어요</Text>
         <EmptyReviewWrapper>
           <EmptyReviewImage src={'/Review IMG.png'}/>
-          <EmptyReviewTitle type={"h3"} textAlign={"center"}>
+          <Text style={{marginTop: 12}} type={"h3"} textAlign={"center"}>
             아직 리뷰가 없어요 :(
-          </EmptyReviewTitle>
-          <EmptyReviewText type={"body3"} color={theme.palette.gray100}>
+          </Text>
+          <Text style={{marginTop: 4}} type={"body3"} color={theme.palette.gray100}>
             이 술의 첫번째 리뷰어가 되어보세요!
-          </EmptyReviewText>
+          </Text>
         </EmptyReviewWrapper>
         <CompetitionBar firstItemText={"달아요"} firstItemValue={223} secondItemText={"써요"} secondItemValue={89}/>
+        <CompetitionBar firstItemText={"무거워요"} firstItemValue={50} secondItemText={"가벼워요"} secondItemValue={50}/>
+        <CompetitionBar firstItemText={"은은함"} firstItemValue={12} secondItemText={"진한 술맛"} secondItemValue={300}/>
       </DrinkReviewStatistics>
     </BottomSheet>
   )
 }
 
-const DrinkName = styled(Text)`
-  margin-top: 4px;
-`;
-
 const DrinkInformation = styled.div`
   margin-top: 14px;
   padding: 16px 0 14px;
-`;
-
-const DrinkInformationContent = styled(Text)`
-  margin-top: 16px;
 `;
 
 const DrinkReviewTopics = styled.div`
@@ -89,14 +83,6 @@ const EmptyReviewImage = styled.img`
   width: 86px;
   height: 86px;
   margin: auto;
-`;
-
-const EmptyReviewTitle = styled(Text)`
-  margin-top: 12px;
-`;
-
-const EmptyReviewText = styled(Text)`
-  margin-top: 4px;
 `;
 
 export default DrinkInfoBottomSheet;

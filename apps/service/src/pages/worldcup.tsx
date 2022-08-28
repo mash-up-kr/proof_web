@@ -10,8 +10,7 @@ import { worldCupState as recoilWorldCupState } from "../store";
 import { isWinnerSelectRound } from "../utils";
 
 const WorldCup = () => {
-  const [selectedDrink, setSelectedDrink] =
-    React.useState<DrinkWithRound | null>(null);
+  const [selectedDrink, setSelectedDrink] = React.useState<DrinkWithRound | null>(null);
   const [isBottomSheetOpened, setBottomSheetOpened] = React.useState(false);
   const [worldCupState, setWorldCupState] = useRecoilState(recoilWorldCupState);
   const navigate = useNavigate();
