@@ -11,6 +11,7 @@ import { isWinnerSelectRound } from "../utils";
 
 const WorldCup = () => {
   const [selectedDrink, setSelectedDrink] = React.useState<DrinkWithRound | null>(null);
+  const [drinkToReadMore, setDrinkToReadMore] = React.useState<DrinkWithRound | null>(null);
   const [isBottomSheetOpened, setBottomSheetOpened] = React.useState(false);
   const [worldCupState, setWorldCupState] = useRecoilState(recoilWorldCupState);
   const navigate = useNavigate();
@@ -55,10 +56,10 @@ const WorldCup = () => {
 
   return (
     <>
-      {isBottomSheetOpened && selectedDrink && (
+      {isBottomSheetOpened && drinkToReadMore && (
         <DrinkInfoBottomSheet
-          selectedDrink={selectedDrink}
-          drinkCardIcon={"typeA"}
+          selectedDrink={drinkToReadMore}
+          drinkCardIcon={candidateDrinks[0].id === drinkToReadMore.id ? "typeA" : "typeB"}
           onClose={() => setBottomSheetOpened(false)}
         />
       )}
@@ -78,7 +79,11 @@ const WorldCup = () => {
               isActive={selectedDrink === drink}
               iconType={idx === 0 ? "typeA" : "typeB"}
               onClick={() => handleDrinkCardClick(drink)}
-              onSearchIconClick={() => setBottomSheetOpened(true)}
+              onSearchIconClick={(e) => {
+                e.stopPropagation();
+                setDrinkToReadMore(drink);
+                setBottomSheetOpened(true);
+              }}
             />
           ))}
         </CandidateWrapper>
