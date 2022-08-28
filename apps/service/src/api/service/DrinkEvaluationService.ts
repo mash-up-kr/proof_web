@@ -9,9 +9,9 @@ class DrinkEvaluationService extends APIBase {
 
   public getDrinksEvaluation({id}: BaseDrinkId): Promise<DrinkEvaluationDto> {
     return this.baseHTTP
-        .get(`${id}`)
-        .then(APIBase._handleResponse)
-        .catch(APIBase._handleError);
+      .get(`${id}`)
+      .then(APIBase._handleResponse)
+      .catch(APIBase._handleError);
   }
 }
 
