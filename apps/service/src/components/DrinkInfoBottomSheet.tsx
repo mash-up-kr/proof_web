@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, {ComponentProps} from "react";
+import React from "react";
 import {BottomSheet, Tag, Text, theme} from "design-system";
 import {IconName} from "design-system/components/Icon";
 import DrinkInfoBottomSheetHeader from "./DrinkInfoBottomSheetHeader";
@@ -11,17 +11,16 @@ import {useGetDrinkInfoAndEvaluationById} from "../api/query";
 interface DrinkInfoBottomSheetProps {
   selectedDrink: DrinkWithRound;
   drinkCardIcon: IconName;
-  drinkName: string;
-  drinkMetaData: ComponentProps<typeof DrinkMetaData>;
   onClose(): void;
 }
 
-function DrinkInfoBottomSheet({selectedDrink, drinkCardIcon, drinkName, drinkMetaData, onClose}: DrinkInfoBottomSheetProps) {
-  const {id, info} = selectedDrink;
+function DrinkInfoBottomSheet({selectedDrink, drinkCardIcon, onClose}: DrinkInfoBottomSheetProps) {
+  const {id, name, abv, category} = selectedDrink;
   const result = useGetDrinkInfoAndEvaluationById(id);
 
   if (result.some(r => r.isLoading)) return <div>Loading...</div>;
 
+  const drinkData = result[0].data;
   const evaluationResult = result[1].data?.result;
 
   const isReviewTopicsExist = (evaluationResult?.situation.length ?? 0) > 0;
@@ -34,12 +33,12 @@ function DrinkInfoBottomSheet({selectedDrink, drinkCardIcon, drinkName, drinkMet
         style: {marginBottom: 70}
       }}
     >
-      <Text style={{marginTop: 4}} type={"h1"}>{drinkName}</Text>
-      <DrinkMetaData {...drinkMetaData}/>
+      <Text style={{marginTop: 4}} type={"h1"}>{name}</Text>
+      <DrinkMetaData abv={abv} categoryName={category} origin={drinkData?.origin ?? ""}/>
       <DrinkInformation>
         <Text type={"h4"}>정보</Text>
         <Text style={{marginTop: 16}} type={"body3"} color={theme.palette.gray100}>
-          {info}
+          {drinkData?.description ?? ""}
         </Text>
       </DrinkInformation>
       {isReviewTopicsExist && (

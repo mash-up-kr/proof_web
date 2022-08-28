@@ -59,12 +59,6 @@ const WorldCup = () => {
         <DrinkInfoBottomSheet
           selectedDrink={selectedDrink}
           drinkCardIcon={"typeA"}
-          drinkName={selectedDrink.name}
-          drinkMetaData={{
-            abv: selectedDrink.abv,
-            categoryName: selectedDrink.category,
-            origin: selectedDrink.origin,
-          }}
           onClose={() => setBottomSheetOpened(false)}
         />
       )}
