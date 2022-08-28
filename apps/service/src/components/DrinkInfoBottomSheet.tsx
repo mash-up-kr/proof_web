@@ -5,8 +5,8 @@ import {IconName} from "design-system/components/Icon";
 import DrinkInfoBottomSheetHeader from "./DrinkInfoBottomSheetHeader";
 import DrinkMetaData from "./DrinkMetaData";
 import CompetitionBar from "./CompetitionBar";
-import {useGetDrinkEvaluationById} from "../api/query";
 import {DrinkWithRound} from "./DrinkCard";
+import {useGetDrinkInfoAndEvaluationById} from "../api/query";
 
 interface DrinkInfoBottomSheetProps {
   selectedDrink: DrinkWithRound;
@@ -18,12 +18,14 @@ interface DrinkInfoBottomSheetProps {
 
 function DrinkInfoBottomSheet({selectedDrink, drinkCardIcon, drinkName, drinkMetaData, onClose}: DrinkInfoBottomSheetProps) {
   const {id, info} = selectedDrink;
-  const {data, isLoading} = useGetDrinkEvaluationById(id);
+  const result = useGetDrinkInfoAndEvaluationById(id);
 
-  if (isLoading || !data) return <div>Loading...</div>;
+  if (result.some(r => r.isLoading)) return <div>Loading...</div>;
 
-  const isReviewTopicsExist = (data.result?.situation.length ?? 0) > 0;
-  const isEvaluationsExist = !!data.result;
+  const evaluationResult = result[1].data?.result;
+
+  const isReviewTopicsExist = (evaluationResult?.situation.length ?? 0) > 0;
+  const isEvaluationsExist = !!evaluationResult;
 
   return (
     <BottomSheet
@@ -43,7 +45,7 @@ function DrinkInfoBottomSheet({selectedDrink, drinkCardIcon, drinkName, drinkMet
       {isReviewTopicsExist && (
         <DrinkReviewTopics>
           <Text type={"h4"}>이럴 때 마셨어요</Text>
-          <ReviewTopicTags tags={data.result?.situation ?? []}/>
+          <ReviewTopicTags tags={evaluationResult?.situation ?? []}/>
         </DrinkReviewTopics>
       )}
       <DrinkReviewStatistics>
@@ -52,27 +54,27 @@ function DrinkInfoBottomSheet({selectedDrink, drinkCardIcon, drinkName, drinkMet
           <>
             <CompetitionBar
               firstItemText={"달아요"}
-              firstItemValue={data.result?.isBitter.Sweet ?? 0}
+              firstItemValue={evaluationResult?.isBitter.Sweet ?? 0}
               secondItemText={"써요"}
-              secondItemValue={data.result?.isBitter.Bitter ?? 0}
+              secondItemValue={evaluationResult?.isBitter.Bitter ?? 0}
             />
             <CompetitionBar
               firstItemText={"가벼워요"}
-              firstItemValue={data.result?.isHeavy.Light ?? 0}
+              firstItemValue={evaluationResult?.isHeavy.Light ?? 0}
               secondItemText={"무거워요"}
-              secondItemValue={data.result?.isHeavy.Heavy ?? 0}
+              secondItemValue={evaluationResult?.isHeavy.Heavy ?? 0}
             />
             <CompetitionBar
               firstItemText={"은은함"}
-              firstItemValue={data.result?.isStrong.Mild ?? 0}
+              firstItemValue={evaluationResult?.isStrong.Mild ?? 0}
               secondItemText={"진한 술맛"}
-              secondItemValue={data.result?.isStrong.Strong ?? 0}
+              secondItemValue={evaluationResult?.isStrong.Strong ?? 0}
             />
             <CompetitionBar
               firstItemText={"부드러운 목넘김"}
-              firstItemValue={data.result?.isBurning.Smooth ?? 0}
+              firstItemValue={evaluationResult?.isBurning.Smooth ?? 0}
               secondItemText={"화끈한 목넘김"}
-              secondItemValue={data.result?.isBurning.Burning ?? 0}
+              secondItemValue={evaluationResult?.isBurning.Burning ?? 0}
             />
           </>
         ) : (
