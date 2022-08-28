@@ -17,5 +17,5 @@ export interface DrinkEvaluationDto {
       Smooth: number;
       Burning: number;
     }
-  }
+  } | null
 }

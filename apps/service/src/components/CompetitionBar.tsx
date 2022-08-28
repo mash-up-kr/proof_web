@@ -21,10 +21,10 @@ function CompetitionBar({firstItemText, firstItemValue, secondItemText, secondIt
           <ItemText type={"body4"}>{firstItemText}</ItemText>
           <ItemValue type={"body7"}>{firstItemValue}</ItemValue>
         </ItemWrapper>
-        <div>
+        <ItemWrapper>
           <ItemText type={"body4"}>{secondItemText}</ItemText>
           <ItemValue type={"body7"}>{secondItemValue}</ItemValue>
-        </div>
+        </ItemWrapper>
       </Wrapper>
   )
 }
