@@ -30,6 +30,8 @@ function DrinkInfoBottomSheet({selectedDrink, drinkCardIcon, onClose}: DrinkInfo
     <BottomSheet
       headerProps={{
         children: (<DrinkInfoBottomSheetHeader drinkCardIcon={drinkCardIcon} onCloseClick={onClose}/>),
+      }}
+      contentProps={{
         style: {marginBottom: 70}
       }}
     >
@@ -50,7 +52,7 @@ function DrinkInfoBottomSheet({selectedDrink, drinkCardIcon, onClose}: DrinkInfo
       <DrinkReviewStatistics>
         <Text type={"h4"}>이렇게 표현했어요</Text>
         {isEvaluationsExist ? (
-          <>
+          <CompetitionBarWrapper>
             <CompetitionBar
               firstItemText={"달아요"}
               firstItemValue={evaluationResult?.isBitter.Sweet ?? 0}
@@ -75,7 +77,7 @@ function DrinkInfoBottomSheet({selectedDrink, drinkCardIcon, onClose}: DrinkInfo
               secondItemText={"화끈한 목넘김"}
               secondItemValue={evaluationResult?.isBurning.Burning ?? 0}
             />
-          </>
+          </CompetitionBarWrapper>
         ) : (
           <EmptyReviewWrapper>
             <EmptyReviewImage src={'/Review IMG.png'}/>
@@ -122,6 +124,10 @@ const EmptyReviewImage = styled.img`
   width: 86px;
   height: 86px;
   margin: auto;
+`;
+
+const CompetitionBarWrapper = styled.div`
+  margin-top: 16px;
 `;
 
 export default DrinkInfoBottomSheet;
