@@ -99,12 +99,11 @@ const useWorldCup = () => {
     return `${currentRound}강`;
   };
 
-  const getTop8DrinkIds = () => {
-    const top8Drinks = worldCupState.drinks
+  const getTopNDrinks = (n: number) => {
+    const topNDrinks = [...worldCupState.drinks]
       .sort((a, b) => b.rounds.length - a.rounds.length)
-      .slice(0, 8)
-      .map((drink) => drink.id);
-    return top8Drinks;
+      .slice(0, n);
+    return topNDrinks;
   };
 
   return {
@@ -113,7 +112,7 @@ const useWorldCup = () => {
     getCurrentCandidate,
     getWinnerDrink,
     getTitle,
-    getTop8DrinkIds,
+    getTopNDrinks,
   };
 };
 

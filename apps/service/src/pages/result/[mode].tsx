@@ -3,19 +3,20 @@ import { Text } from "design-system";
 import * as React from "react";
 import { useRouter } from "next/router";
 import { GetServerSidePropsContext } from "next";
+import { useRecoilState } from "recoil";
 import {
   Header,
   InstallAppBottomSheet,
   Rankings,
   ShareButtons,
 } from "../../components";
-import { ROUNDS } from "../../dummy/rounds";
 import { DRINK_CARDS } from "../../dummy/drinkCards";
 import WinnerCard from "../../components/WinnerCard";
 import share from "../../utils/share";
 import { useNavigate, useUserAgent, useWorldCup } from "../../hooks";
 import DrinkInfoBottomSheet from "../../components/DrinkInfoBottomSheet";
 import { DrinkWithRound } from "../../components/DrinkCard";
+import { worldCupState as state } from "../../store";
 
 const BASE_URL = `https://zuzu-web.vercel.app`;
 
@@ -28,8 +29,9 @@ const Result = ({ drinkId, mode }: Props) => {
   const router = useRouter();
   const navigate = useNavigate();
   const { userAgent } = useUserAgent();
-  const { getWinnerDrink, revertToPrevRoundState, getTop8DrinkIds } =
-    useWorldCup();
+  const { getWinnerDrink, revertToPrevRoundState } = useWorldCup();
+
+  const [worldCupState] = useRecoilState(state);
 
   const [isInstallAppBottomSheetOpened, setIsInstallAppBottomSheetOpened] =
     React.useState<boolean>(false);
@@ -42,7 +44,6 @@ const Result = ({ drinkId, mode }: Props) => {
   const shared = mode === "shared";
 
   React.useEffect(() => {
-    // TODO: result는 새로고침이 될 수 있으므로 param으로 Drink id를 가져와야 할 듯
     const winnerDrink = getWinnerDrink();
     if (winnerDrink) {
       setWinnerDrink(winnerDrink);
@@ -83,7 +84,7 @@ const Result = ({ drinkId, mode }: Props) => {
       )}
       {isDrinkDetailBottomSheetOpened && (
         <DrinkInfoBottomSheet
-          drinkCardIcon={"typeA"}
+          drinkCardIcon="typeA"
           drinkName={winnerDrink.name}
           drinkInformation={winnerDrink.info}
           drinkMetaData={{
@@ -109,7 +110,9 @@ const Result = ({ drinkId, mode }: Props) => {
         handleClickSearchIcon={() => setIsDrinkDetailBottomSheetOpened(true)}
       />
       <ShareButtons handleClickRightButton={handleShare} shared={shared} />
-      {!shared && <Rankings rounds={ROUNDS} drinks={DRINK_CARDS} />}
+      {!shared && worldCupState.drinks !== [] && (
+        <Rankings round={worldCupState.totalRound} />
+      )}
     </>
   );
 };
