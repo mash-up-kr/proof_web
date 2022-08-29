@@ -13,7 +13,7 @@ function Rankings({ round, ...restProps }: RankingsProps) {
   const { getTopNDrinks } = useWorldCup();
 
   const allDrinks = getTopNDrinks(round);
-  const rounds = getRankingRounds(round);
+  const rounds = round && getRankingRounds(round);
 
   const [selectedRound, setSelectedRound] = React.useState<number>(0);
   const [selectedDrinks, setSelectedDrinks] =
@@ -34,21 +34,22 @@ function Rankings({ round, ...restProps }: RankingsProps) {
         <Text type="h2">내 순위표</Text>
       </Title>
       <Rounds>
-        {rounds.map((round) => (
-          <Text
-            key={`select rounds - ${round}`}
-            type="body3"
-            color={
-              round === selectedRound
-                ? theme.colors.text.highlight
-                : theme.palette.gray100
-            }
-            style={{ marginRight: 20 }}
-            onClick={() => handleClick(round)}
-          >
-            {round === 0 ? "전체" : `${round}강`}
-          </Text>
-        ))}
+        {rounds &&
+          rounds.map((round) => (
+            <Text
+              key={`select rounds - ${round}`}
+              type="body3"
+              color={
+                round === selectedRound
+                  ? theme.colors.text.highlight
+                  : theme.palette.gray100
+              }
+              style={{ marginRight: 20 }}
+              onClick={() => handleClick(round)}
+            >
+              {round === 0 ? "전체" : `${round}강`}
+            </Text>
+          ))}
       </Rounds>
       <DrinkCardList>
         {selectedDrinks.map((drink, idx) => (

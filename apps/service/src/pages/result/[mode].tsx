@@ -110,7 +110,7 @@ const Result = ({ drinkId, mode }: Props) => {
         handleClickSearchIcon={() => setIsDrinkDetailBottomSheetOpened(true)}
       />
       <ShareButtons handleClickRightButton={handleShare} shared={shared} />
-      {!shared && worldCupState.drinks !== [] && (
+      {!shared && worldCupState.drinks.length !== 0 && (
         <Rankings round={worldCupState.totalRound} />
       )}
     </>
