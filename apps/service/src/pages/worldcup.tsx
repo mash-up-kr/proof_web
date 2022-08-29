@@ -37,7 +37,7 @@ const WorldCup = () => {
 
     if (isWinnerSelectRound(currentRound)) {
       // 우승자인 경우, 결과 페이지로 이동한다.
-      navigate.push(`/result/view?drinkId=${selectedDrink?.id}`);
+      navigate.push(`/result/view/${selectedDrink?.id}`);
     }
   };
 

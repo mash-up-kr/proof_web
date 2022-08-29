@@ -9,14 +9,14 @@ import {
   InstallAppBottomSheet,
   Rankings,
   ShareButtons,
-} from "../../components";
-import { DRINK_CARDS } from "../../dummy/drinkCards";
-import WinnerCard from "../../components/WinnerCard";
-import share from "../../utils/share";
-import { useNavigate, useUserAgent, useWorldCup } from "../../hooks";
-import DrinkInfoBottomSheet from "../../components/DrinkInfoBottomSheet";
-import { DrinkWithRound } from "../../components/DrinkCard";
-import { worldCupState as state } from "../../store";
+} from "../../../components";
+import { DRINK_CARDS } from "../../../dummy/drinkCards";
+import WinnerCard from "../../../components/WinnerCard";
+import share from "../../../utils/share";
+import { useNavigate, useUserAgent, useWorldCup } from "../../../hooks";
+import DrinkInfoBottomSheet from "../../../components/DrinkInfoBottomSheet";
+import { DrinkWithRound } from "../../../components/DrinkCard";
+import { worldCupState as state } from "../../../store";
 
 const BASE_URL = `https://zuzu-web.vercel.app`;
 
