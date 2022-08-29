@@ -21,10 +21,10 @@ const BASE_URL = `https://zuzu-web.vercel.app`;
 
 interface Props {
   drinkId: string;
-  shared: string;
+  mode: "view" | "shared";
 }
 
-const Result = ({ drinkId, shared }: Props) => {
+const Result = ({ drinkId, mode }: Props) => {
   const router = useRouter();
   const navigate = useNavigate();
   const { userAgent } = useUserAgent();
@@ -38,6 +38,8 @@ const Result = ({ drinkId, shared }: Props) => {
   );
   const [isDrinkDetailBottomSheetOpened, setIsDrinkDetailBottomSheetOpened] =
     React.useState(false);
+
+  const shared = mode === "shared";
 
   React.useEffect(() => {
     // TODO: result는 새로고침이 될 수 있으므로 param으로 Drink id를 가져와야 할 듯
@@ -106,10 +108,7 @@ const Result = ({ drinkId, shared }: Props) => {
         drink={winnerDrink ?? DRINK_CARDS[3]}
         handleClickSearchIcon={() => setIsDrinkDetailBottomSheetOpened(true)}
       />
-      <ShareButtons
-        handleClickRightButton={handleShare}
-        shared={Boolean(shared)}
-      />
+      <ShareButtons handleClickRightButton={handleShare} shared={shared} />
       {!shared && <Rankings rounds={ROUNDS} drinks={DRINK_CARDS} />}
     </>
   );
@@ -122,11 +121,11 @@ const Title = styled.div`
 
 export async function getServerSideProps({
   query,
-}: GetServerSidePropsContext<{ drinkId: string; shared: string }>) {
+}: GetServerSidePropsContext<{ drinkId: string; mode: string }>) {
   return {
     props: {
       drinkId: query?.drinkId,
-      shared: query?.shared ?? "",
+      mode: query?.mode,
     },
   };
 }
