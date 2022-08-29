@@ -82,12 +82,12 @@ const Result = ({ drinkId, shared }: Props) => {
       {isDrinkDetailBottomSheetOpened && (
         <DrinkInfoBottomSheet
           drinkCardIcon={"typeA"}
-          drinkName={DRINK_CARDS[1].name}
-          drinkInformation={DRINK_CARDS[1].info}
+          drinkName={winnerDrink.name}
+          drinkInformation={winnerDrink.info}
           drinkMetaData={{
-            abv: DRINK_CARDS[1].abv,
-            categoryName: DRINK_CARDS[1].category.name,
-            origin: DRINK_CARDS[1].origin,
+            abv: winnerDrink.abv,
+            categoryName: winnerDrink.category,
+            origin: winnerDrink.origin,
           }}
           onClose={() => setIsDrinkDetailBottomSheetOpened(false)}
         />
