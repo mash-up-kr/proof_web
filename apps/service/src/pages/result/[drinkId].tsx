@@ -26,19 +26,18 @@ interface Props {
 
 const Result = ({ drinkId, shared }: Props) => {
   const router = useRouter();
+  const navigate = useNavigate();
+  const { userAgent } = useUserAgent();
+  const { getWinnerDrink, revertToPrevRoundState, getTop8DrinkIds } =
+    useWorldCup();
+
   const [isInstallAppBottomSheetOpened, setIsInstallAppBottomSheetOpened] =
     React.useState<boolean>(false);
   const [winnerDrink, setWinnerDrink] = React.useState<DrinkWithRound>(
     DRINK_CARDS[2] as DrinkWithRound
   );
-  const navigate = useNavigate();
-  const { getWinnerDrink, revertToPrevRoundState, getTop8DrinkIds } =
-    useWorldCup();
   const [isDrinkDetailBottomSheetOpened, setIsDrinkDetailBottomSheetOpened] =
     React.useState(false);
-  const [webView, setWebView] = React.useState(false);
-
-  const { parseUserAgent } = useUserAgent();
 
   React.useEffect(() => {
     // TODO: result는 새로고침이 될 수 있으므로 param으로 Drink id를 가져와야 할 듯
@@ -47,11 +46,6 @@ const Result = ({ drinkId, shared }: Props) => {
       setWinnerDrink(winnerDrink);
     }
     let timer = setTimeout(() => setIsInstallAppBottomSheetOpened(true), 1000);
-    if (typeof window !== "undefined") {
-      const uaString = navigator.userAgent;
-      const { isAndroidWebView } = parseUserAgent(uaString);
-      setWebView(isAndroidWebView);
-    }
     return () => {
       clearTimeout(timer);
     };
@@ -80,7 +74,7 @@ const Result = ({ drinkId, shared }: Props) => {
 
   return (
     <>
-      {!webView && isInstallAppBottomSheetOpened && (
+      {!userAgent?.isAndroidWebView && isInstallAppBottomSheetOpened && (
         <InstallAppBottomSheet
           onClose={() => setIsInstallAppBottomSheetOpened(false)}
         />
