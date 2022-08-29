@@ -13,7 +13,7 @@ interface BottomSheetProps {
 }
 
 function BottomSheet(props: PropsWithChildren<BottomSheetProps>): JSX.Element {
-  const { headerProps, fullHeight = true } = props;
+  const { headerProps, fullHeight, children = true } = props;
   const { sheet, sheetHeader } = useBottomSheet();
 
   const [innerHeight, setInnerHeight] = useState("");
@@ -27,7 +27,7 @@ function BottomSheet(props: PropsWithChildren<BottomSheetProps>): JSX.Element {
       <BottomSheetHeader ref={sheetHeader} {...headerProps}>
         {headerProps.children}
       </BottomSheetHeader>
-      <BottomSheetContent>{props.children}</BottomSheetContent>
+      <BottomSheetContent>{children}</BottomSheetContent>
     </Wrapper>
   );
 }
