@@ -2,13 +2,6 @@ import copyToClipboard from "./copyToClipboard";
 
 export const isShareSupported = () => navigator.share ?? false;
 
-type Data = {
-  url: string;
-  text: string;
-  title: string;
-  files?: File[];
-};
-
 /**
  * 인자로 받은 data를 OS 기본옵션으로 공유합니다.
  * 기본 공유옵션이 지원되지 않을 경우, url만을 클립보드에 링크를 복사하는 기능으로 대체됩니다.
@@ -32,7 +25,7 @@ type Data = {
  * ```
  */
 
-export const share = (data: Data) => {
+export const share = (data: ShareData) => {
   return new Promise<"shared" | "copiedToClipboard" | "failed">(
     async (resolve) => {
       if (isShareSupported()) {
@@ -40,13 +33,13 @@ export const share = (data: Data) => {
         resolve("shared");
         return;
       }
-
-      const result = await copyToClipboard(data.url);
-      if (result) {
-        resolve("copiedToClipboard");
-        return;
+      if (data.url) {
+        const result = await copyToClipboard(data.url);
+        if (result) {
+          resolve("copiedToClipboard");
+          return;
+        }
       }
-
       resolve("failed");
     }
   );
