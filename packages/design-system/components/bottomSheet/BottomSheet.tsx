@@ -8,12 +8,12 @@ import { useBottomSheet } from "./useBottomSheet";
 export const MIN_Y = 48;
 
 interface BottomSheetProps {
-  headerProps: React.ComponentProps<typeof BottomSheetHeader>;
+  headerProps?: React.ComponentProps<typeof BottomSheetHeader>;
   fullHeight?: boolean;
 }
 
 function BottomSheet(props: PropsWithChildren<BottomSheetProps>): JSX.Element {
-  const { headerProps, fullHeight, children = true } = props;
+  const { headerProps, fullHeight = true, children } = props;
   const { sheet, sheetHeader } = useBottomSheet();
 
   const [innerHeight, setInnerHeight] = useState("");
@@ -25,7 +25,7 @@ function BottomSheet(props: PropsWithChildren<BottomSheetProps>): JSX.Element {
   return (
     <Wrapper ref={sheet} height={fullHeight ? innerHeight : "auto"}>
       <BottomSheetHeader ref={sheetHeader} {...headerProps}>
-        {headerProps.children}
+        {headerProps && headerProps.children}
       </BottomSheetHeader>
       <BottomSheetContent>{children}</BottomSheetContent>
     </Wrapper>

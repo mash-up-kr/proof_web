@@ -14,12 +14,7 @@ interface Props {
 
 function InstallAppBottomSheet({ onClose }: Props) {
   return (
-    <BottomSheet
-      headerProps={{
-        children: null,
-      }}
-      fullHeight={false}
-    >
+    <BottomSheet fullHeight={false}>
       <BottomSheetContainer>
         <Text type={"h3"} style={{ marginBottom: 8 }} textAlign="center">
           {"상황별로 나랑 잘 맞는 술, 저장해보세요!"}
