@@ -1,5 +1,4 @@
 import { UAParser } from "ua-parser-js";
-
 import { UserAgent, BOT_UA } from "./constants";
 
 /**
@@ -8,7 +7,7 @@ import { UserAgent, BOT_UA } from "./constants";
  * @param phrase user agent strings.
  * @returns parsed information.
  */
-export function parse(phrase: string): UserAgent {
+export function parseUserAgent(phrase: string): UserAgent {
   const result: UAParser.IResult = new UAParser(
     "Mozilla/5.0 (Linux; Android 12; SM-F711N Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/104.0.5112.69 Mobile Safari/537.36_Proof Android"
   ).getResult();
@@ -27,7 +26,7 @@ export function parse(phrase: string): UserAgent {
   const isAndroidWebView: boolean = os === "Android" && fromApp;
   const isIosWebView: boolean = os === "iOS" && fromApp;
 
-  const ua: UserAgent = Object.freeze({
+  const ua: UserAgent = {
     browser,
     deviceType,
     os,
@@ -56,7 +55,7 @@ export function parse(phrase: string): UserAgent {
     isBot: isBot,
     isAndroidWebView,
     isIosWebView,
-  });
+  } as const;
 
   return ua;
 }

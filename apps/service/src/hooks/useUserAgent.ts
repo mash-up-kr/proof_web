@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { UserAgent } from "./constants";
-import { parse } from "./helpers";
+import { UserAgent } from "../utils/parseUserAgent/constants";
+import { parseUserAgent } from "../utils/parseUserAgent";
 
-export function useUserAgent() {
+function useUserAgent() {
   const [result, setResult] = useState<UserAgent>();
   useEffect(() => {
     if (typeof window !== "undefined") {
       const uaString = navigator.userAgent;
-      const result = parse(uaString);
+      const result = parseUserAgent(uaString);
       setResult(result);
     }
   }, []);
@@ -15,3 +15,5 @@ export function useUserAgent() {
     userAgent: result,
   };
 }
+
+export default useUserAgent;
