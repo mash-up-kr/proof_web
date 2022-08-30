@@ -63,7 +63,7 @@ const Result = ({ drinkId, mode }: Props) => {
   const dataToShare: ShareData = {
     title: "Proof",
     text: "분위기에 취하고 맛에 취하는 우리, 프루프에서 술드컵을 진행해보세요. 자세한 내용은 다음 초대 링크에서 확인하세요.",
-    url: `${BASE_URL}${router.pathname}?shared=true`,
+    url: `${BASE_URL}/result/shared/${drinkId}`,
   };
 
   const handleShare = async () => {
