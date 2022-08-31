@@ -21,7 +21,7 @@ const TitleWithContent = ({
           {...titleProps}
           style={{
             marginTop: "20px",
-            marginBottom: "80px",
+            marginBottom: "56px",
           }}
         />
         {children}
