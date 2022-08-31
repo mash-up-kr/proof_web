@@ -9,8 +9,8 @@ import { worldCupState } from "../../store";
 const INFOS = [
   {
     id: 1,
-    title: "혼자서 먹어요",
-    desc: "진리지는 혼술이에요",
+    title: "혼술은 진리지",
+    desc: "혼자서 먹어요",
     href: "/category/SOLO",
   },
   {
