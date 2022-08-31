@@ -1,4 +1,4 @@
-import { BaseDrinkId } from "../../@types/api";
+import {BaseDrinkId, DrinkDto} from "../../@types/api";
 import { APIBase } from ".";
 
 class WorldCupService extends APIBase {
@@ -13,7 +13,7 @@ class WorldCupService extends APIBase {
       .catch(APIBase._handleError);
   }
 
-  public getOneDrinkInfo({ id }: BaseDrinkId) {
+  public getOneDrinkInfo({ id }: BaseDrinkId): Promise<DrinkDto> {
     return this.baseHTTP
       .get(`${id}`)
       .then(APIBase._handleResponse)
