@@ -6,7 +6,9 @@ const WITH_WHO_KEY = "with_who";
 const DRINKS_KEY = "drinks";
 
 export const useGetOneWorldCupInfoById = (worldCupId: number) =>
-  useQuery([WORLDCUP_KEY], () => WorldCupService.getOneWorldcupInfo({ worldCupId }));
+  useQuery([WORLDCUP_KEY], () =>
+    WorldCupService.getOneWorldcupInfo({ worldCupId })
+  );
 
 export const useGetWorldCupInfosByCategorizingWithWho = () =>
   useQuery([WORLDCUP_KEY, WITH_WHO_KEY], () =>
@@ -14,7 +16,7 @@ export const useGetWorldCupInfosByCategorizingWithWho = () =>
   );
 
 export const useGetDrinks = (worldCupId: number, round: number) => {
-  useQuery([WORLDCUP_KEY, DRINKS_KEY], () =>
+  useQuery([WORLDCUP_KEY, DRINKS_KEY, worldCupId, round], () =>
     WorldCupService.getDrinksByRound({ worldCupId, round })
   );
 };
