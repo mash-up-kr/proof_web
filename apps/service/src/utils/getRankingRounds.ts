@@ -10,7 +10,9 @@
 
 export const getRankingRounds = (round: number) => {
   const maxIndex = Math.log2(round);
-  const maxIndexArray = [...Array(maxIndex)].map((v, i) => Math.pow(2, i));
+  const maxIndexArray = Array.from({ length: maxIndex }, (_, i) =>
+    Math.pow(2, i)
+  );
   const result = maxIndexArray.slice(2).reverse();
   return [0, ...result];
 };
