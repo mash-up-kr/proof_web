@@ -84,14 +84,8 @@ const Result = ({ drinkId, mode }: Props) => {
       )}
       {isDrinkDetailBottomSheetOpened && (
         <DrinkInfoBottomSheet
-          drinkCardIcon="typeA"
-          drinkName={winnerDrink.name}
-          drinkInformation={winnerDrink.info}
-          drinkMetaData={{
-            abv: winnerDrink.abv,
-            categoryName: winnerDrink.category,
-            origin: winnerDrink.origin,
-          }}
+          drinkCardIcon="winner"
+          selectedDrink={winnerDrink}
           onClose={() => setIsDrinkDetailBottomSheetOpened(false)}
         />
       )}
