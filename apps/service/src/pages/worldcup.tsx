@@ -10,8 +10,10 @@ import { worldCupState as recoilWorldCupState } from "../store";
 import { isWinnerSelectRound } from "../utils";
 
 const WorldCup = () => {
-  const [selectedDrink, setSelectedDrink] = React.useState<DrinkWithRound | null>(null);
-  const [drinkToReadMore, setDrinkToReadMore] = React.useState<DrinkWithRound | null>(null);
+  const [selectedDrink, setSelectedDrink] =
+    React.useState<DrinkWithRound | null>(null);
+  const [drinkToReadMore, setDrinkToReadMore] =
+    React.useState<DrinkWithRound | null>(null);
   const [isBottomSheetOpened, setBottomSheetOpened] = React.useState(false);
   const [worldCupState, setWorldCupState] = useRecoilState(recoilWorldCupState);
   const navigate = useNavigate();
@@ -34,7 +36,7 @@ const WorldCup = () => {
     updateToNextRoundState(selectedDrink?.id!);
     if (isWinnerSelectRound(currentRound)) {
       // 우승자인 경우, 결과 페이지로 이동한다.
-      navigate.push("/result");
+      navigate.push(`/result/view/${selectedDrink?.id}`);
     }
     setSelectedDrink(null);
   };
@@ -59,7 +61,9 @@ const WorldCup = () => {
       {isBottomSheetOpened && drinkToReadMore && (
         <DrinkInfoBottomSheet
           selectedDrink={drinkToReadMore}
-          drinkCardIcon={candidateDrinks[0].id === drinkToReadMore.id ? "typeA" : "typeB"}
+          drinkCardIcon={
+            candidateDrinks[0].id === drinkToReadMore.id ? "typeA" : "typeB"
+          }
           onClose={() => setBottomSheetOpened(false)}
         />
       )}
