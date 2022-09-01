@@ -3,6 +3,7 @@ import { Text } from "design-system";
 import * as React from "react";
 import { GetServerSidePropsContext } from "next";
 import { useRecoilState } from "recoil";
+import Head from "next/head";
 import {
   Header,
   InstallAppBottomSheet,
@@ -78,6 +79,17 @@ const Result = ({ drinkId, mode }: Props) => {
 
   return (
     <>
+      <Head>
+        <meta
+          property="og:title"
+          content="매력적인 술꾼! 당신의 술 취향을 증명할 수 있도록 초대장이 도착했어요."
+          key="proof"
+        />
+        <meta
+          property="og:image"
+          content="https://zuzu-resource.s3.ap-northeast-2.amazonaws.com/proof_logo.png"
+        />
+      </Head>
       {!webView && isInstallAppBottomSheetOpened && (
         <InstallAppBottomSheet
           onClose={() => setIsInstallAppBottomSheetOpened(false)}
@@ -120,7 +132,7 @@ const Result = ({ drinkId, mode }: Props) => {
         webView={webView}
       />
       {!shared && worldCupState.drinks.length !== 0 && (
-        <Rankings round={worldCupState.totalRound} />
+        <Rankings round={worldCupState.totalRound} winnerId={drink?.id} />
       )}
     </>
   );
