@@ -1,6 +1,7 @@
 import { Url } from "url";
 import { useRouter } from "next/router";
 import { useMemo } from "react";
+import { closeWebView } from "../utils/native/action";
 
 const useNavigate = () => {
   const router = useRouter();
@@ -17,7 +18,7 @@ const useNavigate = () => {
         router.replace(pathname, as, options);
       },
       toNativeHome: () => {
-        // TODO: 네이티브 home으로 이동
+        closeWebView({}, {});
       },
       toPlayStore: () => {
         // TODO: 앱 설치링크 이동
