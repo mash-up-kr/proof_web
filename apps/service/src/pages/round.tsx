@@ -2,44 +2,51 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Title } from "design-system";
 import * as React from "react";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
+import { useGetOneWorldCupInfoById } from "../api/query";
+import { WorldCupService } from "../api/service";
 import { Header } from "../components";
-import RoundCard, { Round } from "../components/RoundCard";
+import RoundCard from "../components/RoundCard";
 import { useNavigate } from "../hooks";
-import { worldCupState } from "../store";
-
-const dummyRound = [
-  { count: 8, title: "가볍게" },
-  { count: 16, title: "무난하게" },
-  { count: 32, title: "섬세하게" },
-] as Round[];
+import { worldCupState as recoilWorldCupState } from "../store";
+import { getDrinksWithRounds } from "../utils";
 
 const RoundPage = () => {
   const [isActives, setIsActives] = React.useState<boolean[]>(
-    new Array(dummyRound.length).fill(false)
+    new Array(3).fill(false)
   );
-  const [rounds, setRounds] = React.useState<Round[]>(dummyRound);
-  const setWorldCupState = useSetRecoilState(worldCupState);
+  const [worldCupState, setWorldCupState] = useRecoilState(recoilWorldCupState);
   const navigate = useNavigate();
+  const { data: worldCupInfo, isLoading } = useGetOneWorldCupInfoById(
+    worldCupState.worldCupId
+  );
 
-  const handleClickRound = (idx: number) => {
-    const nextIsActives = new Array(dummyRound.length).fill(false);
+  if (isLoading || worldCupInfo === undefined) {
+    return <div>Loading...</div>;
+  }
+  const rounds = worldCupInfo.round;
+
+  const handleClickRound = async (idx: number) => {
+    const nextIsActives = new Array(rounds.length).fill(false);
     nextIsActives[idx] = !isActives[idx];
     setIsActives(nextIsActives);
+
+    const round = rounds[idx].count;
+    const drinks = await WorldCupService.getDrinksByRound({
+      worldCupId: worldCupState.worldCupId,
+      round,
+    });
     setWorldCupState((prev) => ({
       ...prev,
-      totalRound: rounds[idx].count,
-      currentRound: rounds[idx].count,
+      title: worldCupInfo.title,
+      totalRound: round,
+      currentRound: round,
+      drinks: getDrinksWithRounds(drinks, round),
     }));
     navigate.push("/worldcup");
   };
 
   const handleClickHeaderPrevIcon = () => {
-    setWorldCupState((prev) => ({
-      ...prev,
-      totalRound: 0,
-      currentRound: 0,
-    }));
     navigate.back();
   };
 

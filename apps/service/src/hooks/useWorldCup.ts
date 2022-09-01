@@ -26,10 +26,12 @@ function getPrevDrinksState(prevDrinks: DrinkWithRound[], prevRound: number) {
   const updatedIndex = findLastIndex(nextDrinks, (drink: DrinkWithRound) =>
     drink.rounds.includes(prevRound / 2)
   );
-  nextDrinks[updatedIndex] = {
-    ...nextDrinks[updatedIndex],
-    rounds: [...nextDrinks[updatedIndex].rounds.slice(0, -1)],
-  };
+  if (updatedIndex !== -1) {
+    nextDrinks[updatedIndex] = {
+      ...nextDrinks[updatedIndex],
+      rounds: [...nextDrinks[updatedIndex].rounds.slice(0, -1)],
+    };
+  }
   return nextDrinks;
 }
 
@@ -56,12 +58,7 @@ const useWorldCup = () => {
   };
 
   const revertToPrevRoundState = () => {
-    const { drinks, currentRound, totalRound, currentIndex } = worldCupState;
-    // worldcup 처음 페이지라면 선택했던 경우가 있어도, round 페이지로 돌린다.
-    if (totalRound === currentRound && currentIndex === 0) {
-      navigate.back();
-      return;
-    }
+    const { drinks, currentRound, currentIndex } = worldCupState;
     // 기존에 1번이라도 선택했던 경우라면 마지막 인덱스의 주류카드 round를 선택하기 전 상태로 돌린다.
     const { round: prevRound, index: prevIndex } = getPrevRoundState({
       currentRound,

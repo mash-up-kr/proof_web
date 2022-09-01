@@ -1,17 +1,18 @@
 import styled from "@emotion/styled";
-import { BottomButton, Text, theme, Title } from "design-system";
+import { BottomButton, theme, Title } from "design-system";
 import * as React from "react";
 import { useRecoilState } from "recoil";
 import { Header } from "../components";
 import DrinkCard, { DrinkWithRound } from "../components/DrinkCard";
 import DrinkInfoBottomSheet from "../components/DrinkInfoBottomSheet";
-import { DRINK_CARDS } from "../dummy/drinkCards";
 import { useNavigate, useWorldCup } from "../hooks";
 import { worldCupState as recoilWorldCupState } from "../store";
 import { isWinnerSelectRound } from "../utils";
 
 const WorldCup = () => {
   const [selectedDrink, setSelectedDrink] =
+    React.useState<DrinkWithRound | null>(null);
+  const [drinkToReadMore, setDrinkToReadMore] =
     React.useState<DrinkWithRound | null>(null);
   const [isBottomSheetOpened, setBottomSheetOpened] = React.useState(false);
   const [worldCupState, setWorldCupState] = useRecoilState(recoilWorldCupState);
@@ -30,47 +31,39 @@ const WorldCup = () => {
   };
 
   const handleClickBottomButton = () => {
-    const { currentRound, drinks } = worldCupState;
+    const { currentRound } = worldCupState;
 
     updateToNextRoundState(selectedDrink?.id!);
-    setSelectedDrink(null);
-
     if (isWinnerSelectRound(currentRound)) {
       // 우승자인 경우, 결과 페이지로 이동한다.
       navigate.push(`/result/view/${selectedDrink?.id}`);
     }
+    setSelectedDrink(null);
   };
 
   const handleClickHeaderPrevButton = () => {
+    const { currentRound, totalRound, currentIndex } = worldCupState;
     revertToPrevRoundState();
-  };
-
-  React.useEffect(() => {
-    // FIXME: React-Query를 연동 후 해당 부분 변경해야 함
-    // 2인 경우는 월드컵 결과 페이지에서 뒤돌아갔을 때 임시 방편으로 업데이트 되는 것 막아놓기
-    if (worldCupState.currentRound !== 2) {
+    // worldcup 처음 페이지라면 선택했던 경우가 있어도, round 페이지로 돌린다.
+    if (totalRound === currentRound && currentIndex === 0) {
       setWorldCupState((prev) => ({
         ...prev,
-        drinks: DRINK_CARDS.map((drink) => ({
-          ...drink,
-          rounds: [prev.totalRound],
-        })),
+        currentRound: totalRound,
+        currentIndex: 0,
       }));
+      navigate.back();
+      return;
     }
-  }, []);
+  };
 
   return (
     <>
-      {isBottomSheetOpened && selectedDrink && (
+      {isBottomSheetOpened && drinkToReadMore && (
         <DrinkInfoBottomSheet
-          drinkCardIcon={"typeA"}
-          drinkName={selectedDrink.name}
-          drinkInformation={selectedDrink.info}
-          drinkMetaData={{
-            abv: selectedDrink.abv,
-            categoryName: selectedDrink.category,
-            origin: selectedDrink.origin,
-          }}
+          selectedDrink={drinkToReadMore}
+          drinkCardIcon={
+            candidateDrinks[0].id === drinkToReadMore.id ? "typeA" : "typeB"
+          }
           onClose={() => setBottomSheetOpened(false)}
         />
       )}
@@ -80,10 +73,7 @@ const WorldCup = () => {
           title={getTitle()}
           onClickIcon={handleClickHeaderPrevButton}
         />
-        <TitleWrapper
-          title={"비 오는 날씨엔 어떤 술이 더 끌리나요?"}
-          textAlign="center"
-        />
+        <TitleWrapper title={worldCupState.title} textAlign="center" />
         <CandidateWrapper>
           {candidateDrinks.map((drink, idx) => (
             <DrinkCard
@@ -93,7 +83,11 @@ const WorldCup = () => {
               isActive={selectedDrink === drink}
               iconType={idx === 0 ? "typeA" : "typeB"}
               onClick={() => handleDrinkCardClick(drink)}
-              onSearchIconClick={() => setBottomSheetOpened(true)}
+              onSearchIconClick={(e) => {
+                e.stopPropagation();
+                setDrinkToReadMore(drink);
+                setBottomSheetOpened(true);
+              }}
             />
           ))}
         </CandidateWrapper>
@@ -124,7 +118,7 @@ const Layout = styled.div`
 const TitleWrapper = styled(Title)`
   margin-top: 36px;
   margin-bottom: 62px;
-  margin-inline: 74px;
+  margin-inline: 40px;
 `;
 
 const CandidateWrapper = styled.div`

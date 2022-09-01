@@ -9,11 +9,16 @@ export const MIN_Y = 48;
 
 interface BottomSheetProps {
   headerProps?: React.ComponentProps<typeof BottomSheetHeader>;
+  contentProps?: React.ComponentProps<typeof BottomSheetContent>;
   fullHeight?: boolean;
 }
 
-function BottomSheet(props: PropsWithChildren<BottomSheetProps>): JSX.Element {
-  const { headerProps, fullHeight = true, children } = props;
+function BottomSheet({
+  headerProps,
+  contentProps,
+  children,
+  fullHeight = true,
+}: PropsWithChildren<BottomSheetProps>): JSX.Element {
   const { sheet, sheetHeader } = useBottomSheet();
 
   const [innerHeight, setInnerHeight] = useState("");
@@ -27,7 +32,7 @@ function BottomSheet(props: PropsWithChildren<BottomSheetProps>): JSX.Element {
       <BottomSheetHeader ref={sheetHeader} {...headerProps}>
         {headerProps && headerProps.children}
       </BottomSheetHeader>
-      <BottomSheetContent>{children}</BottomSheetContent>
+      <BottomSheetContent {...contentProps}>{children}</BottomSheetContent>
     </Wrapper>
   );
 }
@@ -60,7 +65,7 @@ const Wrapper = styled.div<{ height: string }>`
   animation: ${bottomToTop} 0.3s ease-in;
 `;
 
-const BottomSheetContent = styled.div`
+const BottomSheetContent = styled.div<React.ComponentProps<"div">>`
   overflow: auto;
   padding-bottom: 40px;
 

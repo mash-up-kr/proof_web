@@ -1,15 +1,16 @@
 import styled from "@emotion/styled";
 import { useSetRecoilState } from "recoil";
+import { WithWhoType } from "../../@types/api";
 import TitleWithContent from "../../components/TitleWithContent";
 import WithCard from "../../components/WithCard";
 import { useNavigate } from "../../hooks";
-import { WithWhoType, worldCupState } from "../../store";
+import { worldCupState } from "../../store";
 
 const INFOS = [
   {
     id: 1,
-    title: "혼자서 먹어요",
-    desc: "진리지는 혼술이에요",
+    title: "혼술은 진리지",
+    desc: "혼자서 먹어요",
     href: "/category/SOLO",
   },
   {

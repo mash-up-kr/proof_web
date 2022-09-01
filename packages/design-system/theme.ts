@@ -81,37 +81,44 @@ const fonts = {
   body1: css`
     letter-spacing: -0.018em;
     line-height: 1.6;
+    font-weight: 400;
     font-size: 20px;
   `,
   body2: css`
     letter-spacing: -0.018em;
     line-height: 1.6;
+    font-weight: 400;
     font-size: 16px;
   `,
   body3: css`
     letter-spacing: -0.018em;
     line-height: 1.6;
+    font-weight: 400;
     font-size: 14px;
   `,
   body4: css`
     letter-spacing: -0.018em;
     line-height: 1.6;
+    font-weight: 400;
     font-size: 13px;
   `,
 
   body5: css`
     letter-spacing: -0.018em;
     line-height: 1.6;
+    font-weight: 400;
     font-size: 12px;
   `,
   body6: css`
     letter-spacing: -0.018em;
     line-height: 1.6;
+    font-weight: 600;
     font-size: 11px;
   `,
   body7: css`
     letter-spacing: -0.018em;
     line-height: 1.6;
+    font-weight: 400;
     font-size: 10px;
   `,
 

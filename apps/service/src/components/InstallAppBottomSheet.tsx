@@ -28,7 +28,13 @@ function InstallAppBottomSheet({ onClose }: Props) {
           {"proof에서 지금 시작해요."}
         </Text>
         <Button fullWidth hierarchy={ButtonHierarchy.Primary}>
-          {"앱 설치하기"}
+          <Text
+            type="body2"
+            textAlign="center"
+            color={theme.colors.text.special}
+          >
+            {"앱 설치하기"}
+          </Text>
         </Button>
         <SkipText
           type="body3"

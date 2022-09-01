@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Button, ButtonHierarchy } from "design-system";
+import { Button, ButtonHierarchy, Text, theme } from "design-system";
 import React from "react";
 
 interface ShareButtonsProps extends React.ComponentProps<"div"> {
@@ -26,7 +26,13 @@ function ShareButtons({
           onClick={handleClickLeftButton}
           hierarchy={ButtonHierarchy.Secondary}
         >
-          확인
+          <Text
+            type={"body2"}
+            textAlign="center"
+            color={theme.colors.text.special}
+          >
+            확인
+          </Text>
         </Button>
       )}
       <Button
@@ -34,7 +40,13 @@ function ShareButtons({
         onClick={handleClickRightButton}
         hierarchy={ButtonHierarchy.Primary}
       >
-        {shared ? "나도 해보기" : "공유하기"}
+        <Text
+          type={"body2"}
+          textAlign="center"
+          color={theme.colors.text.special}
+        >
+          {shared ? "나도 해보기" : "공유하기"}
+        </Text>
       </Button>
     </Wrapper>
   );

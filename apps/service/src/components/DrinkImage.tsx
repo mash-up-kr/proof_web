@@ -35,12 +35,15 @@ function DrinkImage({
       <MainImage imgSrc={imgSrc} type={type} />
       <TypeIcon name={iconType} />
       {hasSearchIcon && (
-        <SearchIcon
-          width={12}
-          height={12}
-          name="search"
-          onClick={onSearchIconClick}
-        />
+        <>
+          <SearchIconBackground />
+          <SearchIcon
+            width={16}
+            height={16}
+            name="search"
+            onClick={onSearchIconClick}
+          />
+        </>
       )}
       {isActive && (
         <ActiveGradient>
@@ -50,7 +53,9 @@ function DrinkImage({
       {type === "winner" && (
         <VoteDescription>
           <Vote />
-          <Text type="body5">{select?.toLocaleString()}명이 선택했어요!</Text>
+          <Text type="body5">
+            {select?.toLocaleString() ?? 0}명이 선택했어요!
+          </Text>
         </VoteDescription>
       )}
     </Wrapper>
@@ -80,13 +85,22 @@ const TypeIcon = styled(Icon)`
 `;
 
 const SearchIcon = styled(Icon)`
-  padding: 6px;
+  position: absolute;
   z-index: ${theme.zIndex.cardOverlay};
+  right: 12px;
+  bottom: 12px;
+  transform: translate(-50%, -50%);
+`;
+
+const SearchIconBackground = styled.div`
+  width: 32px;
+  height: 32px;
+  border-radius: 15px;
   position: absolute;
   right: 12px;
   bottom: 12px;
-  border-radius: 15px;
   background-color: ${theme.palette.gray500};
+  z-index: ${theme.zIndex.cardOverlay};
   opacity: 0.7;
 `;
 
@@ -121,7 +135,7 @@ const MainImage = styled.div<{
   min-height: ${({ type }) => MIN_HEIGHT_BY_TYPE[type]};
   background-image: ${({ imgSrc }) =>
     `linear-gradient(180deg, rgba(56, 58, 77, 0) 74.84%, rgba(28, 28, 38, 0.6) 100%), url(${imgSrc})`};
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 8px;

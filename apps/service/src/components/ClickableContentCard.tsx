@@ -4,16 +4,16 @@ import React, { ComponentProps } from "react";
 
 interface Props extends ComponentProps<"button"> {
   title: string;
-  description: string;
+  content: string;
 }
 
-const ClickableContentCard = ({ title, description, ...restProps }: Props) => {
+const ClickableContentCard = ({ title, content, ...restProps }: Props) => {
   return (
     <Card hierarchy={ButtonHierarchy.Tertiary} {...restProps}>
       <Text color={theme.palette.purple100} type="body5">
         {title}
       </Text>
-      <Text type="h5">{description}</Text>
+      <Text type="h5">{content}</Text>
     </Card>
   );
 };
