@@ -50,15 +50,20 @@ function DrinkCard({
         hasSearchIcon={hasSearchIcon}
       />
       <DescriptionWrapper>
-        <Text type="body5" color={theme.colors.text.highlight}>
+        <BoldText type="body5" color={theme.colors.text.highlight}>
           {drink?.category}
-        </Text>
+        </BoldText>
         <Text type="body5" color={theme.colors.ui.divider}>
           |
         </Text>
-        <Text type="body5" color={theme.palette.purple50}>
-          Alc {drink?.abv}%
-        </Text>
+        <AlcWrapper>
+          <BoldText type="body5" color={theme.palette.purple50}>
+            Alc
+          </BoldText>
+          <Text type="body5" color={theme.palette.purple50}>
+            {drink?.abv}%
+          </Text>
+        </AlcWrapper>
       </DescriptionWrapper>
       <DrinkName display="-webkit-box" type="button1">
         {drink?.name}
@@ -90,6 +95,15 @@ const DrinkName = styled(Text)`
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-line-clamp: 2;
+`;
+
+const BoldText = styled(Text)`
+  font-weight: 600;
+`;
+
+const AlcWrapper = styled.span`
+  display: flex;
+  gap: 2px;
 `;
 
 export default DrinkCard;
