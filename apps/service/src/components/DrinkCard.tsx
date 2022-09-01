@@ -26,6 +26,7 @@ interface DrinkCardProps extends React.ComponentProps<"div"> {
   isActive?: boolean;
   isShowingTag?: boolean;
   hasSearchIcon?: boolean;
+  hasWinnerIcon?: boolean;
   select?: number;
   onSearchIconClick?: (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => void;
 }
@@ -37,6 +38,7 @@ function DrinkCard({
   isActive,
   isShowingTag = true,
   hasSearchIcon = true,
+  hasWinnerIcon,
   select = 1,
   onSearchIconClick,
   ...restProps
@@ -51,6 +53,7 @@ function DrinkCard({
         onSearchIconClick={onSearchIconClick}
         hasSearchIcon={hasSearchIcon}
         select={select}
+        hasWinnerIcon={hasWinnerIcon}
       />
       <DescriptionWrapper>
         <BoldText type="body5" color={theme.colors.text.highlight}>
