@@ -103,7 +103,17 @@ const Result = ({ drinkId, mode }: Props) => {
         drink={winnerDrink ?? DRINK_CARDS[3]}
         handleClickSearchIcon={() => setIsDrinkDetailBottomSheetOpened(true)}
       />
-      <ShareButtons handleClickRightButton={handleShare} shared={shared} />
+      <ShareButtons
+        handleClickLeftButton={() => {
+          if (userAgent?.isAndroidWebView) {
+            navigate.toNativeHome();
+          } else {
+            navigate.push("/");
+          }
+        }}
+        handleClickRightButton={handleShare}
+        shared={shared}
+      />
       {!shared && worldCupState.drinks.length !== 0 && (
         <Rankings round={worldCupState.totalRound} />
       )}
