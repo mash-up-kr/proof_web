@@ -4,6 +4,7 @@ import DrinkCard, { Drink } from "./DrinkCard";
 
 interface WinnerCardProps extends React.ComponentProps<"div"> {
   drink: Drink;
+  select: number;
   handleClickSearchIcon?: (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => void;
@@ -12,6 +13,7 @@ interface WinnerCardProps extends React.ComponentProps<"div"> {
 function WinnerCard({
   drink,
   handleClickSearchIcon,
+  select = 1,
   ...restProps
 }: WinnerCardProps) {
   return (
@@ -22,6 +24,7 @@ function WinnerCard({
         iconType="winner"
         drink={drink}
         onSearchIconClick={handleClickSearchIcon}
+        select={select}
       />
     </Wrapper>
   );

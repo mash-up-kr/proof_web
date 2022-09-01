@@ -32,6 +32,11 @@ function InstallAppBottomSheet({ onClose }: Props) {
             type="body2"
             textAlign="center"
             color={theme.colors.text.special}
+            onClick={() =>
+              window.open(
+                "https://play.google.com/store/apps/details?id=com.mashup.zuzu"
+              )
+            }
           >
             {"앱 설치하기"}
           </Text>
