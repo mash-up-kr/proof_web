@@ -19,7 +19,7 @@ const Type = ({ withWho }: Props) => {
     useGetWorldCupInfosByCategorizingWithWho();
 
   if (isLoading || worldcups === undefined) {
-    return <div>Loading...</div>;
+    return null;
   }
   const worldCupSituations = worldcups[withWho].map((v) => ({
     situation: v.situation,

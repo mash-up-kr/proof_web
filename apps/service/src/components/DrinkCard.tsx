@@ -23,9 +23,11 @@ interface DrinkCardProps extends React.ComponentProps<"div"> {
   type: DrinkCardType;
   drink: Drink;
   iconType: IconName;
+  tags: string[];
   isActive?: boolean;
   isShowingTag?: boolean;
   hasSearchIcon?: boolean;
+  onImageClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   onSearchIconClick?: (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => void;
 }
 
@@ -34,8 +36,10 @@ function DrinkCard({
   drink,
   iconType,
   isActive,
+  tags,
   isShowingTag = true,
   hasSearchIcon = true,
+  onImageClick,
   onSearchIconClick,
   ...restProps
 }: DrinkCardProps) {
@@ -46,6 +50,7 @@ function DrinkCard({
         type={type}
         iconType={iconType}
         isActive={isActive}
+        onImageClick={onImageClick}
         onSearchIconClick={onSearchIconClick}
         hasSearchIcon={hasSearchIcon}
       />
@@ -68,9 +73,7 @@ function DrinkCard({
       <DrinkName display="-webkit-box" type="button1">
         {drink?.name}
       </DrinkName>
-      {isShowingTag && (
-        <Tag tags={["대낮에", "한밤에", "친구와", "연인과"]} shorten />
-      )}
+      {isShowingTag && <Tag tags={tags} shorten />}
     </Wrapper>
   );
 }
@@ -89,7 +92,7 @@ const DescriptionWrapper = styled.div`
 const DrinkName = styled(Text)`
   margin: 8px auto;
   word-break: keep-all;
-  min-height: 44px;
+  min-height: 44.8px;
 
   -webkit-box-orient: vertical;
   overflow: hidden;

@@ -2,6 +2,8 @@ import styled from "@emotion/styled";
 import { BottomButton, theme, Title } from "design-system";
 import * as React from "react";
 import { useRecoilState } from "recoil";
+import { DrinkEvaluationDto } from "../@types/api/drinkEvaluation";
+import { useGetDrinksEvaluationById } from "../api/query";
 import { Header } from "../components";
 import DrinkCard, { DrinkWithRound } from "../components/DrinkCard";
 import DrinkInfoBottomSheet from "../components/DrinkInfoBottomSheet";
@@ -14,6 +16,8 @@ const WorldCup = () => {
     React.useState<DrinkWithRound | null>(null);
   const [drinkToReadMore, setDrinkToReadMore] =
     React.useState<DrinkWithRound | null>(null);
+  const [evaluationToReadMore, setEvaluationToReadMore] =
+    React.useState<DrinkEvaluationDto | null>(null);
   const [isBottomSheetOpened, setBottomSheetOpened] = React.useState(false);
   const [worldCupState, setWorldCupState] = useRecoilState(recoilWorldCupState);
   const navigate = useNavigate();
@@ -24,6 +28,12 @@ const WorldCup = () => {
     getTitle,
   } = useWorldCup();
   const candidateDrinks = getCurrentCandidate();
+  const candidateDrinksEvaluation = useGetDrinksEvaluationById(candidateDrinks);
+  if (
+    candidateDrinksEvaluation.some((r) => r.isLoading) ||
+    candidateDrinksEvaluation.some((r) => r.data === undefined)
+  )
+    return null;
 
   const handleDrinkCardClick = (drink: DrinkWithRound) => {
     if (drink === selectedDrink) setSelectedDrink(null);
@@ -61,6 +71,7 @@ const WorldCup = () => {
       {isBottomSheetOpened && drinkToReadMore && (
         <DrinkInfoBottomSheet
           selectedDrink={drinkToReadMore}
+          evaluation={evaluationToReadMore as DrinkEvaluationDto}
           drinkCardIcon={
             candidateDrinks[0].id === drinkToReadMore.id ? "typeA" : "typeB"
           }
@@ -82,10 +93,17 @@ const WorldCup = () => {
               drink={drink}
               isActive={selectedDrink === drink}
               iconType={idx === 0 ? "typeA" : "typeB"}
-              onClick={() => handleDrinkCardClick(drink)}
+              onImageClick={() => handleDrinkCardClick(drink)}
+              tags={
+                candidateDrinksEvaluation[idx].data?.result
+                  ?.situation as string[]
+              }
               onSearchIconClick={(e) => {
                 e.stopPropagation();
                 setDrinkToReadMore(drink);
+                setEvaluationToReadMore(
+                  candidateDrinksEvaluation[idx].data as DrinkEvaluationDto
+                );
                 setBottomSheetOpened(true);
               }}
             />

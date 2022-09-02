@@ -17,6 +17,8 @@ import { useNavigate, useUserAgent, useWorldCup } from "../../../hooks";
 import DrinkInfoBottomSheet from "../../../components/DrinkInfoBottomSheet";
 import { DrinkWithRound } from "../../../components/DrinkCard";
 import { worldCupState as state } from "../../../store";
+import { useGetDrinkEvaluationById } from "../../../api/query";
+import { DrinkEvaluationDto } from "../../../@types/api/drinkEvaluation";
 
 const BASE_URL = `https://zuzu-web.vercel.app`;
 
@@ -41,6 +43,9 @@ const Result = ({ drinkId, mode }: Props) => {
   const [isDrinkDetailBottomSheetOpened, setIsDrinkDetailBottomSheetOpened] =
     React.useState(false);
 
+  const { data: winnerDrinkEvaluation } = useGetDrinkEvaluationById(
+    winnerDrink.id
+  );
   const shared = mode === "shared";
 
   React.useEffect(() => {
@@ -86,6 +91,7 @@ const Result = ({ drinkId, mode }: Props) => {
         <DrinkInfoBottomSheet
           drinkCardIcon="winner"
           selectedDrink={winnerDrink}
+          evaluation={winnerDrinkEvaluation as DrinkEvaluationDto}
           onClose={() => setIsDrinkDetailBottomSheetOpened(false)}
         />
       )}
@@ -101,6 +107,7 @@ const Result = ({ drinkId, mode }: Props) => {
       </Title>
       <WinnerCard
         drink={winnerDrink ?? DRINK_CARDS[3]}
+        tags={winnerDrinkEvaluation?.result?.situation as string[]}
         handleClickSearchIcon={() => setIsDrinkDetailBottomSheetOpened(true)}
       />
       <ShareButtons
