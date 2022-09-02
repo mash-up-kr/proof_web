@@ -39,7 +39,7 @@ const Result = ({ drinkId, mode }: Props) => {
   const [worldCupState] = useRecoilState(state);
 
   const shared = mode === "shared";
-  const webView = userAgent?.isAndroidWebView;
+  const androidWebView = userAgent?.isAndroidWebView;
 
   const [isInstallAppBottomSheetOpened, setIsInstallAppBottomSheetOpened] =
     React.useState<boolean>(false);
@@ -71,9 +71,7 @@ const Result = ({ drinkId, mode }: Props) => {
   };
 
   const handleShare = async () => {
-    alert("handleShare init");
-    if (webView) {
-      alert("webView");
+    if (androidWebView) {
       nativeShare(
         { url: `${BASE_URL}/result/shared/${drinkId}` },
         function (result_cd: any, result_msg: any, extra: any) {
@@ -81,9 +79,7 @@ const Result = ({ drinkId, mode }: Props) => {
         }
       );
     } else {
-      alert("handleShare else");
       const result = await share(dataToShare);
-      alert(result);
       if (result === "copiedToClipboard") {
         alert("링크를 클립보드에 복사했습니다.");
       } else if (result === "failed") {
@@ -107,7 +103,7 @@ const Result = ({ drinkId, mode }: Props) => {
           content="https://zuzu-resource.s3.ap-northeast-2.amazonaws.com/proof_logo.png"
         />
       </Head>
-      {!webView && isInstallAppBottomSheetOpened && (
+      {!androidWebView && isInstallAppBottomSheetOpened && (
         <InstallAppBottomSheet
           onClose={() => setIsInstallAppBottomSheetOpened(false)}
         />
@@ -143,11 +139,7 @@ const Result = ({ drinkId, mode }: Props) => {
       />
       <ShareButtons
         handleClickLeftButton={() => {
-          alert("handleClickLeftButton");
-
-          if (webView) {
-            alert("webView");
-
+          if (androidWebView) {
             navigate.toNativeHome();
           } else {
             navigate.push("/");
@@ -156,7 +148,7 @@ const Result = ({ drinkId, mode }: Props) => {
         }}
         handleClickRightButton={handleShare}
         shared={shared}
-        webView={webView}
+        webView={androidWebView}
       />
       {!shared && worldCupState.drinks.length !== 0 && (
         <Rankings round={worldCupState.totalRound} winnerId={drink?.id} />
