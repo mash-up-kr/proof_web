@@ -28,12 +28,14 @@ export const isClipboardCommandSupported = () =>
 export const copyToClipboard = (text: string) => {
   return new Promise<boolean>(async (resolve) => {
     const rootElement = document.body;
-    alert("copyToClipboard");
 
+    alert("copyToClipboard");
+    alert(navigator?.clipboard);
     if (isClipboardSupported()) {
       alert("copyToClipboard isClipboardSupported");
 
       await navigator.clipboard.writeText(text);
+
       resolve(true);
       return;
     }
