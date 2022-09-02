@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { Text } from "design-system";
 import * as React from "react";
-import { useRouter } from "next/router";
 import { GetServerSidePropsContext } from "next";
 import { useRecoilState } from "recoil";
 import {
@@ -10,14 +9,15 @@ import {
   Rankings,
   ShareButtons,
 } from "../../../components";
-import { DRINK_CARDS } from "../../../dummy/drinkCards";
 import WinnerCard from "../../../components/WinnerCard";
 import share from "../../../utils/share";
 import { useNavigate, useUserAgent, useWorldCup } from "../../../hooks";
 import DrinkInfoBottomSheet from "../../../components/DrinkInfoBottomSheet";
-import { DrinkWithRound } from "../../../components/DrinkCard";
 import { worldCupState as state } from "../../../store";
-import { useGetDrinkEvaluationById } from "../../../api/query";
+import {
+  useGetDrinkEvaluationById,
+  useGetDrinkInfoById,
+} from "../../../api/query";
 import { DrinkEvaluationDto } from "../../../@types/api/drinkEvaluation";
 
 const BASE_URL = `https://zuzu-web.vercel.app`;
@@ -28,31 +28,27 @@ interface Props {
 }
 
 const Result = ({ drinkId, mode }: Props) => {
-  const router = useRouter();
   const navigate = useNavigate();
   const { userAgent } = useUserAgent();
-  const { getWinnerDrink, revertToPrevRoundState } = useWorldCup();
+  const { revertToPrevRoundState } = useWorldCup();
+  const result = useGetDrinkInfoById(Number(drinkId));
 
   const [worldCupState] = useRecoilState(state);
 
+  const shared = mode === "shared";
+  const webView = userAgent?.isAndroidWebView;
+  const drink = result.data;
+
   const [isInstallAppBottomSheetOpened, setIsInstallAppBottomSheetOpened] =
     React.useState<boolean>(false);
-  const [winnerDrink, setWinnerDrink] = React.useState<DrinkWithRound>(
-    DRINK_CARDS[2] as DrinkWithRound
-  );
   const [isDrinkDetailBottomSheetOpened, setIsDrinkDetailBottomSheetOpened] =
     React.useState(false);
 
   const { data: winnerDrinkEvaluation } = useGetDrinkEvaluationById(
-    winnerDrink.id
+    drink?.id ?? 1
   );
-  const shared = mode === "shared";
 
   React.useEffect(() => {
-    const winnerDrink = getWinnerDrink();
-    if (winnerDrink) {
-      setWinnerDrink(winnerDrink);
-    }
     let timer = setTimeout(() => setIsInstallAppBottomSheetOpened(true), 1000);
     return () => {
       clearTimeout(timer);
@@ -82,7 +78,7 @@ const Result = ({ drinkId, mode }: Props) => {
 
   return (
     <>
-      {!userAgent?.isAndroidWebView && isInstallAppBottomSheetOpened && (
+      {!webView && isInstallAppBottomSheetOpened && (
         <InstallAppBottomSheet
           onClose={() => setIsInstallAppBottomSheetOpened(false)}
         />
@@ -90,8 +86,8 @@ const Result = ({ drinkId, mode }: Props) => {
       {isDrinkDetailBottomSheetOpened && (
         <DrinkInfoBottomSheet
           drinkCardIcon="winner"
-          selectedDrink={winnerDrink}
           evaluation={winnerDrinkEvaluation as DrinkEvaluationDto}
+          selectedDrink={drink}
           onClose={() => setIsDrinkDetailBottomSheetOpened(false)}
         />
       )}
@@ -106,13 +102,14 @@ const Result = ({ drinkId, mode }: Props) => {
         </Text>
       </Title>
       <WinnerCard
-        drink={winnerDrink ?? DRINK_CARDS[3]}
         tags={winnerDrinkEvaluation?.result?.situation as string[]}
+        drink={drink}
         handleClickSearchIcon={() => setIsDrinkDetailBottomSheetOpened(true)}
+        select={drink?.worldcupWinCount ?? 1}
       />
       <ShareButtons
         handleClickLeftButton={() => {
-          if (userAgent?.isAndroidWebView) {
+          if (webView) {
             navigate.toNativeHome();
           } else {
             navigate.push("/");
@@ -120,6 +117,7 @@ const Result = ({ drinkId, mode }: Props) => {
         }}
         handleClickRightButton={handleShare}
         shared={shared}
+        webView={webView}
       />
       {!shared && worldCupState.drinks.length !== 0 && (
         <Rankings round={worldCupState.totalRound} />
