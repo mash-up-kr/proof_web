@@ -5,12 +5,12 @@ import { IconName } from "design-system/components/Icon";
 import DrinkInfoBottomSheetHeader from "./DrinkInfoBottomSheetHeader";
 import DrinkMetaData from "./DrinkMetaData";
 import CompetitionBar from "./CompetitionBar";
-import { DrinkWithRound } from "./DrinkCard";
 import { useGetDrinkInfoById } from "../api/query";
 import { DrinkEvaluationDto } from "../@types/api/drinkEvaluation";
+import { DrinkDto } from "../@types/api";
 
 interface DrinkInfoBottomSheetProps {
-  selectedDrink: DrinkWithRound;
+  selectedDrink: DrinkDto;
   evaluation: DrinkEvaluationDto;
   drinkCardIcon: IconName;
   onClose(): void;

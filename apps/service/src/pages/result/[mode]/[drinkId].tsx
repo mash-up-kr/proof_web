@@ -34,13 +34,12 @@ const Result = ({ drinkId, mode }: Props) => {
   const navigate = useNavigate();
   const { userAgent } = useUserAgent();
   const { revertToPrevRoundState } = useWorldCup();
-  const result = useGetDrinkInfoById(Number(drinkId));
+  const { isLoading, data: drink } = useGetDrinkInfoById(Number(drinkId));
 
   const [worldCupState] = useRecoilState(state);
 
   const shared = mode === "shared";
   const webView = userAgent?.isAndroidWebView;
-  const drink = result.data;
 
   const [isInstallAppBottomSheetOpened, setIsInstallAppBottomSheetOpened] =
     React.useState<boolean>(false);
@@ -57,6 +56,7 @@ const Result = ({ drinkId, mode }: Props) => {
       clearTimeout(timer);
     };
   }, []);
+  if (isLoading) return null;
 
   // TODO: native임에 따라서 연동필요
   const handleClickHeaderPrevIcon = () => {
@@ -113,7 +113,7 @@ const Result = ({ drinkId, mode }: Props) => {
           <DrinkInfoBottomSheet
             drinkCardIcon="winner"
             evaluation={winnerDrinkEvaluation as DrinkEvaluationDto}
-            selectedDrink={drink}
+            selectedDrink={drink!}
             onClose={() => setIsDrinkDetailBottomSheetOpened(false)}
           />
         )}
@@ -129,7 +129,7 @@ const Result = ({ drinkId, mode }: Props) => {
         </Title>
         <WinnerCard
           tags={winnerDrinkEvaluation?.result?.situation as string[]}
-          drink={drink}
+          drink={drink!}
           handleClickSearchIcon={() => {
             // track("Tap Detail", {
             //   type: "winner",
@@ -161,21 +161,22 @@ const Result = ({ drinkId, mode }: Props) => {
       </>
     );
   };
-
-  const Title = styled.div`
-    padding-top: 36px;
-    padding-inline: 24px;
-  `;
-
-  export async function getServerSideProps({
-    query,
-  }: GetServerSidePropsContext<{ drinkId: string; mode: string }>) {
-    return {
-      props: {
-        drinkId: query?.drinkId,
-        mode: query?.mode,
-      },
-    };
-  }
 };
+
+const Title = styled.div`
+  padding-top: 36px;
+  padding-inline: 24px;
+`;
+
+export async function getServerSideProps({
+  query,
+}: GetServerSidePropsContext<{ drinkId: string; mode: string }>) {
+  return {
+    props: {
+      drinkId: query?.drinkId,
+      mode: query?.mode,
+    },
+  };
+}
+
 export default Result;

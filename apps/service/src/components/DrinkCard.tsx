@@ -2,28 +2,20 @@ import styled from "@emotion/styled";
 import { theme, Text, Tag } from "design-system";
 import { IconName } from "design-system/components/Icon";
 import React from "react";
+import { DrinkDto } from "../@types/api";
 import DrinkImage from "./DrinkImage";
 
 export type DrinkCardType = "round" | "winner" | "ranking";
-export interface Drink {
-  id: number;
-  name: string;
-  abv: number;
-  imageUrl: string;
-  origin: string;
-  info: string;
-  category: string;
-}
 
-export interface DrinkWithRound extends Drink {
+export interface DrinkWithRound extends DrinkDto {
   rounds: number[];
 }
 
 interface DrinkCardProps extends React.ComponentProps<"div"> {
   type: DrinkCardType;
-  drink: Drink;
+  drink: DrinkDto;
   iconType: IconName;
-  tags: string[];
+  tags?: string[];
   isActive?: boolean;
   isShowingTag?: boolean;
   hasSearchIcon?: boolean;
@@ -38,7 +30,7 @@ function DrinkCard({
   drink,
   iconType,
   isActive,
-  tags,
+  tags = [],
   isShowingTag = true,
   hasSearchIcon = true,
   onImageClick,

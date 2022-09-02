@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
 import React from "react";
-import DrinkCard, { Drink } from "./DrinkCard";
+import { DrinkDto } from "../@types/api";
+import DrinkCard from "./DrinkCard";
 
 interface WinnerCardProps extends React.ComponentProps<"div"> {
-  drink: Drink;
+  drink: DrinkDto;
   tags: string[];
   select: number;
   handleClickSearchIcon?: (
