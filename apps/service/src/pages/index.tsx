@@ -1,21 +1,35 @@
 import styled from "@emotion/styled";
 import { BottomButton, Title } from "design-system";
-import { NextPage } from "next";
 import Head from "next/head";
 import * as React from "react";
-import { track } from "@amplitude/analytics-browser";
+import { useSetRecoilState } from "recoil";
+// import { track } from "@amplitude/analytics-browser";
 import { Header } from "../components";
 import { useNavigate } from "../hooks";
+import { worldCupState } from "../store";
+import { getProofAccessToken } from "../utils/native/action";
 
-const Home: NextPage = () => {
+const Home = () => {
   const navigate = useNavigate();
+  const setWorldCupState = useSetRecoilState(worldCupState);
+
+  // React.useEffect(() => {
+  //   track("Worldcup Flow Start");
+  // }, []);
 
   React.useEffect(() => {
-    track("Worldcup Flow Start");
-  }, []);
+    (async () => {
+      if (typeof window !== "undefined") {
+        window.localStorage.clear();
+      }
+      getProofAccessToken().then((token) => {
+        setWorldCupState((prev) => ({ ...prev, token }));
+      });
+    })();
+  }, [setWorldCupState]);
 
   const handleClickNext = () => {
-    track("Tap Start");
+    // track("Tap Start");
     navigate.push("/category");
   };
 
@@ -32,6 +46,7 @@ const Home: NextPage = () => {
           content="https://zuzu-resource.s3.ap-northeast-2.amazonaws.com/proof_logo.png"
         />
       </Head>
+
       <Wrapper>
         <Header type="logo" onClickIcon={navigate.toNativeHome} />
         <MainTitle

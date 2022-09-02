@@ -4,7 +4,7 @@ import * as React from "react";
 import { GetServerSidePropsContext } from "next";
 import { useRecoilState } from "recoil";
 import Head from "next/head";
-import { track } from "@amplitude/analytics-browser";
+// import { track } from "@amplitude/analytics-browser";
 import {
   Header,
   InstallAppBottomSheet,
@@ -21,6 +21,7 @@ import {
   useGetDrinkInfoById,
 } from "../../../api/query";
 import { DrinkEvaluationDto } from "../../../@types/api/drinkEvaluation";
+import { nativeShare } from "../../../utils/native/action";
 
 const BASE_URL = `https://zuzu-web.vercel.app`;
 
@@ -70,96 +71,111 @@ const Result = ({ drinkId, mode }: Props) => {
   };
 
   const handleShare = async () => {
-    const result = await share(dataToShare);
-    if (result === "copiedToClipboard") {
-      alert("링크를 클립보드에 복사했습니다.");
-    } else if (result === "failed") {
-      alert("공유하기가 지원되지 않는 환경입니다.");
+    alert("handleShare init");
+    if (webView) {
+      alert("webView");
+      nativeShare(
+        { url: `${BASE_URL}/result/shared/${drinkId}` },
+        function (result_cd: any, result_msg: any, extra: any) {
+          console.log(result_cd + result_msg + JSON.stringify(extra));
+        }
+      );
+    } else {
+      const result = await share(dataToShare);
+      if (result === "copiedToClipboard") {
+        alert("링크를 클립보드에 복사했습니다.");
+      } else if (result === "failed") {
+        alert("공유하기가 지원되지 않는 환경입니다.");
+      }
+      // track(shared ? "Tap Try By Share" : "Tap Share");
+      // }
     }
-    track(shared ? "Tap Try By Share" : "Tap Share");
+
+    return (
+      <>
+        <Head>
+          <meta
+            property="og:title"
+            content="매력적인 술꾼! 당신의 술 취향을 증명할 수 있도록 초대장이 도착했어요."
+            key="proof"
+          />
+          <meta
+            property="og:image"
+            content="https://zuzu-resource.s3.ap-northeast-2.amazonaws.com/proof_logo.png"
+          />
+        </Head>
+        {!webView && isInstallAppBottomSheetOpened && (
+          <InstallAppBottomSheet
+            onClose={() => setIsInstallAppBottomSheetOpened(false)}
+          />
+        )}
+        {isDrinkDetailBottomSheetOpened && (
+          <DrinkInfoBottomSheet
+            drinkCardIcon="winner"
+            evaluation={winnerDrinkEvaluation as DrinkEvaluationDto}
+            selectedDrink={drink}
+            onClose={() => setIsDrinkDetailBottomSheetOpened(false)}
+          />
+        )}
+        <Header
+          type="prev"
+          title="결과"
+          onClickIcon={handleClickHeaderPrevIcon}
+        />
+        <Title>
+          <Text type="h1" textAlign="center">
+            {`${shared ? "친구" : "내"}가 선택한 최고의 술`}
+          </Text>
+        </Title>
+        <WinnerCard
+          tags={winnerDrinkEvaluation?.result?.situation as string[]}
+          drink={drink}
+          handleClickSearchIcon={() => {
+            // track("Tap Detail", {
+            //   type: "winner",
+            // });
+            setIsDrinkDetailBottomSheetOpened(true);
+          }}
+          select={drink?.worldcupWinCount ?? 1}
+        />
+        <ShareButtons
+          handleClickLeftButton={() => {
+            alert("handleClickLeftButton");
+
+            if (webView) {
+              alert("webView");
+
+              navigate.toNativeHome();
+            } else {
+              navigate.push("/");
+              // track("Tap Restart");
+            }
+          }}
+          handleClickRightButton={handleShare}
+          shared={shared}
+          webView={webView}
+        />
+        {!shared && worldCupState.drinks.length !== 0 && (
+          <Rankings round={worldCupState.totalRound} winnerId={drink?.id} />
+        )}
+      </>
+    );
   };
 
-  return (
-    <>
-      <Head>
-        <meta
-          property="og:title"
-          content="매력적인 술꾼! 당신의 술 취향을 증명할 수 있도록 초대장이 도착했어요."
-          key="proof"
-        />
-        <meta
-          property="og:image"
-          content="https://zuzu-resource.s3.ap-northeast-2.amazonaws.com/proof_logo.png"
-        />
-      </Head>
-      {!webView && isInstallAppBottomSheetOpened && (
-        <InstallAppBottomSheet
-          onClose={() => setIsInstallAppBottomSheetOpened(false)}
-        />
-      )}
-      {isDrinkDetailBottomSheetOpened && (
-        <DrinkInfoBottomSheet
-          drinkCardIcon="winner"
-          evaluation={winnerDrinkEvaluation as DrinkEvaluationDto}
-          selectedDrink={drink}
-          onClose={() => setIsDrinkDetailBottomSheetOpened(false)}
-        />
-      )}
-      <Header
-        type="prev"
-        title="결과"
-        onClickIcon={handleClickHeaderPrevIcon}
-      />
-      <Title>
-        <Text type="h1" textAlign="center">
-          {`${shared ? "친구" : "내"}가 선택한 최고의 술`}
-        </Text>
-      </Title>
-      <WinnerCard
-        tags={winnerDrinkEvaluation?.result?.situation as string[]}
-        drink={drink}
-        handleClickSearchIcon={() => {
-          track("Tap Detail", {
-            type: "winner",
-          });
-          setIsDrinkDetailBottomSheetOpened(true);
-        }}
-        select={drink?.worldcupWinCount ?? 1}
-      />
-      <ShareButtons
-        handleClickLeftButton={() => {
-          if (webView) {
-            navigate.toNativeHome();
-          } else {
-            navigate.push("/");
-            track("Tap Restart");
-          }
-        }}
-        handleClickRightButton={handleShare}
-        shared={shared}
-        webView={webView}
-      />
-      {!shared && worldCupState.drinks.length !== 0 && (
-        <Rankings round={worldCupState.totalRound} winnerId={drink?.id} />
-      )}
-    </>
-  );
+  const Title = styled.div`
+    padding-top: 36px;
+    padding-inline: 24px;
+  `;
+
+  export async function getServerSideProps({
+    query,
+  }: GetServerSidePropsContext<{ drinkId: string; mode: string }>) {
+    return {
+      props: {
+        drinkId: query?.drinkId,
+        mode: query?.mode,
+      },
+    };
+  }
 };
-
-const Title = styled.div`
-  padding-top: 36px;
-  padding-inline: 24px;
-`;
-
-export async function getServerSideProps({
-  query,
-}: GetServerSidePropsContext<{ drinkId: string; mode: string }>) {
-  return {
-    props: {
-      drinkId: query?.drinkId,
-      mode: query?.mode,
-    },
-  };
-}
-
 export default Result;

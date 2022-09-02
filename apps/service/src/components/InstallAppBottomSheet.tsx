@@ -7,7 +7,7 @@ import {
   Button,
   ButtonHierarchy,
 } from "design-system";
-import { track } from "@amplitude/analytics-browser";
+// import { track } from "@amplitude/analytics-browser";
 
 interface Props {
   onClose(): void;
@@ -34,7 +34,7 @@ function InstallAppBottomSheet({ onClose }: Props) {
             textAlign="center"
             color={theme.colors.text.special}
             onClick={() => {
-              track("Tap Install");
+              // track("Tap Install");
               window.open(
                 "https://play.google.com/store/apps/details?id=com.mashup.zuzu"
               );

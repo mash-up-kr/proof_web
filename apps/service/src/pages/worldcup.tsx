@@ -1,10 +1,11 @@
-import { track } from "@amplitude/analytics-browser";
+// import { track } from "@amplitude/analytics-browser";
 import styled from "@emotion/styled";
 import { BottomButton, theme, Title } from "design-system";
 import * as React from "react";
 import { useRecoilState } from "recoil";
 import { DrinkEvaluationDto } from "../@types/api/drinkEvaluation";
 import { useGetDrinksEvaluationById } from "../api/query";
+import { WorldCupService } from "../api/service";
 import { Header } from "../components";
 import DrinkCard, { DrinkWithRound } from "../components/DrinkCard";
 import DrinkInfoBottomSheet from "../components/DrinkInfoBottomSheet";
@@ -27,6 +28,7 @@ const WorldCup = () => {
     revertToPrevRoundState,
     getCurrentCandidate,
     getTitle,
+    getTopNDrinks,
   } = useWorldCup();
   const candidateDrinks = getCurrentCandidate();
   const candidateDrinksEvaluation = useGetDrinksEvaluationById(candidateDrinks);
@@ -40,20 +42,26 @@ const WorldCup = () => {
     if (drink === selectedDrink) setSelectedDrink(null);
     else {
       const { currentRound } = worldCupState;
-      track("Select Drink", {
-        round: currentRound,
-        type,
-      });
+      // track("Select Drink", {
+      //   round: currentRound,
+      //   type,
+      // });
       setSelectedDrink(drink);
     }
   };
 
-  const handleClickBottomButton = () => {
-    const { currentRound } = worldCupState;
+  const handleClickBottomButton = async () => {
+    const { currentRound, worldCupId, drinks, token } = worldCupState;
 
     updateToNextRoundState(selectedDrink?.id!);
     if (isWinnerSelectRound(currentRound)) {
       // 우승자인 경우, 결과 페이지로 이동한다.
+      const drinkIds = getTopNDrinks(drinks.length).map((drink) => drink.id);
+      await WorldCupService.sendWorldCupResult({
+        worldCupId,
+        drinkIds,
+        token,
+      });
       navigate.push(`/result/view/${selectedDrink?.id}`);
     }
     setSelectedDrink(null);
@@ -109,9 +117,9 @@ const WorldCup = () => {
                     ?.situation as string[]
                 }
                 onSearchIconClick={(e) => {
-                  track("Tap Detail", {
-                    type: "round",
-                  });
+                  // track("Tap Detail", {
+                  //   type: "round",
+                  // });
                   e.stopPropagation();
                   setDrinkToReadMore(drink);
                   setEvaluationToReadMore(

@@ -32,6 +32,7 @@ export interface RequestDrinksInfoWithRound extends BaseWorldCupId {
 }
 
 export interface RequestSendWinnerDrinks extends BaseWorldCupId {
+  token: string;
   drinkIds: number[];
 }
 

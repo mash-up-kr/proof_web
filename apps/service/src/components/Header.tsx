@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { Icon, Text, theme } from "design-system";
+import { useUserAgent } from "../hooks";
 
 type HeaderType = "prev" | "close" | "logo";
 
@@ -11,6 +12,8 @@ interface HeaderProps {
 }
 
 function Header({ type, title, onClickIcon }: HeaderProps) {
+  const { userAgent } = useUserAgent();
+
   return (
     <Wrapper>
       {type === "prev" && (
@@ -23,7 +26,7 @@ function Header({ type, title, onClickIcon }: HeaderProps) {
           {title}
         </TitleWrapper>
       )}
-      {(type === "close" || type === "logo") && (
+      {(type === "close" || type === "logo") && userAgent?.isAndroidWebView && (
         <CloseIcon name="close" onClick={onClickIcon} />
       )}
     </Wrapper>

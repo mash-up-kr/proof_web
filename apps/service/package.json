@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@amplitude/analytics-browser": "^1.2.3",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@types/ua-parser-js": "^0.7.36",
@@ -23,7 +24,6 @@
     "ua-parser-js": "^1.0.2"
   },
   "devDependencies": {
-    "@amplitude/analytics-browser": "^1.2.3",
     "@types/node": "18.0.0",
     "@types/react": "18.0.14",
     "@types/react-dom": "18.0.5",
