@@ -25,23 +25,29 @@ const proof = (() => {
       transactions[trx_id] = {};
       transactions[trx_id].call = callback;
       transactions[trx_id].options = options;
-      window.proof_native_api?.call(functionName, JSON.stringify(options), trx_id);
+      window.proof_native_api?.call(
+        functionName,
+        JSON.stringify(options),
+        trx_id
+      );
     },
-    event: (_eventData) =>{
-      const eventData = _eventData.replace(/\n/g, "");
-      const eventDataObj = JSON.parse(eventData);
-      const { transactionId: trx_id, eventType } = eventDataObj;
-
+    event: (_eventData) => {
+      const eventData = JSON.parse(_eventData.replace(/\n/g, ""));
+      const trx_id = eventData.transactionId;
+      const { eventType } = eventData;
       switch (eventType) {
         case "CALLBACK_EVENT":
-          if (trx_id) {
-            transactions[trx_id].call(eventDataObj.result_cd, eventDataObj.result_msg, eventDataObj.extra);
-            delete transactions[trx_id];
-          }
+          transactions[trx_id].call(
+            eventData.result_cd,
+            eventData.result_msg,
+            eventData.extra
+          );
           break;
         default:
           break;
       }
+
+      delete transactions[trx_id];
     },
   };
 })();
