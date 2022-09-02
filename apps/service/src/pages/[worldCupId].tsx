@@ -6,10 +6,10 @@ import Head from "next/head";
 import * as React from "react";
 import { useSetRecoilState } from "recoil";
 import { WorldCupService } from "../api/service";
-
 import { Header } from "../components";
 import { useNavigate } from "../hooks";
 import { worldCupState } from "../store";
+import { getProofAccessToken } from "../utils/native/action";
 
 interface Params extends ParsedUrlQuery {
   worldCupId: string;
@@ -29,6 +29,12 @@ const HomeWithWorldCupId: NextPage<WorldCupIdProps> = ({ worldCupId }) => {
         worldCupId: Number(worldCupId),
       }));
     }
+    if (typeof window !== "undefined") {
+      window.localStorage.clear();
+    }
+    getProofAccessToken().then((token) => {
+      setWorldCupState((prev) => ({ ...prev, token }));
+    });
   }, [setWorldCupState, worldCupId]);
 
   return (
