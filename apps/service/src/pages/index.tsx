@@ -19,6 +19,9 @@ const Home = () => {
 
   React.useEffect(() => {
     (async () => {
+      if (typeof window !== "undefined") {
+        window.localStorage.clear();
+      }
       getProofAccessToken().then((token) => {
         setWorldCupState((prev) => ({ ...prev, token }));
       });
