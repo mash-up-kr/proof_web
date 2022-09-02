@@ -17,7 +17,7 @@ function ShareButtons({
   handleClickLeftButton,
   handleClickRightButton,
   shared,
-  webView = false,
+  webView,
   ...restProps
 }: ShareButtonsProps) {
   return (
