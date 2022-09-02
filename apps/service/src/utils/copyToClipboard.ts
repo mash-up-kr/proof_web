@@ -28,14 +28,19 @@ export const isClipboardCommandSupported = () =>
 export const copyToClipboard = (text: string) => {
   return new Promise<boolean>(async (resolve) => {
     const rootElement = document.body;
+    alert("copyToClipboard");
 
     if (isClipboardSupported()) {
+      alert("copyToClipboard isClipboardSupported");
+
       await navigator.clipboard.writeText(text);
       resolve(true);
       return;
     }
 
     if (isClipboardCommandSupported()) {
+      alert("copyToClipboard isClipboardCommandSupported");
+
       const textarea = getDummyTextarea();
       textarea.value = text;
 
@@ -49,8 +54,10 @@ export const copyToClipboard = (text: string) => {
       resolve(true);
       return;
     }
+    alert("copyToClipboard false");
 
     resolve(false);
+    return;
   });
 };
 
