@@ -96,7 +96,7 @@ const Result = ({ drinkId, mode }: Props) => {
         <meta
           property="og:title"
           content="매력적인 술꾼! 당신의 술 취향을 증명할 수 있도록 초대장이 도착했어요."
-          key="proof"
+          key="proof result"
         />
         <meta
           property="og:image"
