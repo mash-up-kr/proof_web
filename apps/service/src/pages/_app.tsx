@@ -10,12 +10,12 @@ import useInitAmplitude from "hooks/useInitAmplitude";
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = React.useState(() => new QueryClient());
 
-  const [pageLoaded, setPageLoaded] = React.useState(false);
+  // const [pageLoaded, setPageLoaded] = React.useState(false);
 
   // useInitAmplitude();
 
   React.useEffect(() => {
-    setPageLoaded(true);
+    // setPageLoaded(true);
     if (typeof window !== "undefined") {
       const handleResizeWindow = () => {
         const vh = window.innerHeight * 0.01;
@@ -36,7 +36,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Global styles={globalStyle} />
         <Hydrate state={pageProps.dehydratedState}>
           <RecoilRoot>
-            {pageLoaded ? <Component {...pageProps} /> : null}
+            <Component {...pageProps} />
           </RecoilRoot>
         </Hydrate>
       </ThemeProvider>
