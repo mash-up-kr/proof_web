@@ -1,21 +1,40 @@
 import styled from "@emotion/styled";
 import { BottomButton, Title } from "design-system";
-import { NextPage } from "next";
 import Head from "next/head";
 import * as React from "react";
-import { track } from "@amplitude/analytics-browser";
+// import { track } from "@amplitude/analytics-browser";
 import { Header } from "../components";
 import { useNavigate } from "../hooks";
+import { getProofAccessToken } from "../utils/native/action";
+import proof from "../utils/native/core";
 
-const Home: NextPage = () => {
+const Home = () => {
   const navigate = useNavigate();
 
+  // React.useEffect(() => {
+  //   track("Worldcup Flow Start");
+  // }, []);
+
   React.useEffect(() => {
-    track("Worldcup Flow Start");
+    (async () => {
+      console.log("hi");
+      proof.callNative(
+        "getProofToken",
+        {},
+        (status: number, msg: string, res: JSON) => {
+          alert("hi");
+          alert(status);
+          alert(msg);
+          alert(JSON.stringify(res));
+          const resObj = JSON.parse(JSON.stringify(res));
+          alert(resObj);
+        }
+      );
+    })();
   }, []);
 
   const handleClickNext = () => {
-    track("Tap Start");
+    // track("Tap Start");
     navigate.push("/category");
   };
 
@@ -32,6 +51,7 @@ const Home: NextPage = () => {
           content="https://zuzu-resource.s3.ap-northeast-2.amazonaws.com/proof_logo.png"
         />
       </Head>
+
       <Wrapper>
         <Header type="logo" onClickIcon={navigate.toNativeHome} />
         <MainTitle

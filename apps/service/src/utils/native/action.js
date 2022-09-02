@@ -6,16 +6,16 @@ export const getProofAccessToken = (options = {}) => {
       "getProofAccessToken",
       options,
       (statusCode, msg, response) => {
-        if (statusCode !== 200) {
-          reject(new Error());
-        }
+        alert("statusCode");
+        alert(JSON.stringify(statusCode));
         const responseObj = JSON.parse(JSON.stringify(response));
-        console.log(responseObj);
+        console.log(JSON.stringify(responseObj));
         resolve(responseObj.accessToken ?? "");
       }
     );
   });
 };
+
 export const closeWebView = (options, callback) => {
   proof.callNative("closeWebView", options, callback);
 };
