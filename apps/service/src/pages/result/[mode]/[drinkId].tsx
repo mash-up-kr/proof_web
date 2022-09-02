@@ -85,6 +85,8 @@ const Result = ({ drinkId, mode }: Props) => {
     } else if (result === "failed") {
       alert("공유하기가 지원되지 않는 환경입니다.");
     }
+
+    alert(userAgent);
     // track(shared ? "Tap Try By Share" : "Tap Share");
     // }
   };

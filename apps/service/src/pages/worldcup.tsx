@@ -57,7 +57,7 @@ const WorldCup = () => {
     if (isWinnerSelectRound(currentRound)) {
       // 우승자인 경우, 결과 페이지로 이동한다.
       const drinkIds = getTopNDrinks(drinks.length).map((drink) => drink.id);
-      const res = await WorldCupService.sendWorldCupResult({
+      await WorldCupService.sendWorldCupResult({
         worldCupId,
         drinkIds,
         token,

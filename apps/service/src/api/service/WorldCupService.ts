@@ -52,10 +52,9 @@ class WorldCupService extends APIBase {
     token,
   }: RequestSendWinnerDrinks) {
     const config =
-      token !== ""
+      token !== undefined && token !== ""
         ? { headers: { Authorization: `Bearer ${token}` } }
         : undefined;
-    alert(JSON.stringify(config));
     return this.baseHTTP
       .post(`${worldCupId}`, { drinkIds }, config)
       .then(APIBase._handleResponse)
