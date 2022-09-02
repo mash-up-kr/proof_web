@@ -46,9 +46,18 @@ class WorldCupService extends APIBase {
       .catch(APIBase._handleError);
   }
 
-  public sendWorldCupResult({ worldCupId, drinkIds }: RequestSendWinnerDrinks) {
+  public sendWorldCupResult({
+    worldCupId,
+    drinkIds,
+    token,
+  }: RequestSendWinnerDrinks) {
+    const config =
+      token !== ""
+        ? { headers: { Authorization: `Bearer ${token}` } }
+        : undefined;
+    alert(JSON.stringify(config));
     return this.baseHTTP
-      .post(`${worldCupId}`, { drinkIds })
+      .post(`${worldCupId}`, { drinkIds }, config)
       .then(APIBase._handleResponse)
       .catch(APIBase._handleError);
   }
