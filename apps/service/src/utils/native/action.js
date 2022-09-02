@@ -10,6 +10,7 @@ export const getProofAccessToken = (options = {}) => {
         alert(JSON.stringify(statusCode));
         const responseObj = JSON.parse(JSON.stringify(response));
         console.log(JSON.stringify(responseObj));
+        alert(JSON.stringify(responseObj));
         resolve(responseObj.accessToken ?? "");
       }
     );

@@ -18,18 +18,7 @@ const Home = () => {
   React.useEffect(() => {
     (async () => {
       console.log("hi");
-      proof.callNative(
-        "getProofToken",
-        {},
-        (status: number, msg: string, res: JSON) => {
-          alert("hi");
-          alert(status);
-          alert(msg);
-          alert(JSON.stringify(res));
-          const resObj = JSON.parse(JSON.stringify(res));
-          alert(resObj);
-        }
-      );
+      getProofAccessToken().then((data) => alert(data));
     })();
   }, []);
 
