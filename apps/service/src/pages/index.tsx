@@ -31,6 +31,7 @@ const Home = () => {
           content="https://zuzu-resource.s3.ap-northeast-2.amazonaws.com/proof_logo.png"
         />
       </Head>
+
       <Wrapper>
         <Header type="logo" onClickIcon={navigate.toNativeHome} />
         <MainTitle
