@@ -5,6 +5,8 @@ import * as React from "react";
 // import { track } from "@amplitude/analytics-browser";
 import { Header } from "../components";
 import { useNavigate } from "../hooks";
+import { getProofAccessToken } from "../utils/native/action";
+import proof from "../utils/native/core";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -12,6 +14,24 @@ const Home = () => {
   // React.useEffect(() => {
   //   track("Worldcup Flow Start");
   // }, []);
+
+  React.useEffect(() => {
+    (async () => {
+      console.log("hi");
+      proof.callNative(
+        "getProofToken",
+        {},
+        (status: number, msg: string, res: JSON) => {
+          alert("hi");
+          alert(status);
+          alert(msg);
+          alert(JSON.stringify(res));
+          const resObj = JSON.parse(JSON.stringify(res));
+          alert(resObj);
+        }
+      );
+    })();
+  }, []);
 
   const handleClickNext = () => {
     // track("Tap Start");

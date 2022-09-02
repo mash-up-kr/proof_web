@@ -30,7 +30,7 @@ const proof = (() => {
     event: (_eventData) =>{
       const eventData = _eventData.replace(/\n/g, "");
       const eventDataObj = JSON.parse(eventData);
-      const { transactionId: trx_id, eventType } = eventDataObj.transactionId;
+      const { transactionId: trx_id, eventType } = eventDataObj;
 
       switch (eventType) {
         case "CALLBACK_EVENT":
