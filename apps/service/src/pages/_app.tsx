@@ -10,7 +10,7 @@ import useInitAmplitude from "hooks/useInitAmplitude";
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = React.useState(() => new QueryClient());
 
-  useInitAmplitude();
+  // useInitAmplitude();
 
   React.useEffect(() => {
     if (typeof window !== "undefined") {
