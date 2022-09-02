@@ -23,6 +23,7 @@ interface DrinkCardProps extends React.ComponentProps<"div"> {
   type: DrinkCardType;
   drink: Drink;
   iconType: IconName;
+  tags: string[];
   isActive?: boolean;
   isShowingTag?: boolean;
   hasSearchIcon?: boolean;
@@ -34,6 +35,7 @@ function DrinkCard({
   drink,
   iconType,
   isActive,
+  tags,
   isShowingTag = true,
   hasSearchIcon = true,
   onSearchIconClick,
@@ -68,9 +70,7 @@ function DrinkCard({
       <DrinkName display="-webkit-box" type="button1">
         {drink?.name}
       </DrinkName>
-      {isShowingTag && (
-        <Tag tags={["대낮에", "한밤에", "친구와", "연인과"]} shorten />
-      )}
+      {isShowingTag && <Tag tags={tags} shorten />}
     </Wrapper>
   );
 }
