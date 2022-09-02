@@ -89,7 +89,7 @@ const DescriptionWrapper = styled.div`
 const DrinkName = styled(Text)`
   margin: 8px auto;
   word-break: keep-all;
-  min-height: 44px;
+  min-height: 44.8px;
 
   -webkit-box-orient: vertical;
   overflow: hidden;
