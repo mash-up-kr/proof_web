@@ -1,4 +1,4 @@
-// import { track } from "@amplitude/analytics-browser";
+import { track } from "@amplitude/analytics-browser";
 import styled from "@emotion/styled";
 import { BottomButton, theme, Title } from "design-system";
 import * as React from "react";
@@ -42,10 +42,10 @@ const WorldCup = () => {
     if (drink === selectedDrink) setSelectedDrink(null);
     else {
       const { currentRound } = worldCupState;
-      // track("Select Drink", {
-      //   round: currentRound,
-      //   type,
-      // });
+      track("Select Drink", {
+        round: currentRound,
+        type,
+      });
       setSelectedDrink(drink);
     }
   };
@@ -117,9 +117,9 @@ const WorldCup = () => {
                     ?.situation as string[]
                 }
                 onSearchIconClick={(e) => {
-                  // track("Tap Detail", {
-                  //   type: "round",
-                  // });
+                  track("Tap Detail", {
+                    type: "round",
+                  });
                   e.stopPropagation();
                   setDrinkToReadMore(drink);
                   setEvaluationToReadMore(
