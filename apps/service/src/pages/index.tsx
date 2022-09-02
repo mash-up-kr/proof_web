@@ -3,7 +3,7 @@ import { BottomButton, Title } from "design-system";
 import Head from "next/head";
 import * as React from "react";
 import { useSetRecoilState } from "recoil";
-// import { track } from "@amplitude/analytics-browser";
+import { track } from "@amplitude/analytics-browser";
 import { Header } from "../components";
 import { useNavigate } from "../hooks";
 import { worldCupState } from "../store";
@@ -13,9 +13,9 @@ const Home = () => {
   const navigate = useNavigate();
   const setWorldCupState = useSetRecoilState(worldCupState);
 
-  // React.useEffect(() => {
-  //   track("Worldcup Flow Start");
-  // }, []);
+  React.useEffect(() => {
+    track("Worldcup Flow Start");
+  }, []);
 
   React.useEffect(() => {
     (async () => {
@@ -29,7 +29,7 @@ const Home = () => {
   }, [setWorldCupState]);
 
   const handleClickNext = () => {
-    // track("Tap Start");
+    track("Tap Start");
     navigate.push("/category");
   };
 
