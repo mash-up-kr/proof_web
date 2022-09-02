@@ -30,15 +30,15 @@ export const copyToClipboard = (text: string) => {
     const rootElement = document.body;
 
     alert("copyToClipboard");
-    alert(navigator?.clipboard);
-    if (isClipboardSupported()) {
-      alert("copyToClipboard isClipboardSupported");
+    alert(navigator?.clipboard.writeText);
+    // if (isClipboardSupported()) {
+    //   alert("copyToClipboard isClipboardSupported");
 
-      await navigator.clipboard.writeText(text);
+    //   await navigator.clipboard.writeText(text);
 
-      resolve(true);
-      return;
-    }
+    //   resolve(true);
+    //   return;
+    // }
 
     if (isClipboardCommandSupported()) {
       alert("copyToClipboard isClipboardCommandSupported");
