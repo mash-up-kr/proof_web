@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { GetServerSidePropsContext } from "next";
 import { useSetRecoilState } from "recoil";
+import { track } from "@amplitude/analytics-browser";
 import { WithWhoType } from "../../@types/api";
 import { useGetWorldCupInfosByCategorizingWithWho } from "../../api/query";
 import ClickableContentCard from "../../components/ClickableContentCard";
@@ -27,6 +28,9 @@ const Type = ({ withWho }: Props) => {
   }));
 
   const handleClickClickableContentCard = (idx: number) => {
+    track(withWho === "SOLO" ? "Select Solo Case" : "Select Multi Case", {
+      situations: worldCupSituations[idx].situation.code,
+    });
     setWorldCupState((prev) => ({
       ...prev,
       worldCupId: worldCupSituations[idx].worldCupId,

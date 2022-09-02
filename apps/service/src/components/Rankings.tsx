@@ -7,9 +7,10 @@ import { useWorldCup } from "../hooks";
 
 interface RankingsProps extends React.ComponentProps<"div"> {
   round: number;
+  winnerId?: number;
 }
 
-function Rankings({ round, ...restProps }: RankingsProps) {
+function Rankings({ round, winnerId, ...restProps }: RankingsProps) {
   const { getTopNDrinks } = useWorldCup();
 
   const allDrinks = getTopNDrinks(round);
@@ -61,6 +62,7 @@ function Rankings({ round, ...restProps }: RankingsProps) {
               drink={drink}
               isShowingTag={false}
               hasSearchIcon={false}
+              hasWinnerIcon={winnerId === drink.id}
             />
           </DrinkCardItem>
         ))}

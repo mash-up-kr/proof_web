@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { useSetRecoilState } from "recoil";
+import { track } from "@amplitude/analytics-browser";
 import { WithWhoType } from "../../@types/api";
 import TitleWithContent from "../../components/TitleWithContent";
 import WithCard from "../../components/WithCard";
@@ -32,6 +33,7 @@ const Category = () => {
 
   const handleClickWithCard = (idx: number) => {
     const withWho = INFOS[idx].href.slice(10);
+    track("Select Member", { withWho });
     setWorldCupState((prev) => ({
       ...prev,
       with: withWho as WithWhoType,
