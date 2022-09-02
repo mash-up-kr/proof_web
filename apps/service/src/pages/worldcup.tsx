@@ -93,12 +93,17 @@ const WorldCup = () => {
               drink={drink}
               isActive={selectedDrink === drink}
               iconType={idx === 0 ? "typeA" : "typeB"}
-              onClick={() => handleDrinkCardClick(drink)}
-              tags={candidateDrinksEvaluation[idx].data?.result?.situation as string[]}
+              onImageClick={() => handleDrinkCardClick(drink)}
+              tags={
+                candidateDrinksEvaluation[idx].data?.result
+                  ?.situation as string[]
+              }
               onSearchIconClick={(e) => {
                 e.stopPropagation();
                 setDrinkToReadMore(drink);
-                setEvaluationToReadMore(candidateDrinksEvaluation[idx].data as DrinkEvaluationDto);
+                setEvaluationToReadMore(
+                  candidateDrinksEvaluation[idx].data as DrinkEvaluationDto
+                );
                 setBottomSheetOpened(true);
               }}
             />
