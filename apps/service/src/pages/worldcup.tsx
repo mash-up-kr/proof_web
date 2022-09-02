@@ -1,3 +1,4 @@
+import { track } from "@amplitude/analytics-browser";
 import styled from "@emotion/styled";
 import { BottomButton, theme, Title } from "design-system";
 import * as React from "react";
@@ -35,9 +36,16 @@ const WorldCup = () => {
   )
     return null;
 
-  const handleDrinkCardClick = (drink: DrinkWithRound) => {
+  const handleDrinkCardClick = (drink: DrinkWithRound, type: string) => {
     if (drink === selectedDrink) setSelectedDrink(null);
-    else setSelectedDrink(drink);
+    else {
+      const { currentRound } = worldCupState;
+      track("Select Drink", {
+        round: currentRound,
+        type,
+      });
+      setSelectedDrink(drink);
+    }
   };
 
   const handleClickBottomButton = () => {
@@ -86,28 +94,34 @@ const WorldCup = () => {
         />
         <TitleWrapper title={worldCupState.title} textAlign="center" />
         <CandidateWrapper>
-          {candidateDrinks.map((drink, idx) => (
-            <DrinkCard
-              key={drink?.id ?? idx}
-              type="round"
-              drink={drink}
-              isActive={selectedDrink === drink}
-              iconType={idx === 0 ? "typeA" : "typeB"}
-              onImageClick={() => handleDrinkCardClick(drink)}
-              tags={
-                candidateDrinksEvaluation[idx].data?.result
-                  ?.situation as string[]
-              }
-              onSearchIconClick={(e) => {
-                e.stopPropagation();
-                setDrinkToReadMore(drink);
-                setEvaluationToReadMore(
-                  candidateDrinksEvaluation[idx].data as DrinkEvaluationDto
-                );
-                setBottomSheetOpened(true);
-              }}
-            />
-          ))}
+          {candidateDrinks.map((drink, idx) => {
+            const type = idx === 0 ? "typeA" : "typeB";
+            return (
+              <DrinkCard
+                key={drink?.id ?? idx}
+                type="round"
+                drink={drink}
+                isActive={selectedDrink === drink}
+                iconType={type}
+                onClick={() => handleDrinkCardClick(drink, type)}
+                tags={
+                  candidateDrinksEvaluation[idx].data?.result
+                    ?.situation as string[]
+                }
+                onSearchIconClick={(e) => {
+                  track("Tap Detail", {
+                    type: "round",
+                  });
+                  e.stopPropagation();
+                  setDrinkToReadMore(drink);
+                  setEvaluationToReadMore(
+                    candidateDrinksEvaluation[idx].data as DrinkEvaluationDto
+                  );
+                  setBottomSheetOpened(true);
+                }}
+              />
+            );
+          })}
         </CandidateWrapper>
         <BottomButton
           isActive={!!selectedDrink}

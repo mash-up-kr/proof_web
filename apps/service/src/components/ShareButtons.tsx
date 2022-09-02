@@ -10,12 +10,14 @@ interface ShareButtonsProps extends React.ComponentProps<"div"> {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void;
   shared: boolean;
+  webView?: boolean;
 }
 
 function ShareButtons({
   handleClickLeftButton,
   handleClickRightButton,
   shared = false,
+  webView = false,
   ...restProps
 }: ShareButtonsProps) {
   return (
@@ -31,13 +33,13 @@ function ShareButtons({
             textAlign="center"
             color={theme.colors.text.special}
           >
-            확인
+            {webView ? "확인" : "다시하기"}
           </Text>
         </Button>
       )}
       <Button
         width={shared ? "100%" : "70%"}
-        onClick={handleClickRightButton}
+        onClick={shared ? handleClickLeftButton : handleClickRightButton}
         hierarchy={ButtonHierarchy.Primary}
       >
         <Text

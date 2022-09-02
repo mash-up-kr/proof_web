@@ -5,11 +5,17 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { RecoilRoot } from "recoil";
 import { Global, ThemeProvider } from "@emotion/react";
 import { globalStyle, theme } from "design-system";
+import useInitAmplitude from "hooks/useInitAmplitude";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = React.useState(() => new QueryClient());
 
+  const [pageLoaded, setPageLoaded] = React.useState(false);
+
+  useInitAmplitude();
+
   React.useEffect(() => {
+    setPageLoaded(true);
     if (typeof window !== "undefined") {
       const handleResizeWindow = () => {
         const vh = window.innerHeight * 0.01;
@@ -30,7 +36,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Global styles={globalStyle} />
         <Hydrate state={pageProps.dehydratedState}>
           <RecoilRoot>
-            <Component {...pageProps} />
+            {pageLoaded ? <Component {...pageProps} /> : null}
           </RecoilRoot>
         </Hydrate>
       </ThemeProvider>
