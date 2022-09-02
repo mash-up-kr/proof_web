@@ -15,9 +15,13 @@ interface Params extends ParsedUrlQuery {
   worldCupId: string;
 }
 
-type WorldCupIdProps = Pick<Params, "worldCupId">;
+interface WorldCupIdProps {
+  worldCupId: string;
+}
 
-const HomeWithWorldCupId: NextPage<WorldCupIdProps> = ({ worldCupId }) => {
+const HomeWithWorldCupId: NextPage<WorldCupIdProps> = ({
+  worldCupId,
+}: WorldCupIdProps) => {
   const navigate = useNavigate();
 
   const setWorldCupState = useSetRecoilState(worldCupState);
