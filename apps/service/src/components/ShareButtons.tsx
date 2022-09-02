@@ -16,7 +16,7 @@ interface ShareButtonsProps extends React.ComponentProps<"div"> {
 function ShareButtons({
   handleClickLeftButton,
   handleClickRightButton,
-  shared = false,
+  shared,
   webView = false,
   ...restProps
 }: ShareButtonsProps) {
@@ -37,6 +37,7 @@ function ShareButtons({
           </Text>
         </Button>
       )}
+
       <Button
         width={shared ? "100%" : "70%"}
         onClick={shared ? handleClickLeftButton : handleClickRightButton}

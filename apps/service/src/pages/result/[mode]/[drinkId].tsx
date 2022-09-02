@@ -71,22 +71,22 @@ const Result = ({ drinkId, mode }: Props) => {
   };
 
   const handleShare = async () => {
-    // if (webView) {
-    //   nativeShare(
-    //     { url: `${BASE_URL}/result/shared/${drinkId}` },
-    //     function (result_cd: any, result_msg: any, extra: any) {
-    //       console.log(result_cd + result_msg + JSON.stringify(extra));
-    //     }
-    //   );
-    // } else {
+    alert("handle Share", webView);
+
+    if (webView) {
+      nativeShare(
+        { url: `${BASE_URL}/result/shared/${drinkId}` },
+        function (result_cd: any, result_msg: any, extra: any) {
+          console.log(result_cd + result_msg + JSON.stringify(extra));
+        }
+      );
+    } else {
     const result = await share(dataToShare);
     if (result === "copiedToClipboard") {
       alert("링크를 클립보드에 복사했습니다.");
     } else if (result === "failed") {
       alert("공유하기가 지원되지 않는 환경입니다.");
     }
-
-    alert(userAgent);
     // track(shared ? "Tap Try By Share" : "Tap Share");
     // }
   };
@@ -141,6 +141,7 @@ const Result = ({ drinkId, mode }: Props) => {
       <ShareButtons
         handleClickLeftButton={() => {
           if (webView) {
+            alert("nativeHome");
             navigate.toNativeHome();
           } else {
             navigate.push("/");
