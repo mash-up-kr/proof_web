@@ -90,77 +90,77 @@ const Result = ({ drinkId, mode }: Props) => {
       // track(shared ? "Tap Try By Share" : "Tap Share");
       // }
     }
-
-    return (
-      <>
-        <Head>
-          <meta
-            property="og:title"
-            content="매력적인 술꾼! 당신의 술 취향을 증명할 수 있도록 초대장이 도착했어요."
-            key="proof"
-          />
-          <meta
-            property="og:image"
-            content="https://zuzu-resource.s3.ap-northeast-2.amazonaws.com/proof_logo.png"
-          />
-        </Head>
-        {!webView && isInstallAppBottomSheetOpened && (
-          <InstallAppBottomSheet
-            onClose={() => setIsInstallAppBottomSheetOpened(false)}
-          />
-        )}
-        {isDrinkDetailBottomSheetOpened && (
-          <DrinkInfoBottomSheet
-            drinkCardIcon="winner"
-            evaluation={winnerDrinkEvaluation as DrinkEvaluationDto}
-            selectedDrink={drink!}
-            onClose={() => setIsDrinkDetailBottomSheetOpened(false)}
-          />
-        )}
-        <Header
-          type="prev"
-          title="결과"
-          onClickIcon={handleClickHeaderPrevIcon}
-        />
-        <Title>
-          <Text type="h1" textAlign="center">
-            {`${shared ? "친구" : "내"}가 선택한 최고의 술`}
-          </Text>
-        </Title>
-        <WinnerCard
-          tags={winnerDrinkEvaluation?.result?.situation as string[]}
-          drink={drink!}
-          handleClickSearchIcon={() => {
-            // track("Tap Detail", {
-            //   type: "winner",
-            // });
-            setIsDrinkDetailBottomSheetOpened(true);
-          }}
-          select={drink?.worldcupWinCount ?? 1}
-        />
-        <ShareButtons
-          handleClickLeftButton={() => {
-            alert("handleClickLeftButton");
-
-            if (webView) {
-              alert("webView");
-
-              navigate.toNativeHome();
-            } else {
-              navigate.push("/");
-              // track("Tap Restart");
-            }
-          }}
-          handleClickRightButton={handleShare}
-          shared={shared}
-          webView={webView}
-        />
-        {!shared && worldCupState.drinks.length !== 0 && (
-          <Rankings round={worldCupState.totalRound} winnerId={drink?.id} />
-        )}
-      </>
-    );
   };
+
+  return (
+    <>
+      <Head>
+        <meta
+          property="og:title"
+          content="매력적인 술꾼! 당신의 술 취향을 증명할 수 있도록 초대장이 도착했어요."
+          key="proof"
+        />
+        <meta
+          property="og:image"
+          content="https://zuzu-resource.s3.ap-northeast-2.amazonaws.com/proof_logo.png"
+        />
+      </Head>
+      {!webView && isInstallAppBottomSheetOpened && (
+        <InstallAppBottomSheet
+          onClose={() => setIsInstallAppBottomSheetOpened(false)}
+        />
+      )}
+      {isDrinkDetailBottomSheetOpened && (
+        <DrinkInfoBottomSheet
+          drinkCardIcon="winner"
+          evaluation={winnerDrinkEvaluation as DrinkEvaluationDto}
+          selectedDrink={drink!}
+          onClose={() => setIsDrinkDetailBottomSheetOpened(false)}
+        />
+      )}
+      <Header
+        type="prev"
+        title="결과"
+        onClickIcon={handleClickHeaderPrevIcon}
+      />
+      <Title>
+        <Text type="h1" textAlign="center">
+          {`${shared ? "친구" : "내"}가 선택한 최고의 술`}
+        </Text>
+      </Title>
+      <WinnerCard
+        tags={winnerDrinkEvaluation?.result?.situation as string[]}
+        drink={drink!}
+        handleClickSearchIcon={() => {
+          // track("Tap Detail", {
+          //   type: "winner",
+          // });
+          setIsDrinkDetailBottomSheetOpened(true);
+        }}
+        select={drink?.worldcupWinCount ?? 1}
+      />
+      <ShareButtons
+        handleClickLeftButton={() => {
+          alert("handleClickLeftButton");
+
+          if (webView) {
+            alert("webView");
+
+            navigate.toNativeHome();
+          } else {
+            navigate.push("/");
+            // track("Tap Restart");
+          }
+        }}
+        handleClickRightButton={handleShare}
+        shared={shared}
+        webView={webView}
+      />
+      {!shared && worldCupState.drinks.length !== 0 && (
+        <Rankings round={worldCupState.totalRound} winnerId={drink?.id} />
+      )}
+    </>
+  );
 };
 
 const Title = styled.div`
