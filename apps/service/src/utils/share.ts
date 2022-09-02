@@ -31,16 +31,17 @@ export const share = (data: ShareData) => {
       if (isShareSupported()) {
         await navigator.share(data);
         resolve("shared");
-        return;
+        return "shared";
       }
       if (data.url) {
         const result = await copyToClipboard(data.url);
         if (result) {
           resolve("copiedToClipboard");
-          return;
+          return "copiedToClipboard";
         }
       }
       resolve("failed");
+      return "failed";
     }
   );
 };
