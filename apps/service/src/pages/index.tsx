@@ -2,14 +2,16 @@ import styled from "@emotion/styled";
 import { BottomButton, Title } from "design-system";
 import Head from "next/head";
 import * as React from "react";
+import { useSetRecoilState } from "recoil";
 // import { track } from "@amplitude/analytics-browser";
 import { Header } from "../components";
 import { useNavigate } from "../hooks";
+import { worldCupState } from "../store";
 import { getProofAccessToken } from "../utils/native/action";
-import proof from "../utils/native/core";
 
 const Home = () => {
   const navigate = useNavigate();
+  const setWorldCupState = useSetRecoilState(worldCupState);
 
   // React.useEffect(() => {
   //   track("Worldcup Flow Start");
@@ -17,9 +19,11 @@ const Home = () => {
 
   React.useEffect(() => {
     (async () => {
-      getProofAccessToken().then((data) => alert(data));
+      getProofAccessToken().then((token) => {
+        setWorldCupState((prev) => ({ ...prev, token }));
+      });
     })();
-  }, []);
+  }, [setWorldCupState]);
 
   const handleClickNext = () => {
     // track("Tap Start");
