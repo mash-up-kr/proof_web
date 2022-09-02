@@ -91,7 +91,7 @@ const Result = ({ drinkId, mode }: Props) => {
   };
 
   return (
-    <>
+    <div>
       <Head>
         <meta
           property="og:title"
@@ -103,57 +103,59 @@ const Result = ({ drinkId, mode }: Props) => {
           content="https://zuzu-resource.s3.ap-northeast-2.amazonaws.com/proof_logo.png"
         />
       </Head>
-      {!androidWebView && isInstallAppBottomSheetOpened && (
-        <InstallAppBottomSheet
-          onClose={() => setIsInstallAppBottomSheetOpened(false)}
+      <div>
+        {!androidWebView && isInstallAppBottomSheetOpened && (
+          <InstallAppBottomSheet
+            onClose={() => setIsInstallAppBottomSheetOpened(false)}
+          />
+        )}
+        {isDrinkDetailBottomSheetOpened && (
+          <DrinkInfoBottomSheet
+            drinkCardIcon="winner"
+            evaluation={winnerDrinkEvaluation as DrinkEvaluationDto}
+            selectedDrink={drink!}
+            onClose={() => setIsDrinkDetailBottomSheetOpened(false)}
+          />
+        )}
+        <Header
+          type="prev"
+          title="결과"
+          onClickIcon={handleClickHeaderPrevIcon}
         />
-      )}
-      {isDrinkDetailBottomSheetOpened && (
-        <DrinkInfoBottomSheet
-          drinkCardIcon="winner"
-          evaluation={winnerDrinkEvaluation as DrinkEvaluationDto}
-          selectedDrink={drink!}
-          onClose={() => setIsDrinkDetailBottomSheetOpened(false)}
+        <Title>
+          <Text type="h1" textAlign="center">
+            {`${shared ? "친구" : "내"}가 선택한 최고의 술`}
+          </Text>
+        </Title>
+        <WinnerCard
+          tags={winnerDrinkEvaluation?.result?.situation as string[]}
+          drink={drink!}
+          handleClickSearchIcon={() => {
+            // track("Tap Detail", {
+            //   type: "winner",
+            // });
+            setIsDrinkDetailBottomSheetOpened(true);
+          }}
+          select={drink?.worldcupWinCount ?? 1}
         />
-      )}
-      <Header
-        type="prev"
-        title="결과"
-        onClickIcon={handleClickHeaderPrevIcon}
-      />
-      <Title>
-        <Text type="h1" textAlign="center">
-          {`${shared ? "친구" : "내"}가 선택한 최고의 술`}
-        </Text>
-      </Title>
-      <WinnerCard
-        tags={winnerDrinkEvaluation?.result?.situation as string[]}
-        drink={drink!}
-        handleClickSearchIcon={() => {
-          // track("Tap Detail", {
-          //   type: "winner",
-          // });
-          setIsDrinkDetailBottomSheetOpened(true);
-        }}
-        select={drink?.worldcupWinCount ?? 1}
-      />
-      <ShareButtons
-        handleClickLeftButton={() => {
-          if (androidWebView) {
-            navigate.toNativeHome();
-          } else {
-            navigate.push("/");
-            // track("Tap Restart");
-          }
-        }}
-        handleClickRightButton={handleShare}
-        shared={shared}
-        webView={androidWebView}
-      />
-      {!shared && worldCupState.drinks.length !== 0 && (
-        <Rankings round={worldCupState.totalRound} winnerId={drink?.id} />
-      )}
-    </>
+        <ShareButtons
+          handleClickLeftButton={() => {
+            if (androidWebView) {
+              navigate.toNativeHome();
+            } else {
+              navigate.push("/");
+              // track("Tap Restart");
+            }
+          }}
+          handleClickRightButton={handleShare}
+          shared={shared}
+          webView={androidWebView}
+        />
+        {!shared && worldCupState.drinks.length !== 0 && (
+          <Rankings round={worldCupState.totalRound} winnerId={drink?.id} />
+        )}
+      </div>
+    </div>
   );
 };
 
