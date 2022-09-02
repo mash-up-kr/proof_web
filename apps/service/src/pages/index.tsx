@@ -17,7 +17,6 @@ const Home = () => {
 
   React.useEffect(() => {
     (async () => {
-      console.log("hi");
       getProofAccessToken().then((data) => alert(data));
     })();
   }, []);
