@@ -81,7 +81,9 @@ const Result = ({ drinkId, mode }: Props) => {
         }
       );
     } else {
+      alert("handleShare else");
       const result = await share(dataToShare);
+      alert(result);
       if (result === "copiedToClipboard") {
         alert("링크를 클립보드에 복사했습니다.");
       } else if (result === "failed") {
