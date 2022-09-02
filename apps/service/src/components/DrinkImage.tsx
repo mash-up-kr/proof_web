@@ -16,6 +16,7 @@ interface DrinkImageProps {
   iconType: IconName;
   isActive?: boolean;
   hasSearchIcon?: boolean;
+  hasWinnerIcon?: boolean;
   select?: number;
   onImageClick?: React.ComponentProps<"div">["onClick"];
   onSearchIconClick?: (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => void;
@@ -30,12 +31,13 @@ function DrinkImage({
   select,
   hasSearchIcon = true,
   onImageClick,
+  hasWinnerIcon = true,
   onSearchIconClick,
 }: DrinkImageProps) {
   return (
     <Wrapper onClick={onImageClick}>
       <MainImage imgSrc={imgSrc} type={type} />
-      <TypeIcon name={iconType} />
+      {hasWinnerIcon && <TypeIcon name={iconType} />}
       {hasSearchIcon && (
         <>
           <SearchIconBackground />
