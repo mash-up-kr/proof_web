@@ -10,7 +10,7 @@ module.exports = {
     'react/function-component-definition': 'off',
     'react/jsx-props-no-spreading': 'off',
     'import/order': [
-      'error',
+      'warn',
       {
         groups: ['builtin', 'external', ['parent', 'sibling'], 'index'],
         pathGroups: [
