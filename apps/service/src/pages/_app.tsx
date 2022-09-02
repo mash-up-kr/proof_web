@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   const [pageLoaded, setPageLoaded] = React.useState(false);
 
-  useInitAmplitude();
+  // useInitAmplitude();
 
   React.useEffect(() => {
     setPageLoaded(true);
