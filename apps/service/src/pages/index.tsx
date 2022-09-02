@@ -1,21 +1,20 @@
 import styled from "@emotion/styled";
 import { BottomButton, Title } from "design-system";
-import { NextPage } from "next";
 import Head from "next/head";
 import * as React from "react";
 import { track } from "@amplitude/analytics-browser";
 import { Header } from "../components";
 import { useNavigate } from "../hooks";
 
-const Home: NextPage = () => {
+const Home = () => {
   const navigate = useNavigate();
 
-  React.useEffect(() => {
-    track("Worldcup Flow Start");
-  }, []);
+  // React.useEffect(() => {
+  //   track("Worldcup Flow Start");
+  // }, []);
 
   const handleClickNext = () => {
-    track("Tap Start");
+    // track("Tap Start");
     navigate.push("/category");
   };
 
