@@ -1,29 +1,18 @@
-import { ParsedUrlQuery } from "querystring";
 import styled from "@emotion/styled";
 import { BottomButton, Title } from "design-system";
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import * as React from "react";
 import { useSetRecoilState } from "recoil";
-import { WorldCupService } from "../api/service";
 import { Header } from "../components";
 import { useNavigate } from "../hooks";
 import { worldCupState } from "../store";
 import { getProofAccessToken } from "../utils/native/action";
 
-interface Params extends ParsedUrlQuery {
-  worldCupId: string;
-}
-
-interface WorldCupIdProps {
-  worldCupId: string;
-}
-
-const HomeWithWorldCupId: NextPage<WorldCupIdProps> = ({
-  worldCupId,
-}: WorldCupIdProps) => {
+const HomeWithWorldCupId = () => {
+  const router = useRouter();
+  const worldCupId = router.query.worldCupId;
   const navigate = useNavigate();
-
   const setWorldCupState = useSetRecoilState(worldCupState);
 
   React.useEffect(() => {
@@ -87,29 +76,5 @@ const MainImage = styled.img`
   margin-top: 38px;
   border-radius: 8px;
 `;
-
-export const getStaticPaths: GetStaticPaths<Params> = async () => {
-  const worldcups = await WorldCupService.getAllWorldcupInfo();
-  const paths = worldcups.map((worldcup) => ({
-    params: { worldCupId: String(worldcup.id) },
-  }));
-
-  return {
-    paths,
-    fallback: false,
-  };
-};
-
-export const getStaticProps: GetStaticProps<WorldCupIdProps, Params> = async (
-  context
-) => {
-  const { worldCupId } = context.params!;
-
-  return {
-    props: {
-      worldCupId,
-    },
-  };
-};
 
 export default HomeWithWorldCupId;
