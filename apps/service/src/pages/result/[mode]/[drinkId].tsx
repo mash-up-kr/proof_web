@@ -34,13 +34,12 @@ const Result = ({ drinkId, mode }: Props) => {
   const navigate = useNavigate();
   const { userAgent } = useUserAgent();
   const { revertToPrevRoundState } = useWorldCup();
-  const result = useGetDrinkInfoById(Number(drinkId));
+  const { isLoading, data: drink } = useGetDrinkInfoById(Number(drinkId));
 
   const [worldCupState] = useRecoilState(state);
 
   const shared = mode === "shared";
   const webView = userAgent?.isAndroidWebView;
-  const drink = result.data;
 
   const [isInstallAppBottomSheetOpened, setIsInstallAppBottomSheetOpened] =
     React.useState<boolean>(false);
@@ -57,6 +56,7 @@ const Result = ({ drinkId, mode }: Props) => {
       clearTimeout(timer);
     };
   }, []);
+  if (isLoading) return null;
 
   // TODO: native임에 따라서 연동필요
   const handleClickHeaderPrevIcon = () => {
@@ -71,24 +71,25 @@ const Result = ({ drinkId, mode }: Props) => {
   };
 
   const handleShare = async () => {
-    // if (webView) {
-    //   nativeShare(
-    //     { url: `${BASE_URL}/result/shared/${drinkId}` },
-    //     function (result_cd: any, result_msg: any, extra: any) {
-    //       console.log(result_cd + result_msg + JSON.stringify(extra));
-    //     }
-    //   );
-    // } else {
-    const result = await share(dataToShare);
-    if (result === "copiedToClipboard") {
-      alert("링크를 클립보드에 복사했습니다.");
-    } else if (result === "failed") {
-      alert("공유하기가 지원되지 않는 환경입니다.");
+    alert("handleShare init");
+    if (webView) {
+      alert("webView");
+      nativeShare(
+        { url: `${BASE_URL}/result/shared/${drinkId}` },
+        function (result_cd: any, result_msg: any, extra: any) {
+          console.log(result_cd + result_msg + JSON.stringify(extra));
+        }
+      );
+    } else {
+      const result = await share(dataToShare);
+      if (result === "copiedToClipboard") {
+        alert("링크를 클립보드에 복사했습니다.");
+      } else if (result === "failed") {
+        alert("공유하기가 지원되지 않는 환경입니다.");
+      }
+      // track(shared ? "Tap Try By Share" : "Tap Share");
+      // }
     }
-
-    alert(userAgent);
-    // track(shared ? "Tap Try By Share" : "Tap Share");
-    // }
   };
 
   return (
@@ -113,7 +114,7 @@ const Result = ({ drinkId, mode }: Props) => {
         <DrinkInfoBottomSheet
           drinkCardIcon="winner"
           evaluation={winnerDrinkEvaluation as DrinkEvaluationDto}
-          selectedDrink={drink}
+          selectedDrink={drink!}
           onClose={() => setIsDrinkDetailBottomSheetOpened(false)}
         />
       )}
@@ -129,7 +130,7 @@ const Result = ({ drinkId, mode }: Props) => {
       </Title>
       <WinnerCard
         tags={winnerDrinkEvaluation?.result?.situation as string[]}
-        drink={drink}
+        drink={drink!}
         handleClickSearchIcon={() => {
           // track("Tap Detail", {
           //   type: "winner",
@@ -140,7 +141,11 @@ const Result = ({ drinkId, mode }: Props) => {
       />
       <ShareButtons
         handleClickLeftButton={() => {
+          alert("handleClickLeftButton");
+
           if (webView) {
+            alert("webView");
+
             navigate.toNativeHome();
           } else {
             navigate.push("/");
