@@ -43,14 +43,6 @@ const Home: NextPage = () => {
   );
 };
 
-export async function getServerSideProps() {
-  return {
-    props: {
-      id: "123",
-    },
-  };
-}
-
 const Wrapper = styled.main`
   text-align: center;
 `;
