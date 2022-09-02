@@ -16,8 +16,10 @@ export const getProofAccessToken = (options = {}) => {
     );
   });
 };
-
-
 export const closeWebView = (options, callback) => {
   proof.callNative("closeWebView", options, callback);
 };
+
+export const nativeShare = (options, callback) => {
+  proof.callNative("onClickSharedButton", options, callback);
+}
