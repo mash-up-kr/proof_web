@@ -4,7 +4,7 @@ import * as React from "react";
 import { GetServerSidePropsContext } from "next";
 import { useRecoilState } from "recoil";
 import Head from "next/head";
-import { track } from "@amplitude/analytics-browser";
+// import { track } from "@amplitude/analytics-browser";
 import {
   Header,
   InstallAppBottomSheet,
@@ -76,7 +76,7 @@ const Result = ({ drinkId, mode }: Props) => {
     } else if (result === "failed") {
       alert("공유하기가 지원되지 않는 환경입니다.");
     }
-    track(shared ? "Tap Try By Share" : "Tap Share");
+    // track(shared ? "Tap Try By Share" : "Tap Share");
   };
 
   return (
@@ -119,9 +119,9 @@ const Result = ({ drinkId, mode }: Props) => {
         tags={winnerDrinkEvaluation?.result?.situation as string[]}
         drink={drink}
         handleClickSearchIcon={() => {
-          track("Tap Detail", {
-            type: "winner",
-          });
+          // track("Tap Detail", {
+          //   type: "winner",
+          // });
           setIsDrinkDetailBottomSheetOpened(true);
         }}
         select={drink?.worldcupWinCount ?? 1}
@@ -132,7 +132,7 @@ const Result = ({ drinkId, mode }: Props) => {
             navigate.toNativeHome();
           } else {
             navigate.push("/");
-            track("Tap Restart");
+            // track("Tap Restart");
           }
         }}
         handleClickRightButton={handleShare}

@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { BottomButton, Title } from "design-system";
 import Head from "next/head";
 import * as React from "react";
-import { track } from "@amplitude/analytics-browser";
+// import { track } from "@amplitude/analytics-browser";
 import { Header } from "../components";
 import { useNavigate } from "../hooks";
 
