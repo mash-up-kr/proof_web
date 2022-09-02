@@ -1,3 +1,4 @@
+import { track } from "@amplitude/analytics-browser";
 import styled from "@emotion/styled";
 import { BottomButton, theme, Title } from "design-system";
 import * as React from "react";
@@ -25,9 +26,16 @@ const WorldCup = () => {
   } = useWorldCup();
   const candidateDrinks = getCurrentCandidate();
 
-  const handleDrinkCardClick = (drink: DrinkWithRound) => {
+  const handleDrinkCardClick = (drink: DrinkWithRound, type: string) => {
     if (drink === selectedDrink) setSelectedDrink(null);
-    else setSelectedDrink(drink);
+    else {
+      const { currentRound } = worldCupState;
+      track("Select Drink", {
+        round: currentRound,
+        type,
+      });
+      setSelectedDrink(drink);
+    }
   };
 
   const handleClickBottomButton = () => {
@@ -75,21 +83,27 @@ const WorldCup = () => {
         />
         <TitleWrapper title={worldCupState.title} textAlign="center" />
         <CandidateWrapper>
-          {candidateDrinks.map((drink, idx) => (
-            <DrinkCard
-              key={drink?.id ?? idx}
-              type="round"
-              drink={drink}
-              isActive={selectedDrink === drink}
-              iconType={idx === 0 ? "typeA" : "typeB"}
-              onClick={() => handleDrinkCardClick(drink)}
-              onSearchIconClick={(e) => {
-                e.stopPropagation();
-                setDrinkToReadMore(drink);
-                setBottomSheetOpened(true);
-              }}
-            />
-          ))}
+          {candidateDrinks.map((drink, idx) => {
+            const type = idx === 0 ? "typeA" : "typeB";
+            return (
+              <DrinkCard
+                key={drink?.id ?? idx}
+                type="round"
+                drink={drink}
+                isActive={selectedDrink === drink}
+                iconType={type}
+                onClick={() => handleDrinkCardClick(drink, type)}
+                onSearchIconClick={(e) => {
+                  track("Tap Detail", {
+                    type: "round",
+                  });
+                  e.stopPropagation();
+                  setDrinkToReadMore(drink);
+                  setBottomSheetOpened(true);
+                }}
+              />
+            );
+          })}
         </CandidateWrapper>
         <BottomButton
           isActive={!!selectedDrink}

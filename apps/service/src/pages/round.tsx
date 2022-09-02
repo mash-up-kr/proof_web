@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { Title } from "design-system";
 import * as React from "react";
 import { useRecoilState } from "recoil";
+import { track } from "@amplitude/analytics-browser";
 import { useGetOneWorldCupInfoById } from "../api/query";
 import { WorldCupService } from "../api/service";
 import { Header } from "../components";
@@ -43,6 +44,7 @@ const RoundPage = () => {
       currentRound: round,
       drinks: getDrinksWithRounds(drinks, round),
     }));
+    track("Select Round", { round });
     navigate.push("/worldcup");
   };
 

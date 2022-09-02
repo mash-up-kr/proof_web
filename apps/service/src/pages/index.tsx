@@ -3,11 +3,21 @@ import { BottomButton, Title } from "design-system";
 import { NextPage } from "next";
 import Head from "next/head";
 import * as React from "react";
+import { track } from "@amplitude/analytics-browser";
 import { Header } from "../components";
 import { useNavigate } from "../hooks";
 
 const Home: NextPage = () => {
   const navigate = useNavigate();
+
+  React.useEffect(() => {
+    track("Worldcup Flow Start");
+  }, []);
+
+  const handleClickNext = () => {
+    track("Tap Start");
+    navigate.push("/category");
+  };
 
   return (
     <>
@@ -35,7 +45,7 @@ const Home: NextPage = () => {
           width="280px"
           height="324px"
         />
-        <BottomButton isActive onClick={() => navigate.push("/category")}>
+        <BottomButton isActive onClick={handleClickNext}>
           시작하기!
         </BottomButton>
       </Wrapper>
