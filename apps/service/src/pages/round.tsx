@@ -22,7 +22,7 @@ const RoundPage = () => {
   );
 
   if (isLoading || worldCupInfo === undefined) {
-    return <div>Loading...</div>;
+    return null;
   }
   const rounds = worldCupInfo.round;
 

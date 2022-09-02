@@ -25,7 +25,7 @@ function DrinkInfoBottomSheet({
   const { id, name, abv, category } = selectedDrink;
   const result = useGetDrinkInfoById(id);
 
-  if (result.isLoading) return <div>Loading...</div>;
+  if (result.isLoading) return null;
 
   const drinkData = result.data;
 
