@@ -75,7 +75,7 @@ const Result = ({ drinkId, mode }: Props) => {
       nativeShare(
         { url: `${BASE_URL}/result/shared/${drinkId}` },
         function (result_cd: any, result_msg: any, extra: any) {
-          alert(result_cd + result_msg + JSON.stringify(extra));
+          console.log(result_cd + result_msg + JSON.stringify(extra));
         }
       );
     } else {
