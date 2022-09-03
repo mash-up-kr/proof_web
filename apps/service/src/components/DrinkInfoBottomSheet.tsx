@@ -8,6 +8,7 @@ import CompetitionBar from "./CompetitionBar";
 import { useGetDrinkInfoById } from "../api/query";
 import { DrinkEvaluationDto } from "../@types/api/drinkEvaluation";
 import { DrinkDto } from "../@types/api";
+import LottieControl from "./Lottie";
 
 interface DrinkInfoBottomSheetProps {
   selectedDrink: DrinkDto;
@@ -25,7 +26,7 @@ function DrinkInfoBottomSheet({
   const { id, name, abv, category } = selectedDrink;
   const result = useGetDrinkInfoById(id);
 
-  if (result.isLoading) return null;
+  if (result.isLoading) return <LottieControl />;
 
   const drinkData = result.data;
 
