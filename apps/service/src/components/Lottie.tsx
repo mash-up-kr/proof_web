@@ -1,24 +1,19 @@
 import styled from "@emotion/styled";
 import React from "react";
 import Lottie from "react-lottie";
-import lottie from "../../public/lotties/lottie.json";
+import * as lottieFile from "./lottie.json";
 
 export default class LottieControl extends React.Component {
-  constructor(props) {
+  constructor(props: {} | Readonly<{}>) {
     super(props);
     this.state = { isStopped: false, isPaused: false };
   }
 
   render() {
-    const buttonStyle = {
-      display: "block",
-      margin: "10px auto",
-    };
-
     const defaultOptions = {
       loop: true,
       autoplay: true,
-      animationData: lottie,
+      animationData: lottieFile,
       rendererSettings: {
         preserveAspectRatio: "xMidYMid slice",
       },
@@ -26,13 +21,7 @@ export default class LottieControl extends React.Component {
 
     return (
       <Wrapper>
-        <Lottie
-          options={defaultOptions}
-          height={400}
-          width={400}
-          // isStopped={this.state.isStopped}
-          // isPaused={this.state.isPaused}
-        />
+        <Lottie options={defaultOptions} height={400} width={400} />
       </Wrapper>
     );
   }
@@ -40,7 +29,6 @@ export default class LottieControl extends React.Component {
 
 const Wrapper = styled.div`
   position: fixed;
-
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
