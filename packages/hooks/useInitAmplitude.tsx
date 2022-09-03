@@ -4,8 +4,7 @@ import { useEffect } from "react";
 function useInitAmplitude() {
   useEffect(() => {
     if (typeof window !== undefined) {
-      console.log(process.env.NEXT_PUBLIC_AMPLITUDE_SERVICE_KEY);
-      init(process.env.NEXT_PUBLIC_AMPLITUDE_SERVICE_KEY as string);
+      init("799f4fce304d7b04dc47c3480b34486a");
     }
   }, []);
 }
