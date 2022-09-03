@@ -34,7 +34,8 @@ const WorldCup = () => {
   const candidateDrinksEvaluation = useGetDrinksEvaluationById(candidateDrinks);
   if (
     candidateDrinksEvaluation.some((r) => r.isLoading) ||
-    candidateDrinksEvaluation.some((r) => r.data === undefined)
+    candidateDrinksEvaluation.some((r) => r.data === undefined) ||
+    candidateDrinks.length === 1
   )
     return null;
 

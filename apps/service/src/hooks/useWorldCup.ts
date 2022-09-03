@@ -74,6 +74,7 @@ const useWorldCup = () => {
 
   const getCurrentCandidate = () => {
     const { currentRound, currentIndex, drinks } = worldCupState;
+    if (currentRound === 1) return [];
     const drinksWithCurrentRound = drinks.filter((drink) =>
       drink.rounds.includes(currentRound)
     );
