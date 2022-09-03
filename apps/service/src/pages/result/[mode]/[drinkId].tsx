@@ -34,7 +34,7 @@ const Result = ({ drinkId, mode }: Props) => {
   const navigate = useNavigate();
   const { userAgent } = useUserAgent();
   const { revertToPrevRoundState } = useWorldCup();
-  const { isLoading, data: drink } = useGetDrinkInfoById(Number(drinkId));
+  const { isLoading, data: drink } = useGetDrinkInfoById(Number(drinkId) ?? 1);
 
   const [worldCupState] = useRecoilState(state);
 
