@@ -8,6 +8,7 @@ import { Header } from "../components";
 import { useNavigate } from "../hooks";
 import { worldCupState } from "../store";
 import { getProofAccessToken } from "../utils/native/action";
+import LottieControl from "../components/Lottie";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ const Home = () => {
         />
       </Head> */}
 
-      <Wrapper>
+      {/* <Wrapper>
         <Header type="logo" onClickIcon={navigate.toNativeHome} />
         <MainTitle
           title={"술 취향 증명을\n시작해볼까요?"}
@@ -63,7 +64,8 @@ const Home = () => {
         <BottomButton isActive onClick={handleClickNext}>
           시작하기!
         </BottomButton>
-      </Wrapper>
+      </Wrapper> */}
+      <LottieControl />
     </>
   );
 };

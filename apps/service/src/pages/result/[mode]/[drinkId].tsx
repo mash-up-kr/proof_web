@@ -22,6 +22,7 @@ import {
 } from "../../../api/query";
 import { DrinkEvaluationDto } from "../../../@types/api/drinkEvaluation";
 import { nativeShare } from "../../../utils/native/action";
+import LottieControl from "../../../components/Lottie";
 
 const BASE_URL = `https://zuzu-web.vercel.app`;
 
@@ -56,7 +57,7 @@ const Result = ({ drinkId, mode }: Props) => {
       clearTimeout(timer);
     };
   }, []);
-  if (isLoading) return null;
+  if (isLoading) return <LottieControl />;
 
   // TODO: native임에 따라서 연동필요
   const handleClickHeaderPrevIcon = () => {
