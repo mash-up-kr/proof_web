@@ -5,18 +5,6 @@ __metadata:
   version: 6
   cacheKey: 8
 
-"@amplitude/analytics-browser@npm:^0.5.1":
-  version: 0.5.1
-  resolution: "@amplitude/analytics-browser@npm:0.5.1"
-  dependencies:
-    "@amplitude/analytics-core": ^0.4.1
-    "@amplitude/analytics-types": ^0.3.0
-    "@amplitude/ua-parser-js": ^0.7.31
-    tslib: ^2.3.1
-  checksum: 87bddc9875e48ea4218d9eca0054911b277f8d8378b5f8dd977c95cebbfa44a41308feb50583c36e351e96c5957cae0c187db11df1786f988e483ca449f5bd08
-  languageName: node
-  linkType: hard
-
 "@amplitude/analytics-browser@npm:^1.2.3":
   version: 1.2.3
   resolution: "@amplitude/analytics-browser@npm:1.2.3"
@@ -39,16 +27,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@amplitude/analytics-core@npm:^0.4.1":
-  version: 0.4.1
-  resolution: "@amplitude/analytics-core@npm:0.4.1"
-  dependencies:
-    "@amplitude/analytics-types": ^0.3.0
-    tslib: ^2.3.1
-  checksum: 4961dc1c1847c577b83f4783e52bade2194bb771359bfb2073439dc1dc47f66c278f032daa57eb38cbbb79bcc087ce8c6566047020cfbe04769ca2d462b1e7ac
-  languageName: node
-  linkType: hard
-
 "@amplitude/analytics-core@npm:^0.8.1":
   version: 0.8.1
   resolution: "@amplitude/analytics-core@npm:0.8.1"
@@ -56,13 +34,6 @@ __metadata:
     "@amplitude/analytics-types": ^0.8.1
     tslib: ^2.3.1
   checksum: 544b2cbf9d7b6a27b6fd77613a05b98f10d7875b905f5beff7ee1da249641a29e1a0f3e18f6acbf48f093518269acbd5f64750ae5934c2fd6836a653f0937d7b
-  languageName: node
-  linkType: hard
-
-"@amplitude/analytics-types@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "@amplitude/analytics-types@npm:0.3.0"
-  checksum: 668ab6ae6e33c8983a973418155e128f534cf78a9b4fe1d2b25d9c554c1f3e18fb64e596aad27ba67f15efc65fed7f99b1249aa7f4fbb2cd83d16cd9fd236207
   languageName: node
   linkType: hard
 
@@ -9792,7 +9763,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "hooks@workspace:packages/hooks"
   dependencies:
-    "@amplitude/analytics-browser": ^0.5.1
+    "@amplitude/analytics-browser": ^1.2.3
     "@types/react": ^17.0.37
     eslint: ^7.32.0
     eslint-config-custom: "*"
