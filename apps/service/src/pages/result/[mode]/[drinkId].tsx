@@ -23,6 +23,7 @@ import {
 } from "../../../api/query";
 import { DrinkEvaluationDto } from "../../../@types/api/drinkEvaluation";
 import { nativeShare } from "../../../utils/native/action";
+import { useRouter } from "next/router";
 
 const BASE_URL = `https://zuzu-web.vercel.app`;
 
@@ -31,7 +32,10 @@ interface Props {
   mode: "view" | "shared";
 }
 
-const Result = ({ drinkId, mode }: Props) => {
+const Result = () => {
+  const router = useRouter();
+  const drinkId = router.query.drinkId;
+  const mode = router.query.mode;
   const navigate = useNavigate();
   const { userAgent } = useUserAgent();
   const { revertToPrevRoundState } = useWorldCup();
@@ -150,16 +154,5 @@ const Title = styled.div`
   padding-top: 36px;
   padding-inline: 24px;
 `;
-
-export async function getServerSideProps({
-  query,
-}: GetServerSidePropsContext<{ drinkId: string; mode: string }>) {
-  return {
-    props: {
-      drinkId: query?.drinkId,
-      mode: query?.mode,
-    },
-  };
-}
 
 export default Result;

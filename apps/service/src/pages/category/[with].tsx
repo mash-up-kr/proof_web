@@ -5,10 +5,10 @@ import { track } from "@amplitude/analytics-browser";
 import { WithWhoType } from "../../@types/api";
 import { useGetWorldCupInfosByCategorizingWithWho } from "../../api/query";
 import ClickableContentCard from "../../components/ClickableContentCard";
+import LottieControl from "../../components/LottieControl";
 import TitleWithContent from "../../components/TitleWithContent";
 import { useNavigate } from "../../hooks";
 import { worldCupState } from "../../store";
-import LottieControl from "../../components/LottieControl";
 
 interface Props {
   withWho: WithWhoType;
