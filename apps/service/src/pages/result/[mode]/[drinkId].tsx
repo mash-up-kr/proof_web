@@ -8,6 +8,7 @@ import { track } from "@amplitude/analytics-browser";
 import {
   Header,
   InstallAppBottomSheet,
+  LottieControl,
   Rankings,
   ShareButtons,
 } from "../../../components";

@@ -8,7 +8,7 @@ import CompetitionBar from "./CompetitionBar";
 import { useGetDrinkInfoById } from "../api/query";
 import { DrinkEvaluationDto } from "../@types/api/drinkEvaluation";
 import { DrinkDto } from "../@types/api";
-import LottieControl from "./Lottie";
+import LottieControl from "./LottieControl";
 
 interface DrinkInfoBottomSheetProps {
   selectedDrink: DrinkDto;
