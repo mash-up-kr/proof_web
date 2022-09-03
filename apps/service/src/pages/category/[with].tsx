@@ -8,7 +8,7 @@ import ClickableContentCard from "../../components/ClickableContentCard";
 import TitleWithContent from "../../components/TitleWithContent";
 import { useNavigate } from "../../hooks";
 import { worldCupState } from "../../store";
-import LottieControl from "../../components/Lottie";
+import LottieControl from "../../components/LottieControl";
 
 interface Props {
   withWho: WithWhoType;

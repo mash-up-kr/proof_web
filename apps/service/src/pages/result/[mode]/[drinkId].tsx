@@ -22,7 +22,7 @@ import {
 } from "../../../api/query";
 import { DrinkEvaluationDto } from "../../../@types/api/drinkEvaluation";
 import { nativeShare } from "../../../utils/native/action";
-import LottieControl from "../../../components/Lottie";
+import LottieControl from "../../../components/LottieControl";
 
 const BASE_URL = `https://zuzu-web.vercel.app`;
 

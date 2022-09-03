@@ -6,3 +6,4 @@ export { default as WinnerCard } from "./WinnerCard";
 export { default as Rankings } from "./Rankings";
 export { default as ShareButtons } from "./ShareButtons";
 export { default as InstallAppBottomSheet } from "./InstallAppBottomSheet";
+export { default as LottieControl } from "./LottieControl";
