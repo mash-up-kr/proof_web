@@ -33,12 +33,15 @@ prove your alcohol taste 🍷🍶🍺</strong>
 - [License](#license)
 
 ## 🧐 About <a name = "about"></a>
+<img width="1462" alt="스크린샷 2023-08-24 오전 2 22 44" src="https://github.com/mash-up-kr/proof_web/assets/52898735/e33e153c-fb6f-4316-b7c9-43e2ff82bf6f">
 
 Proof is an app service for archiving and recommending liquor, created by the team '6271'. 
 
 Our web service provides a small enjoyable survey to recommend the best liquor based on your preference. 
 
 For more information, download the 'Proof' app, share your comments and look at all of the benefits you can expect by visiting 'Proof'! 
+
+Design(Web): https://www.figma.com/file/0eZNqJ5cBkK5iJL1Q4w4rv/%5BMash-Up%5D-PROOF?type=design&node-id=16%3A46&mode=design&t=7TsdbHB8bZMnntKr-1
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
